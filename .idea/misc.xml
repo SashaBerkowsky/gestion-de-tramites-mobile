@@ -11,6 +11,10 @@
         <entry key="..\:/Archivos/Escritorio/Ort/4to Cuatrimestre/PRF/GestiondeTramitesMobile/app/src/main/res/layout/procedure_list_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/Archivos/Escritorio/Ort/4to Cuatrimestre/PRF/GestiondeTramitesMobile/app/src/main/res/layout/profile_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/Archivos/Escritorio/Ort/4to Cuatrimestre/PRF/GestiondeTramitesMobile/app/src/main/res/menu/bottom_bar.xml" value="0.171875" />
+        <entry key="app/src/main/res/drawable/baseline_insert_invitation_24.xml" value="0.21770833333333334" />
+        <entry key="app/src/main/res/layout/list_item.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout/procedure_form_fragment.xml" value="0.335" />
+        <entry key="app/src/main/res/menu/bottom_bar.xml" value="0.2015625" />
       </map>
     </option>
   </component>

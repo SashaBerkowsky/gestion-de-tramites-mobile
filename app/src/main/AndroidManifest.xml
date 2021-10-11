@@ -26,7 +26,12 @@
         </activity>
         <activity
             android:name=".activities.ProcedureActivity"
-            android:exported="true"></activity>
+            android:exported="true">
+        </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

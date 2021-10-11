@@ -14,4 +14,7 @@
     <color name="secondaryTheme">#3D5AFE</color>
     <color name="infoTheme">#D5D5D5</color>
     <color name="errorTheme">#D60909</color>
+    <color name="newProcedure">#424242</color>
+    <color name="blueName">#2A3EB1</color>
+    <color name="hintTextColor">#909090</color>
 </resources>

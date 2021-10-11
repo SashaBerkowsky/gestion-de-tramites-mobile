@@ -1,4 +1,4 @@
 package com.ort.gestiondetramitesmobile.models
 
-class Procedure {
+class Procedure (var name : String, var description : String) {
 }

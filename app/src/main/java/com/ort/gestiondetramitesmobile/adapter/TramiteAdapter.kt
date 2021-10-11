@@ -1,4 +1,4 @@
-package com.ort.gestiondetramitesmobile.Adapter
+package com.ort.gestiondetramitesmobile.adapter
 
 import android.view.LayoutInflater
 import android.view.View

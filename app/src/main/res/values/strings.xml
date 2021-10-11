@@ -4,4 +4,21 @@
     <string name="label_menu_new_p">Seleccione tipo de trámite</string>
     <string name="procedure_detail">Para primeras licencias, renovaciones y nuevos ejemplares</string>
     <string name="procedure_name">LICENCIA DE CONDUCIR</string>
+
+    <!--Strings para User data form fragment -->
+    <string name="UserDataForm_titulo">COMPLETAR PERFIL</string>
+    <string name="UserDataForm_DNI_Persona">Número de DNI</string>
+    <string name="UserDataForm_Nombre">Nombre</string>
+    <string name="UserDataForm_Apellido">Apellido</string>
+    <string name="UserDataForm_Domicilio">Domicilio</string>
+    <string name="UserDataForm_Fecha_Nacimiento">Fecha de nacimiento</string>
+    <string name="UserDataForm_Boton_Guardar">GUARDAR</string>
+
+
+    <!--Strings para singup fragment -->
+    <string name="SingUp_titulo">CREAR NUEVA CUENTA</string>
+    <string name="SingUp_Email">Email</string>
+    <string name="SingUp_Contraseña">Contraseña</string>
+    <string name="SingUp_Confir_Contraseña">Confirmar contraseña</string>
+    <string name="SingUp_Boton">CREAR CUENTA</string>
 </resources>

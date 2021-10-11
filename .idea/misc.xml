@@ -16,6 +16,13 @@
         <entry key="..\:/Users/tabrevaya/Desktop/Android Studio/gestion-de-tramites-mobile/app/src/main/res/layout/activity_procedure.xml" value="0.2557291666666667" />
         <entry key="..\:/Users/tabrevaya/Desktop/Android Studio/gestion-de-tramites-mobile/app/src/main/res/layout/item_procedures.xml" value="0.5" />
         <entry key="..\:/Users/tabrevaya/Desktop/Android Studio/gestion-de-tramites-mobile/app/src/main/res/layout/new_procedure_fragment.xml" value="0.33" />
+        <entry key="app/src/main/res/drawable/baseline_insert_invitation_24.xml" value="0.21770833333333334" />
+        <entry key="app/src/main/res/layout/list_item.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout/new_procedure_fragment.xml" value="0.2015625" />
+        <entry key="app/src/main/res/layout/procedure_form_fragment.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/procedure_list_current_fragment.xml" value="0.275" />
+        <entry key="app/src/main/res/layout/procedure_list_old_fragment.xml" value="0.275" />
+        <entry key="app/src/main/res/menu/bottom_bar.xml" value="0.2015625" />
       </map>
     </option>
   </component>

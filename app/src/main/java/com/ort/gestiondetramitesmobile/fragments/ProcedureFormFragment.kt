@@ -39,12 +39,12 @@ class ProcedureFormFragment : Fragment() {
         autoCompleteTextView.setAdapter(adapter)
 
         // Date picker
-        val builder = MaterialDatePicker.Builder.datePicker()
+    /*    val builder = MaterialDatePicker.Builder.datePicker()
         val picker = builder.build()
         var textInputBirthday: EditText? = v.findViewById(R.id.ti_birthday)
         textInputBirthday!!.setOnClickListener {
             picker.show(myContext.supportFragmentManager, picker.toString())
-        }
+        }*/
 
         // Second select
         val items2 = listOf("A1", "B1", "C1")

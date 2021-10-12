@@ -118,6 +118,10 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="191dp" />
+
         <Button
             android:id="@+id/UserDataForm_Boton_Guardar"
             style="@style/Widget.MaterialComponents.Button"

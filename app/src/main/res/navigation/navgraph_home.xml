@@ -24,10 +24,18 @@
         android:id="@+id/procedureListOldFragment"
         android:name="com.ort.gestiondetramitesmobile.fragments.ProcedureListOldFragment"
         android:label="procedure_list_old_fragment"
-        tools:layout="@layout/procedure_list_old_fragment" />
+        tools:layout="@layout/procedure_list_old_fragment" >
+        <action
+            android:id="@+id/action_procedureListOldFragment_to_procedureDetailFragment2"
+            app:destination="@id/procedureDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/procedureListCurrentFragment"
         android:name="com.ort.gestiondetramitesmobile.fragments.ProcedureListCurrentFragment"
         android:label="procedure_list_current_fragment"
-        tools:layout="@layout/procedure_list_current_fragment" />
+        tools:layout="@layout/procedure_list_current_fragment" >
+        <action
+            android:id="@+id/action_procedureListCurrentFragment_to_procedureDetailFragment2"
+            app:destination="@id/procedureDetailFragment" />
+    </fragment>
 </navigation>

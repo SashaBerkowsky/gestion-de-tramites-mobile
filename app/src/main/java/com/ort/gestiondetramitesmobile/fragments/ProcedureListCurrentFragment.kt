@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -38,11 +39,18 @@ class ProcedureListCurrentFragment : Fragment() {
         return v
     }
 
+    private fun onItemClick(position: Int){
+        val action = ProcedureListFragmentDirections.actionProcedureListFragmentToProcedureDetailFragment()
+        findNavController().navigate(action)
+    }
+
     override fun onStart(){
         super.onStart()
         recTramite.setHasFixedSize(true)
         recTramite.layoutManager= LinearLayoutManager(context)
-        recTramite.adapter = TramiteAdapter(obtenerTramites())
+        recTramite.adapter = TramiteAdapter(obtenerTramites(), requireContext()){
+            onItemClick(it)
+        }
 
     }
 

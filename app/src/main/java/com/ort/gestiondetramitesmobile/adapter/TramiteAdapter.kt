@@ -1,5 +1,6 @@
 package com.ort.gestiondetramitesmobile.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,11 +8,13 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.ort.gestiondetramitesmobile.R
+import com.ort.gestiondetramitesmobile.models.Procedure
 import com.ort.gestiondetramitesmobile.models.Tramite
 
-class TramiteAdapter (
-    private var tramiteList: MutableList<Tramite>
-    ) : RecyclerView.Adapter<TramiteAdapter.TramiteHolder>(){
+class TramiteAdapter (private var tramiteList: MutableList<Tramite>,
+                      var context : Context,
+                      val onItemClick : (Int) -> Unit
+) : RecyclerView.Adapter<TramiteAdapter.TramiteHolder>(){
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -24,6 +27,9 @@ class TramiteAdapter (
         holder.setName(tramiteList[position].name)
         holder.setDateTramite(tramiteList[position].entregado)
         holder.setState(tramiteList[position].state)
+        holder.getCardView().setOnClickListener {
+            onItemClick(position)
+        }
 
 
     }
@@ -54,6 +60,9 @@ class TramiteAdapter (
         fun changeColor() {
             val c: CardView = view.findViewById(R.id.cardTramite)
 
+        }
+        fun getCardView () : CardView {
+            return view.findViewById(R.id.cardTramite)
         }
     }
 }

@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.ort.gestiondetramitesmobile.adapter.TramiteAdapter
+import com.ort.gestiondetramitesmobile.adapters.TramiteAdapter
 import com.ort.gestiondetramitesmobile.R
 import com.ort.gestiondetramitesmobile.activities.ProcedureActivity
 import com.ort.gestiondetramitesmobile.models.Tramite

@@ -12,6 +12,10 @@ import android.widget.Button
 import android.widget.TextView
 import com.ort.gestiondetramitesmobile.R
 import com.ort.gestiondetramitesmobile.viewmodels.ProcedureDetailViewModel
+import android.content.res.Resources.Theme
+
+
+
 
 class ProcedureDetailFragment : Fragment() {
 
@@ -58,6 +62,7 @@ class ProcedureDetailFragment : Fragment() {
         btnBack.setOnClickListener {
             dialog.dismiss()
         }
+
         dialog.show()
     }
 

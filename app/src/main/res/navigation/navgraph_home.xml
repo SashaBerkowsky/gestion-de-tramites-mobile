@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_procedureListFragment_to_procedureDetailFragment"
             app:destination="@id/procedureDetailFragment" />
+        <action
+            android:id="@+id/action_procedureListFragment_to_newProcedureFragment2"
+            app:destination="@id/newProcedureFragment2" />
     </fragment>
     <fragment
         android:id="@+id/procedureDetailFragment"
@@ -34,4 +37,44 @@
         android:name="com.ort.gestiondetramitesmobile.fragments.ProcedureListCurrentFragment"
         android:label="procedure_list_current_fragment"
         tools:layout="@layout/procedure_list_current_fragment" />
+    <fragment
+        android:id="@+id/newProcedureFragment2"
+        android:name="com.ort.gestiondetramitesmobile.fragments.NewProcedureFragment"
+        android:label="new_procedure_fragment"
+        tools:layout="@layout/new_procedure_fragment" >
+        <action
+            android:id="@+id/action_newProcedureFragment2_to_procedureFormFragment2"
+            app:destination="@id/procedureFormFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/procedureFormFragment2"
+        android:name="com.ort.gestiondetramitesmobile.fragments.ProcedureFormFragment"
+        android:label="ProcedureFormFragment" >
+        <action
+            android:id="@+id/action_procedureFormFragment2_to_pictureStepperFragment"
+            app:destination="@id/pictureStepperFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pictureStepperFragment"
+        android:name="com.ort.gestiondetramitesmobile.fragments.PictureStepperFragment"
+        android:label="picture_stepper_fragment"
+        tools:layout="@layout/picture_stepper_fragment" >
+        <action
+            android:id="@+id/action_pictureStepperFragment_to_procedureOverviewFragment2"
+            app:destination="@id/procedureOverviewFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/procedureOverviewFragment2"
+        android:name="com.ort.gestiondetramitesmobile.fragments.ProcedureOverviewFragment"
+        android:label="procedure_overview_fragment"
+        tools:layout="@layout/procedure_overview_fragment" >
+        <action
+            android:id="@+id/action_procedureOverviewFragment2_to_procedureSendedFragment2"
+            app:destination="@id/procedureSendedFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/procedureSendedFragment2"
+        android:name="com.ort.gestiondetramitesmobile.fragments.ProcedureSendedFragment"
+        android:label="procedure_sended_fragment"
+        tools:layout="@layout/procedure_sended_fragment" />
 </navigation>

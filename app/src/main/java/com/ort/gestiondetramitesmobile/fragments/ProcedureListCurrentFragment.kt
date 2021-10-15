@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.ort.gestiondetramitesmobile.adapters.TramiteAdapter
 import com.ort.gestiondetramitesmobile.R
-import com.ort.gestiondetramitesmobile.activities.ProcedureActivity
+import com.ort.gestiondetramitesmobile.activities.HomeActivity
 import com.ort.gestiondetramitesmobile.models.Tramite
 import com.ort.gestiondetramitesmobile.viewmodels.ProcedureListCurrentViewModel
 
@@ -33,13 +33,13 @@ class ProcedureListCurrentFragment : Fragment() {
         recTramite = v.findViewById(R.id.ReciclerTramiteCurrent)
         var btnCreateNew = v.findViewById<FloatingActionButton>(R.id.btn_create_procedure)
         btnCreateNew.setOnClickListener {
-            val intent = Intent(requireActivity(), ProcedureActivity::class.java)
-            startActivity(intent)
+            val action = ProcedureListFragmentDirections.actionProcedureListFragmentToNewProcedureFragment2()
+            findNavController().navigate(action)
         }
         return v
     }
 
-    private fun onItemClick(position: Int){
+    private fun onItemClick(){
         val action = ProcedureListFragmentDirections.actionProcedureListFragmentToProcedureDetailFragment()
         findNavController().navigate(action)
     }
@@ -49,7 +49,7 @@ class ProcedureListCurrentFragment : Fragment() {
         recTramite.setHasFixedSize(true)
         recTramite.layoutManager= LinearLayoutManager(context)
         recTramite.adapter = TramiteAdapter(obtenerTramites(), requireContext()){
-            onItemClick(it)
+            onItemClick()
         }
 
     }

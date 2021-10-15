@@ -53,7 +53,7 @@ class NewProcedureFragment : Fragment() {
 
     private fun onItemClick(position : Int) {
         val list = getProcedureTypes()
-        val action = NewProcedureFragmentDirections.actionNewProcedureFragmentToProcedureFormFragment()
+        val action = NewProcedureFragmentDirections.actionNewProcedureFragment2ToProcedureFormFragment2()
         findNavController().navigate(action)
     }
 

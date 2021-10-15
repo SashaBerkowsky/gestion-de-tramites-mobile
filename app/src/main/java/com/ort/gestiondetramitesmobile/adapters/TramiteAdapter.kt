@@ -1,4 +1,4 @@
-package com.ort.gestiondetramitesmobile.adapter
+package com.ort.gestiondetramitesmobile.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.ort.gestiondetramitesmobile.R
-import com.ort.gestiondetramitesmobile.models.Procedure
 import com.ort.gestiondetramitesmobile.models.Tramite
 
 class TramiteAdapter (private var tramiteList: MutableList<Tramite>,

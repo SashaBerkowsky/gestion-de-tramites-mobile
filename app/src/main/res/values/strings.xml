@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Gestion de Tramites Mobile</string>
+    <string name="app_name">Gestión de Trámites</string>
     <string name="txt_new_p">NUEVO TRÁMITE</string>
     <string name="label_menu_new_p">Seleccione tipo de trámite</string>
     <string name="procedure_detail">Para primeras licencias, renovaciones y nuevos ejemplares</string>
@@ -14,11 +14,19 @@
     <string name="UserDataForm_Fecha_Nacimiento">Fecha de nacimiento</string>
     <string name="UserDataForm_Boton_Guardar">GUARDAR</string>
 
-
     <!--Strings para singup fragment -->
     <string name="SingUp_titulo">CREAR NUEVA CUENTA</string>
     <string name="SingUp_Email">Email</string>
     <string name="SingUp_Contraseña">Contraseña</string>
     <string name="SingUp_Confir_Contraseña">Confirmar contraseña</string>
     <string name="SingUp_Boton">CREAR CUENTA</string>
+
+    <!--Strings para login -->
+    <string name="email_login">Email</string>
+    <string name="password_login">Contraseña</string>
+    <string name="btn_login">INGRESAR</string>
+    <string name="account_login">¿Todavía no tenés cuenta?</string>
+    <string name="account2_login">Ingrese aquí</string>
+    <string name="option">o</string>
+
 </resources>

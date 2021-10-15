@@ -11,10 +11,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ort.gestiondetramitesmobile.R
-import com.ort.gestiondetramitesmobile.adapter.NewProcedureAdapter
-import com.ort.gestiondetramitesmobile.adapter.TramiteAdapter
+import com.ort.gestiondetramitesmobile.adapters.NewProcedureAdapter
 import com.ort.gestiondetramitesmobile.models.Procedure
-import com.ort.gestiondetramitesmobile.models.Tramite
 import com.ort.gestiondetramitesmobile.viewmodels.NewProcedureViewModel
 
 class NewProcedureFragment : Fragment() {
@@ -55,7 +53,7 @@ class NewProcedureFragment : Fragment() {
 
     private fun onItemClick(position : Int) {
         val list = getProcedureTypes()
-        val action = NewProcedureFragmentDirections.actionNewProcedureFragmentToProcedureFormFragment()
+        val action = NewProcedureFragmentDirections.actionNewProcedureFragment2ToProcedureFormFragment2()
         findNavController().navigate(action)
     }
 

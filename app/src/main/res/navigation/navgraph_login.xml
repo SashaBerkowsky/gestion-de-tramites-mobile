@@ -3,21 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navgraph_login"
-    app:startDestination="@id/splashFragment">
-    <fragment
-        android:id="@+id/splashFragment"
-        android:name="com.ort.gestiondetramitesmobile.fragments.SplashFragment"
-        android:label="splash_fragment"
-        tools:layout="@layout/splash_fragment" >
-        <action
-            android:id="@+id/action_splashFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
+    app:startDestination="@id/loginFragment">
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.ort.gestiondetramitesmobile.fragments.LoginFragment"
         android:label="login_fragment"
-        tools:layout="@layout/login_fragment" />
+        tools:layout="@layout/login_fragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_homeActivity"
+            app:destination="@id/homeActivity" />
+    </fragment>
     <fragment
         android:id="@+id/userDataFormFragment"
         android:name="com.ort.gestiondetramitesmobile.fragments.UserDataFormFragment"
@@ -28,4 +23,9 @@
         android:name="com.ort.gestiondetramitesmobile.fragments.SignupFragment"
         android:label="signup_fragment"
         tools:layout="@layout/signup_fragment" />
+    <activity
+        android:id="@+id/homeActivity"
+        android:name="com.ort.gestiondetramitesmobile.activities.HomeActivity"
+        android:label="activity_home"
+        tools:layout="@layout/activity_home" />
 </navigation>

@@ -1,5 +1,11 @@
 package com.ort.gestiondetramitesmobile.models
 
-enum class ProcedureState(val title: String) {
-    PENDIENTE_DE_ANALISIS("Pendiente de analisis"),EN_PROCESO_DE_ANALISIS("En proceso de analisis"), ASIGNADO_A_RESPONSABLE("Asignado a responsable"), PENDIENTE_DE_RETIRO("Pendiente de retiro"),ESTADO_FINALIZADO("Finalizado")
+sealed class ProcedureState(val title: String) {
+
+    class PENDIENTE_DE_ANALISIS() : ProcedureState("Pendiente de analisis")
+    class EN_PROCESO_DE_ANALISIS() : ProcedureState("En proceso de analisis")
+    class ASIGNADO_A_RESPONSABLE() : ProcedureState("Asignado a responsable")
+    class PENDIENTE_DE_RETIRO() : ProcedureState("Pendiente de retiro")
+    class ESTADO_FINALIZADO() : ProcedureState("Finalizado")
+
 }

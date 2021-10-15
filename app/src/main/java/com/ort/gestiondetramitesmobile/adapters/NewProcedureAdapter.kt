@@ -9,21 +9,22 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.ort.gestiondetramitesmobile.R
 import com.ort.gestiondetramitesmobile.models.Procedure
+import com.ort.gestiondetramitesmobile.models.ProcedureType
 
-class NewProcedureAdapter (private var procedureList: MutableList<Procedure>,
+class NewProcedureAdapter (private var procedureList: MutableList<ProcedureType>,
                            var context : Context,
                            val onItemClick : (Int) -> Unit
     ) : RecyclerView.Adapter<NewProcedureAdapter.ProcedureHolder>(){
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): NewProcedureAdapter.ProcedureHolder {
+    ): ProcedureHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_procedures,parent,false)
         return(ProcedureHolder(view))
     }
 
-    override fun onBindViewHolder(holder: NewProcedureAdapter.ProcedureHolder, position: Int) {
-        holder.setName(procedureList[position].name)
+    override fun onBindViewHolder(holder: ProcedureHolder, position: Int) {
+        holder.setName(procedureList[position].title)
         holder.setDescription(procedureList[position].description)
         holder.getCardView().setOnClickListener {
             onItemClick(position)

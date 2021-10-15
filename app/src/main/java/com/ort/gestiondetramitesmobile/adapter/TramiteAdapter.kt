@@ -24,8 +24,6 @@ class TramiteAdapter (
         holder.setName(tramiteList[position].name)
         holder.setDateTramite(tramiteList[position].entregado)
         holder.setState(tramiteList[position].state)
-
-
     }
 
     override fun getItemCount(): Int {

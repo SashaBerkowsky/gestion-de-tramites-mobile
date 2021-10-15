@@ -14,6 +14,7 @@ import com.ort.gestiondetramitesmobile.adapter.TramiteAdapter
 import com.ort.gestiondetramitesmobile.R
 import com.ort.gestiondetramitesmobile.activities.ProcedureActivity
 import com.ort.gestiondetramitesmobile.models.Tramite
+import com.ort.gestiondetramitesmobile.models.User
 import com.ort.gestiondetramitesmobile.viewmodels.ProcedureListOldViewModel
 
 class ProcedureListOldFragment : Fragment() {
@@ -52,15 +53,15 @@ class ProcedureListOldFragment : Fragment() {
     }
 
     private fun obtenerTramites(): MutableList<Tramite> {
-
+        var user : User = User("ecapurisse@gmail.com", "123456")
         var tramiteList : MutableList<Tramite> = mutableListOf()
         /*me imagino que aca se llama a un endpoint*/
-        tramiteList.add(Tramite("LICENCIA DE CONDUCIR","20/08/2021","Finalizado"))
-        tramiteList.add(Tramite("LICENCIA DE CONDUCIR","22/08/2021","Finalizado"))
-        tramiteList.add(Tramite("LICENCIA DE CONDUCIR","01/10/2021","Rechazado"))
-        tramiteList.add(Tramite("LICENCIA DE CONDUCIR","01/10/2021","Rechazado"))
-        tramiteList.add(Tramite("LICENCIA DE CONDUCIR","01/10/2021","Finalizado"))
-        tramiteList.add(Tramite("LICENCIA DE CONDUCIR","01/10/2021","Rechazado"))
+        tramiteList.add(Tramite(user, "LICENCIA DE CONDUCIR","20/08/2021","Finalizado"))
+        tramiteList.add(Tramite(user, "LICENCIA DE CONDUCIR","22/08/2021","Finalizado"))
+        tramiteList.add(Tramite(user, "LICENCIA DE CONDUCIR","01/10/2021","Rechazado"))
+        tramiteList.add(Tramite(user, "LICENCIA DE CONDUCIR","01/10/2021","Rechazado"))
+        tramiteList.add(Tramite(user, "LICENCIA DE CONDUCIR","01/10/2021","Finalizado"))
+        tramiteList.add(Tramite(user, "LICENCIA DE CONDUCIR","01/10/2021","Rechazado"))
         return tramiteList
     }
 }

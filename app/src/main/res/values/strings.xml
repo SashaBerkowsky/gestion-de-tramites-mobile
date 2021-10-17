@@ -6,20 +6,20 @@
     <string name="procedure_name">LICENCIA DE CONDUCIR</string>
 
     <!--Strings para User data form fragment -->
-    <string name="UserDataForm_titulo">COMPLETAR PERFIL</string>
-    <string name="UserDataForm_DNI_Persona">Número de DNI</string>
-    <string name="UserDataForm_Nombre">Nombre</string>
-    <string name="UserDataForm_Apellido">Apellido</string>
-    <string name="UserDataForm_Domicilio">Domicilio</string>
-    <string name="UserDataForm_Fecha_Nacimiento">Fecha de nacimiento</string>
-    <string name="UserDataForm_Boton_Guardar">GUARDAR</string>
+    <string name="UserDataForm_title">COMPLETAR PERFIL</string>
+    <string name="UserDataForm_DNI">Número de DNI</string>
+    <string name="UserDataForm_Name">Nombre</string>
+    <string name="UserDataForm_LastName">Apellido</string>
+    <string name="UserDataForm_Address">Domicilio</string>
+    <string name="UserDataForm_DateOfBirth">Fecha de nacimiento</string>
+    <string name="UserDataForm_SaveButton">GUARDAR</string>
 
     <!--Strings para singup fragment -->
-    <string name="SingUp_titulo">CREAR NUEVA CUENTA</string>
+    <string name="SingUp_title">CREAR NUEVA CUENTA</string>
     <string name="SingUp_Email">Email</string>
-    <string name="SingUp_Contraseña">Contraseña</string>
-    <string name="SingUp_Confir_Contraseña">Confirmar contraseña</string>
-    <string name="SingUp_Boton">CREAR CUENTA</string>
+    <string name="SingUp_Pass">Contraseña</string>
+    <string name="SingUp_ConfirmPass">Confirmar contraseña</string>
+    <string name="SingUp_Button">CREAR CUENTA</string>
 
     <!--Strings para login -->
     <string name="email_login">Email</string>
@@ -28,5 +28,16 @@
     <string name="account_login">¿Todavía no tenés cuenta?</string>
     <string name="account2_login">Ingrese aquí</string>
     <string name="option">o</string>
+
+    <!--Strings para Profile fragment -->
+    <string name="Profile_title">PERFIL</string>
+    <string name="Profile_Email">Email : pepito.perez@gmail.com</string>
+    <string name="Profile_DNI">DNI : 45.879.965</string>
+    <string name="Profile_Name">Nombre : Pepito Perez</string>
+    <string name="Profile_Address">Dirección : Av. siempre viva 742</string>
+    <string name="Profile_dateOfBirth">Fecha de Nacimiento : 01/01/2021 </string>
+    <string name="profile_button_Edit">EDITAR</string>
+    <string name="Profile_change_Pass">CAMBIAR CONTRASEÑA</string>
+
 
 </resources>

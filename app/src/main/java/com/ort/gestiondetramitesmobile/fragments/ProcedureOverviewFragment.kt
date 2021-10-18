@@ -12,6 +12,8 @@ import android.view.Window
 import android.widget.Button
 import android.widget.TextView
 import com.ort.gestiondetramitesmobile.R
+import com.ort.gestiondetramitesmobile.models.User
+import com.ort.gestiondetramitesmobile.models.TramiteLicenciaConducir
 import com.ort.gestiondetramitesmobile.viewmodels.ProcedureOverviewViewModel
 
 class ProcedureOverviewFragment : Fragment() {
@@ -34,6 +36,29 @@ class ProcedureOverviewFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(ProcedureOverviewViewModel::class.java)
         // TODO: Use the ViewModel
     }
+
+
+    private fun obtenerTramite(): TramiteLicenciaConducir {
+
+        var user : User = User("ecapurisse@gmail.com", "123456")
+        user.name = "Edgard"
+        user.surname = "Capurisse"
+        user.birthdate = "30/12/81"
+        user.dni = "92876136"
+        user.address = "en la casa de Mimi :P"
+
+        var TramiteLicenciaConducir : TramiteLicenciaConducir = TramiteLicenciaConducir(user, "VC-0012", "No", "")
+        TramiteLicenciaConducir.tipoLicencia = "Licencia XDF"
+        TramiteLicenciaConducir.foto1URL = "https://picsum.photos/id/1/200/300"
+        TramiteLicenciaConducir.foto2URL = "https://picsum.photos/id/1/200/300"
+        TramiteLicenciaConducir.foto3URL = "https://picsum.photos/id/1/200/300"
+        TramiteLicenciaConducir.foto4URL = "https://picsum.photos/id/1/200/300"
+        TramiteLicenciaConducir.foto5URL = "https://picsum.photos/id/1/200/300"
+        TramiteLicenciaConducir.foto6URL = "https://picsum.photos/id/1/200/300"
+
+        return TramiteLicenciaConducir
+    }
+
 
     private fun showErrorDialog(errorMsg: String){
         val dialog = Dialog(requireContext())

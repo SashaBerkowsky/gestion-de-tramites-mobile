@@ -36,6 +36,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txt_newP">
 
         <AutoCompleteTextView
+            android:id="@+id/procedureType"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:backgroundTint="@color/black"

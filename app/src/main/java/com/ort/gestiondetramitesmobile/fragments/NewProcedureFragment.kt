@@ -6,13 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import androidx.cardview.widget.CardView
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ort.gestiondetramitesmobile.R
 import com.ort.gestiondetramitesmobile.adapters.NewProcedureAdapter
-import com.ort.gestiondetramitesmobile.models.Procedure
+import com.ort.gestiondetramitesmobile.models.getProcedureTypes
 import com.ort.gestiondetramitesmobile.viewmodels.NewProcedureViewModel
 
 class NewProcedureFragment : Fragment() {
@@ -35,6 +37,15 @@ class NewProcedureFragment : Fragment() {
         v = inflater.inflate(R.layout.new_procedure_fragment, container, false)
         recProcedure = v.findViewById(R.id.recyclerProcedures)
 
+        var items = mutableListOf<String>()
+
+        getProcedureTypes().forEach() {
+            items.add(it.title)
+        }
+        val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
+        var autoCompleteTextView = v.findViewById<AutoCompleteTextView>(R.id.procedureType)
+        autoCompleteTextView.setAdapter(adapter)
+
         return v
     }
 
@@ -44,15 +55,7 @@ class NewProcedureFragment : Fragment() {
         // TODO: Use the ViewModel
     }
 
-    fun getProcedureTypes(): MutableList<Procedure> {
-
-        var procedureList : MutableList<Procedure> = mutableListOf()
-        procedureList.add(Procedure("LICENCIA DE CONDUCIR","Para primeras licencias, renovaciones y nuevos ejemplares"))
-        return procedureList
-    }
-
-    private fun onItemClick(position : Int) {
-        val list = getProcedureTypes()
+    private fun onItemClick() {
         val action = NewProcedureFragmentDirections.actionNewProcedureFragment2ToProcedureFormFragment2()
         findNavController().navigate(action)
     }
@@ -62,7 +65,7 @@ class NewProcedureFragment : Fragment() {
         recProcedure.setHasFixedSize(true)
         recProcedure.layoutManager = LinearLayoutManager(context)
         recProcedure.adapter = NewProcedureAdapter(getProcedureTypes(), requireContext()) {
-            onItemClick(it)
+            onItemClick()
         }
     }
 

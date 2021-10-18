@@ -26,7 +26,14 @@
         android:id="@+id/profileFragment"
         android:name="com.ort.gestiondetramitesmobile.fragments.ProfileFragment"
         android:label="profile_fragment"
-        tools:layout="@layout/profile_fragment" />
+        tools:layout="@layout/profile_fragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/procedureListOldFragment"
         android:name="com.ort.gestiondetramitesmobile.fragments.ProcedureListOldFragment"
@@ -77,4 +84,13 @@
         android:name="com.ort.gestiondetramitesmobile.fragments.ProcedureSendedFragment"
         android:label="procedure_sended_fragment"
         tools:layout="@layout/procedure_sended_fragment" />
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.ort.gestiondetramitesmobile.fragments.ChangePasswordFragment"
+        android:label="change_password_fragment"
+        tools:layout="@layout/change_password_fragment" />
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.ort.gestiondetramitesmobile.fragments.EditProfileFragment"
+        android:label="EditProfileFragment" />
 </navigation>

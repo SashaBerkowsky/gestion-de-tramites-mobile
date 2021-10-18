@@ -33,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@+id/profile_title" />
 
     <Button
-        android:id="@+id/profile_button_Edit"
+        android:id="@+id/btnEditProfile"
         android:layout_width="281dp"
         android:layout_height="38dp"
         android:backgroundTint="@color/secondaryTheme"

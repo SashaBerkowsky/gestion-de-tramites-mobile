@@ -83,7 +83,7 @@
         app:layout_constraintTop_toBottomOf="@+id/Profile_dateOfBirth" />
 
     <Button
-        android:id="@+id/profile_button_Edit"
+        android:id="@+id/btnEditProfile"
         android:layout_width="108dp"
         android:layout_height="38dp"
         android:layout_marginTop="40dp"
@@ -95,7 +95,7 @@
         app:layout_constraintTop_toBottomOf="@+id/Profile_Email" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnChangePassword"
         android:layout_width="230dp"
         android:layout_height="42dp"
         android:backgroundTint="@color/infoTheme"
@@ -105,7 +105,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.227"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_button_Edit"
+        app:layout_constraintTop_toBottomOf="@+id/btnEditProfile"
         app:layout_constraintVertical_bias="0.067" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

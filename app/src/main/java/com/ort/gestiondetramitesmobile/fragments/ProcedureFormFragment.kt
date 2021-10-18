@@ -14,7 +14,10 @@ import android.widget.EditText
 
 import android.app.DatePickerDialog
 import android.content.Context
+import android.widget.Button
 import androidx.fragment.app.FragmentActivity
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.TextInputLayout
@@ -28,6 +31,7 @@ class ProcedureFormFragment : Fragment() {
     lateinit var v: View
     private lateinit var viewModel: ProcedureFormViewModel
     lateinit var  myContext: FragmentActivity
+    lateinit var btnContinue: Button
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,6 +57,7 @@ class ProcedureFormFragment : Fragment() {
         val adapter2 = ArrayAdapter(requireContext(), R.layout.list_item, items2)
         var autoCompleteTextView2 = v.findViewById<AutoCompleteTextView>(R.id.ac_licence_type)
         autoCompleteTextView2.setAdapter(adapter2)
+        btnContinue = v.findViewById(R.id.btn_continue)
 
         return v
     }
@@ -66,6 +71,17 @@ class ProcedureFormFragment : Fragment() {
     override fun onAttach(context: Context) {
         myContext = activity as FragmentActivity
         super.onAttach(context)
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        btnContinue.setOnClickListener {
+            //Eventualmente el array neededPictures va a venir de la api o algo asi
+            val neededPictures = arrayOf("Primera foto", "Segunda foto", "Tercera y ultima foto")
+            val action = ProcedureFormFragmentDirections.actionProcedureFormFragment2ToPictureStepperFragment(0,neededPictures)
+            findNavController().navigate(action)
+        }
     }
 
 }

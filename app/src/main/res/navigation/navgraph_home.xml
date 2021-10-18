@@ -69,6 +69,16 @@
         <action
             android:id="@+id/action_pictureStepperFragment_to_procedureOverviewFragment2"
             app:destination="@id/procedureOverviewFragment2" />
+        <action
+            android:id="@+id/action_pictureStepperFragment_self"
+            app:destination="@id/pictureStepperFragment" />
+        <argument
+            android:name="pictureIdx"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <argument
+            android:name="neededPictures"
+            app:argType="string[]" />
     </fragment>
     <fragment
         android:id="@+id/procedureOverviewFragment2"

@@ -42,7 +42,7 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/SingUp_titulo"
+            android:id="@+id/SingUp_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -51,7 +51,7 @@
             android:textColor="@color/newProcedure"
             android:textSize="18sp"
             android:textStyle="bold"
-            tools:text="@string/SingUp_titulo" />
+            tools:text="@string/SingUp_title" />
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -72,10 +72,10 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/SingUp_Contraseña"
+            android:id="@+id/SingUp_pass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/SingUp_Contraseña"
+            android:hint="@string/SingUp_Pass"
             android:layout_margin="10dp"
             android:inputType="textPassword"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -89,10 +89,10 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/SingUp_Confir_Contraseña"
+            android:id="@+id/SingUp_ConfirmPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/SingUp_Confir_Contraseña"
+            android:hint="@string/SingUp_ConfirmPass"
             android:layout_margin="10dp"
             android:inputType="textPassword"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -106,13 +106,13 @@
 
 
         <Button
-            android:id="@+id/SingUp_Boton"
+            android:id="@+id/SingUp_Button"
             style="@style/Widget.MaterialComponents.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:backgroundTint="@color/secondaryTheme"
-            android:text="@string/SingUp_Boton"
+            android:text="@string/SingUp_Button"
             android:textAlignment="center" />
 
 

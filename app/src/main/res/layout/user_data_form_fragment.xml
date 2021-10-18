@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.UserDataFormFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
-
-</FrameLayout> -->
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -27,7 +16,7 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/UserDataForm_titulo"
+            android:id="@+id/UserDataForm_Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -36,14 +25,14 @@
             android:textColor="@color/newProcedure"
             android:textSize="18sp"
             android:textStyle="bold"
-            tools:text="@string/UserDataForm_titulo" />
+            tools:text="@string/UserDataForm_title" />
 
-
+9x
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/UserDataForm_DNI_Persona"
+            android:id="@+id/UserDataForm_DNI"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/UserDataForm_DNI_Persona"
+            android:hint="@string/UserDataForm_DNI"
             android:layout_margin="10dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -57,10 +46,10 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/UserDataForm_Nombre"
+            android:id="@+id/UserDataForm_Name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/UserDataForm_Nombre"
+            android:hint="@string/UserDataForm_Name"
             android:layout_margin="10dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -72,10 +61,10 @@
 
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/UserDataForm_Apellido"
+            android:id="@+id/UserDataForm_LastName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/UserDataForm_Apellido"
+            android:hint="@string/UserDataForm_LastName"
             android:layout_margin="10dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -87,10 +76,10 @@
 
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/UserDataForm_Domicilio"
+            android:id="@+id/UserDataForm_Address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/UserDataForm_Domicilio"
+            android:hint="@string/UserDataForm_Address"
             android:layout_margin="10dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -102,10 +91,10 @@
 
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/UserDataForm_Fecha_Nacimiento"
+            android:id="@+id/UserDataForm_dateOfBirth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/UserDataForm_Fecha_Nacimiento"
+            android:hint="@string/UserDataForm_DateOfBirth"
             android:layout_margin="10dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -123,13 +112,13 @@
             android:layout_height="191dp" />
 
         <Button
-            android:id="@+id/UserDataForm_Boton_Guardar"
+            android:id="@+id/UserDataForm_SaveButton"
             style="@style/Widget.MaterialComponents.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:backgroundTint="@color/secondaryTheme"
-            android:text="@string/UserDataForm_Boton_Guardar" />
+            android:text="@string/UserDataForm_SaveButton" />
 
     </LinearLayout>
 </ScrollView>

@@ -15,7 +15,9 @@ import android.widget.EditText
 import android.app.DatePickerDialog
 import android.content.Context
 import androidx.fragment.app.FragmentActivity
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.textfield.TextInputLayout
 
 
 class ProcedureFormFragment : Fragment() {
@@ -39,12 +41,12 @@ class ProcedureFormFragment : Fragment() {
         autoCompleteTextView.setAdapter(adapter)
 
         // Date picker
-    /*    val builder = MaterialDatePicker.Builder.datePicker()
+        val builder = MaterialDatePicker.Builder.datePicker()
         val picker = builder.build()
-        var textInputBirthday: EditText? = v.findViewById(R.id.ti_birthday)
-        textInputBirthday!!.setOnClickListener {
+        var textInputBirthday = v.findViewById<MaterialButton>(R.id.ti_birthday)
+        textInputBirthday.setOnClickListener {
             picker.show(myContext.supportFragmentManager, picker.toString())
-        }*/
+        }
 
         // Second select
         val items2 = listOf("A1", "B1", "C1")

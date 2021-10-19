@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "410087125262-v0a7a30mh3bmnllf3mbcn3bt0lnvd7hg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ort.gestiondetramitesmobile",
+            "certificate_hash": "b1fd4cb39d680607d33ffc3200b1762ab2713922"
+          }
+        },
+        {
           "client_id": "410087125262-0282he00atnmieotebffamq33io35g6r.apps.googleusercontent.com",
           "client_type": 3
         }

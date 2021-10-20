@@ -24,7 +24,7 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="257dp" />
+        android:layout_height="187dp" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -35,12 +35,12 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="231dp" />
+        android:layout_height="173dp" />
 
     <Button
         android:id="@+id/btnHome"
         android:layout_width="374dp"
-        android:layout_height="wrap_content"
+        android:layout_height="61dp"
         android:layout_weight="0"
         android:backgroundTint="#D5D5D5"
         android:elevation="12dp"

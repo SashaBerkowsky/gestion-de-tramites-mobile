@@ -7,10 +7,9 @@ sealed class ProcedureType(val title: String, val description : String) {
 }
 
 fun getProcedureTypes(): MutableList<ProcedureType> {
+    return mutableListOf( ProcedureType.LICENCIA_DE_CONDUCIR())
+}
 
-    var procedureList : MutableList<ProcedureType> = mutableListOf()
-    procedureList.add(
-        ProcedureType.LICENCIA_DE_CONDUCIR()
-    )
-    return procedureList
+fun getProcedureTypesTitles(): MutableList<String> {
+    return mutableListOf(ProcedureType.LICENCIA_DE_CONDUCIR().title)
 }

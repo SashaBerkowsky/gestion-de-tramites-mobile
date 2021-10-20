@@ -22,6 +22,7 @@ import com.ort.gestiondetramitesmobile.models.User
 import com.ort.gestiondetramitesmobile.models.TramiteLicenciaConducir
 import com.ort.gestiondetramitesmobile.viewmodels.ProcedureFormViewModel
 import com.ort.gestiondetramitesmobile.viewmodels.ProcedureOverviewViewModel
+import kotlinx.coroutines.*
 
 class ProcedureOverviewFragment : Fragment() {
 
@@ -76,13 +77,18 @@ class ProcedureOverviewFragment : Fragment() {
         edtLicenceCode.setHint(viewModel.getLicenceCode())
 
         btnSendProcedure.setOnClickListener {
-            val procedureErrorMsg:String  = viewModel.sendProcedure()
+            var procedureErrorMsg : String = "error"
+            procedureErrorMsg  = viewModel.sendProcedure()
             if(procedureErrorMsg.isEmpty()){
                 val action = ProcedureOverviewFragmentDirections.actionProcedureOverviewFragment2ToProcedureSendedFragment2()
                 findNavController().navigate(action)
             } else{
                 showErrorDialog(procedureErrorMsg)
             }
+
+
+
+
         }
 
     }
@@ -96,7 +102,7 @@ class ProcedureOverviewFragment : Fragment() {
 
     private fun obtenerTramite(): TramiteLicenciaConducir {
 
-        var user : User = User("ecapurisse@gmail.com", "123456","Edgard",
+        var user : User = User("Edgard",
             "Capurisse","92876136",
             "en la casa de Mimi :P","30/12/81",
             909)

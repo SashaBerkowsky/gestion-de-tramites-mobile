@@ -63,7 +63,7 @@ class ProcedureListOldFragment : Fragment() {
 
 
     private fun obtenerTramites(): MutableList<Tramite> {
-        var user : User = User("ecapurisse@gmail.com", "123456","nombre usuario 1",
+        var user : User = User("nombre usuario 1",
             "apellido usuario 1","123456789",
             "domicilio usuario 1","DD/MM/YYYY",
             999)

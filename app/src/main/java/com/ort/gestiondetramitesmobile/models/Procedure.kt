@@ -11,18 +11,9 @@ class Procedure(private var idProcedureState: Int, private var idProcedureType: 
                 var canceledReason: String?
 ):Parcelable {
 
-
-    private val procedureStates = getProcedureStates()
-    private val procedureTypes = getProcedureTypes()
-
-    var isFinished = idProcedureState == procedureStates.size - 1
-    var isCanceled = isFinished && canceledReason?.isNotEmpty() ?: false
-
     //Atado con alambre para que ande
     var id = nextInt(1000000, 9999999)
 
-    var procedureState = procedureStates[idProcedureState]
-    var procedureType = procedureTypes[idProcedureType]
 
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
@@ -33,8 +24,6 @@ class Procedure(private var idProcedureState: Int, private var idProcedureType: 
         parcel.readString(),
         TODO("licenceCode"),
         parcel.readString()) {
-        isFinished = parcel.readByte() != 0.toByte()
-        isCanceled = parcel.readByte() != 0.toByte()
         id = parcel.readInt()
     }
 
@@ -43,8 +32,6 @@ class Procedure(private var idProcedureState: Int, private var idProcedureType: 
         parcel.writeInt(idProcedureType)
         parcel.writeString(licenceType)
         parcel.writeString(canceledReason)
-        parcel.writeByte(if (isFinished) 1 else 0)
-        parcel.writeByte(if (isCanceled) 1 else 0)
         parcel.writeInt(id)
     }
 
@@ -61,6 +48,23 @@ class Procedure(private var idProcedureState: Int, private var idProcedureType: 
             return arrayOfNulls(size)
         }
     }
+
+    fun getCurrentProcedureState(): ProcedureState{
+        return getProcedureStates()[idProcedureState]
+    }
+
+    fun getCurrentProcedureType():ProcedureType{
+        return getProcedureTypes()[idProcedureType]
+    }
+
+    fun isProcedureFinished():Boolean{
+        return idProcedureState == getProcedureStates().size - 1
+    }
+
+    fun isProcedureCanceled():Boolean{
+        return isProcedureFinished() && canceledReason?.isNotEmpty() ?: false
+    }
+
 
 
 }

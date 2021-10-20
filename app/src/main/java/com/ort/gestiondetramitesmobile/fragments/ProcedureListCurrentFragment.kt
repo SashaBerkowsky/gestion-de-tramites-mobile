@@ -62,7 +62,10 @@ class ProcedureListCurrentFragment : Fragment() {
     }
 
     private fun obtenerTramites(): MutableList<Tramite> {
-        var user : User = User("ecapurisse@gmail.com", "123456")
+        var user : User = User("ecapurisse@gmail.com", "123456","nombre usuario 1",
+            "apellido usuario 1","123456789",
+            "domicilio usuario 1","DD/MM/YYYY",
+            999)
         var tramiteList : MutableList<Tramite> = mutableListOf()
         /*me imagino que aca se llama a un endpoint*/
         tramiteList.add(Tramite(user,"LICENCIA DE CONDUCIR","20/08/2021","En proceso"))

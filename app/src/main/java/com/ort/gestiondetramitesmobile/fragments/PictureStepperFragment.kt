@@ -30,6 +30,8 @@ import com.ort.gestiondetramitesmobile.viewmodels.PictureStepperViewModel
 import androidx.core.app.ActivityCompat.startActivityForResult
 
 import androidx.core.content.FileProvider
+import androidx.fragment.app.viewModels
+import com.ort.gestiondetramitesmobile.viewmodels.ProcedureFormViewModel
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -38,11 +40,8 @@ import java.util.*
 
 class PictureStepperFragment : Fragment() {
 
-    val REQUEST_IMAGE_CAPTURE = 1
-    val REQUEST_TAKE_PHOTO = 1
-
     lateinit var v: View
-
+    private val viewModel: PictureStepperViewModel by viewModels()
     lateinit var txtDescription: TextView
     lateinit var btnOpenCamera: Button
     lateinit var imgPictureTaken: ImageView
@@ -54,7 +53,6 @@ class PictureStepperFragment : Fragment() {
         private const val CAMERA_REQUEST_CODE = 2
     }
 
-    private lateinit var viewModel: PictureStepperViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -72,7 +70,6 @@ class PictureStepperFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(PictureStepperViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
@@ -82,6 +79,8 @@ class PictureStepperFragment : Fragment() {
         super.onStart()
         var pictureIdx = PictureStepperFragmentArgs.fromBundle(requireArguments()).pictureIdx
         var neededPictures =  PictureStepperFragmentArgs.fromBundle(requireArguments()).neededPictures
+        var currentProcedure = PictureStepperFragmentArgs.fromBundle(requireArguments()).procedure
+        viewModel.createProcedure(currentProcedure)
 
         txtDescription.text = neededPictures[pictureIdx]
 
@@ -93,9 +92,9 @@ class PictureStepperFragment : Fragment() {
         btnContinue.setOnClickListener {
             val needMorePictures = neededPictures.size - 1 != pictureIdx
             var action: NavDirections = if(needMorePictures){
-                PictureStepperFragmentDirections.actionPictureStepperFragmentSelf(pictureIdx+1, neededPictures)
+                PictureStepperFragmentDirections.actionPictureStepperFragmentSelf(pictureIdx+1, neededPictures, viewModel.getCurrentProcedure())
             } else{
-                PictureStepperFragmentDirections.actionPictureStepperFragmentToProcedureOverviewFragment2()
+                PictureStepperFragmentDirections.actionPictureStepperFragmentToProcedureOverviewFragment2(viewModel.getCurrentProcedure())
             }
 
             findNavController().navigate(action)

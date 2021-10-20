@@ -1,7 +1,11 @@
 package com.ort.gestiondetramitesmobile.viewmodels
 
 import androidx.lifecycle.ViewModel
+import com.ort.gestiondetramitesmobile.api.RetrofitInstance
 import com.ort.gestiondetramitesmobile.models.Procedure
+import kotlinx.coroutines.*
+import retrofit2.HttpException
+import java.io.IOException
 
 class ProcedureOverviewViewModel : ViewModel() {
     // TODO: Implement the ViewModel
@@ -43,8 +47,17 @@ class ProcedureOverviewViewModel : ViewModel() {
         return procedure.licenceType.toString()
     }
 
-    //Enviar procedure a la API
+    //TODO Error handling
     fun sendProcedure():String{
+        val parentJob = Job()
+        val scope = CoroutineScope(Dispatchers.Default + parentJob)
+
+        scope.launch{
+            async{RetrofitInstance.api.postProcedure(procedure)}
+        }
+
         return ""
+
     }
+
 }

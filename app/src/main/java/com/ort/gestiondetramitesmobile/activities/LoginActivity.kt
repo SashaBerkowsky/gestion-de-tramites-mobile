@@ -29,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        signInButton = findViewById(R.id.sign_in_button)
+//        signInButton = findViewById(R.id.sign_in_button)
 
         // Configure Google Sign In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -40,10 +40,10 @@ class LoginActivity : AppCompatActivity() {
         var googleSignInClient = GoogleSignIn.getClient(this, gso)
 
         // ESTO ME ESTA DANDO NULL Y NO SE PORQUEEEEEEEEEE
-        signInButton.setOnClickListener{
-            val signInIntent = googleSignInClient.signInIntent
-            startActivityForResult(signInIntent, RC_SIGN_IN)
-        }
+//        signInButton.setOnClickListener{
+//            val signInIntent = googleSignInClient.signInIntent
+//            startActivityForResult(signInIntent, RC_SIGN_IN)
+//        }
 
         auth = Firebase.auth
 

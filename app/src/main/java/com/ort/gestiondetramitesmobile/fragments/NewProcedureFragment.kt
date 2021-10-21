@@ -55,8 +55,9 @@ class NewProcedureFragment : Fragment() {
         // TODO: Use the ViewModel
     }
 
-    private fun onItemClick() {
-        val action = NewProcedureFragmentDirections.actionNewProcedureFragment2ToProcedureFormFragment2()
+    private fun onItemClick(position: Int) {
+        val action = NewProcedureFragmentDirections.actionNewProcedureFragment2ToProcedureFormFragment2(
+            getProcedureTypes()[position].title, getProcedureTypes()[position].neededPictures)
         findNavController().navigate(action)
     }
 
@@ -65,7 +66,7 @@ class NewProcedureFragment : Fragment() {
         recProcedure.setHasFixedSize(true)
         recProcedure.layoutManager = LinearLayoutManager(context)
         recProcedure.adapter = NewProcedureAdapter(getProcedureTypes(), requireContext()) {
-            onItemClick()
+            onItemClick(it)
         }
     }
 

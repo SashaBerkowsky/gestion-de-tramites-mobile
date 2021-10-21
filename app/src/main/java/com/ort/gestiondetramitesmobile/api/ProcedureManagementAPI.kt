@@ -1,10 +1,11 @@
 package com.ort.gestiondetramitesmobile.api
 
-
 import com.ort.gestiondetramitesmobile.models.Procedure
 import okhttp3.ResponseBody
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 //Se declaran todos los llamados a la API con este formato:
@@ -13,4 +14,7 @@ import retrofit2.http.POST
 interface ProcedureManagementAPI {
     @POST("/procedures")
     suspend fun postProcedure(@Body procedure: Procedure): Response<ResponseBody>
+
+    @GET("/procedures")
+    fun getProceduresList() : Call<List<Procedure>>
 }

@@ -27,7 +27,6 @@
             android:textStyle="bold"
             tools:text="@string/UserDataForm_title" />
 
-9x
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/UserDataForm_DNI"
             android:layout_width="match_parent"

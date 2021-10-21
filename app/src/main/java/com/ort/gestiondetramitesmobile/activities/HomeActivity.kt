@@ -3,6 +3,7 @@ package com.ort.gestiondetramitesmobile.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -21,6 +22,11 @@ class HomeActivity : AppCompatActivity() {
         bottomNavView = findViewById(R.id.bottomNav)
 
         NavigationUI.setupWithNavController(bottomNavView, navHostFragment.navController)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_toolbar, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
 }

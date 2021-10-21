@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Gestión de Trámites</string>
     <string name="txt_new_p">NUEVO TRÁMITE</string>
     <string name="label_menu_new_p">Seleccione tipo de trámite</string>
     <string name="procedure_detail">Para primeras licencias, renovaciones y nuevos ejemplares</string>
@@ -38,6 +37,10 @@
     <string name="Profile_dateOfBirth">Fecha de Nacimiento : 01/01/2021 </string>
     <string name="profile_button_Edit">EDITAR</string>
     <string name="Profile_change_Pass">CAMBIAR CONTRASEÑA</string>
+    <string name="ver_notificaciones">Ver Notificaciones</string>
+    <string name="app_name" />
+    <string name="editar_perfil">EDITAR PERFIL</string>
+    <string name="novedades">NOVEDADES</string>
 
 
 </resources>

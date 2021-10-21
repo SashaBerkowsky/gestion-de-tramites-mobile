@@ -24,14 +24,21 @@
         <entry key="..\:/Documentos/GitHub/gestion-de-tramites-mobile/app/src/main/res/layout/procedure_detail_fragment.xml" value="0.30344202898550726" />
         <entry key="..\:/Documentos/GitHub/gestion-de-tramites-mobile/app/src/main/res/layout/procedure_form_fragment.xml" value="0.30344202898550726" />
         <entry key="..\:/Documentos/GitHub/gestion-de-tramites-mobile/app/src/main/res/layout/procedure_overview_fragment.xml" value="0.25" />
+        <entry key="..\:/Users/decadahi/AndroidStudioProjects/gestion-de-tramites-mobile/app/src/main/res/drawable/ic__notifications.xml" value="0.27239583333333334" />
         <entry key="..\:/Users/decadahi/AndroidStudioProjects/gestion-de-tramites-mobile/app/src/main/res/layout/activity_home.xml" value="0.1796875" />
         <entry key="..\:/Users/decadahi/AndroidStudioProjects/gestion-de-tramites-mobile/app/src/main/res/layout/activity_login.xml" value="0.1796875" />
         <entry key="..\:/Users/decadahi/AndroidStudioProjects/gestion-de-tramites-mobile/app/src/main/res/layout/activity_splash.xml" value="0.1796875" />
+        <entry key="..\:/Users/decadahi/AndroidStudioProjects/gestion-de-tramites-mobile/app/src/main/res/layout/change_password_fragment.xml" value="0.2359375" />
+        <entry key="..\:/Users/decadahi/AndroidStudioProjects/gestion-de-tramites-mobile/app/src/main/res/layout/edit_profile_fragment.xml" value="0.3671875" />
         <entry key="..\:/Users/decadahi/AndroidStudioProjects/gestion-de-tramites-mobile/app/src/main/res/layout/item_procedures.xml" value="0.1796875" />
         <entry key="..\:/Users/decadahi/AndroidStudioProjects/gestion-de-tramites-mobile/app/src/main/res/layout/item_tramite.xml" value="0.1796875" />
         <entry key="..\:/Users/decadahi/AndroidStudioProjects/gestion-de-tramites-mobile/app/src/main/res/layout/list_item.xml" value="0.1796875" />
         <entry key="..\:/Users/decadahi/AndroidStudioProjects/gestion-de-tramites-mobile/app/src/main/res/layout/login_fragment.xml" value="0.1796875" />
+        <entry key="..\:/Users/decadahi/AndroidStudioProjects/gestion-de-tramites-mobile/app/src/main/res/layout/main_activity.xml" value="0.2359375" />
+        <entry key="..\:/Users/decadahi/AndroidStudioProjects/gestion-de-tramites-mobile/app/src/main/res/layout/main_fragment.xml" value="0.2359375" />
         <entry key="..\:/Users/decadahi/AndroidStudioProjects/gestion-de-tramites-mobile/app/src/main/res/layout/new_procedure_fragment.xml" value="0.1796875" />
+        <entry key="..\:/Users/decadahi/AndroidStudioProjects/gestion-de-tramites-mobile/app/src/main/res/layout/notificacion_fragment.xml" value="0.24196277495769883" />
+        <entry key="..\:/Users/decadahi/AndroidStudioProjects/gestion-de-tramites-mobile/app/src/main/res/layout/notification_fragment.xml" value="0.2359375" />
         <entry key="..\:/Users/decadahi/AndroidStudioProjects/gestion-de-tramites-mobile/app/src/main/res/layout/picture_stepper_fragment.xml" value="0.1796875" />
         <entry key="..\:/Users/decadahi/AndroidStudioProjects/gestion-de-tramites-mobile/app/src/main/res/layout/procedure_detail_fragment.xml" value="0.1796875" />
         <entry key="..\:/Users/decadahi/AndroidStudioProjects/gestion-de-tramites-mobile/app/src/main/res/layout/procedure_form_fragment.xml" value="0.3671875" />
@@ -45,6 +52,8 @@
         <entry key="..\:/Users/decadahi/AndroidStudioProjects/gestion-de-tramites-mobile/app/src/main/res/layout/splash_fragment.xml" value="0.3671875" />
         <entry key="..\:/Users/decadahi/AndroidStudioProjects/gestion-de-tramites-mobile/app/src/main/res/layout/state_dialog.xml" value="0.1796875" />
         <entry key="..\:/Users/decadahi/AndroidStudioProjects/gestion-de-tramites-mobile/app/src/main/res/layout/user_data_form_fragment.xml" value="0.3671875" />
+        <entry key="..\:/Users/decadahi/AndroidStudioProjects/gestion-de-tramites-mobile/app/src/main/res/menu/bottom_bar.xml" value="0.25625" />
+        <entry key="..\:/Users/decadahi/AndroidStudioProjects/gestion-de-tramites-mobile/app/src/main/res/menu/main_toolbar.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/tabrevaya/Desktop/Android Studio/gestion-de-tramites-mobile/app/src/main/res/layout/activity_home.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/tabrevaya/Desktop/Android Studio/gestion-de-tramites-mobile/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/tabrevaya/Desktop/Android Studio/gestion-de-tramites-mobile/app/src/main/res/layout/activity_procedure.xml" value="0.2557291666666667" />
@@ -62,7 +71,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

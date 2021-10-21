@@ -2,6 +2,7 @@ package com.ort.gestiondetramitesmobile.viewmodels
 
 import androidx.lifecycle.ViewModel
 import com.ort.gestiondetramitesmobile.api.RetrofitInstance
+import com.ort.gestiondetramitesmobile.daos.DaoProcedure
 import com.ort.gestiondetramitesmobile.models.Procedure
 import kotlinx.coroutines.*
 import retrofit2.HttpException
@@ -51,9 +52,10 @@ class ProcedureOverviewViewModel : ViewModel() {
     fun sendProcedure():String{
         val parentJob = Job()
         val scope = CoroutineScope(Dispatchers.Default + parentJob)
-
+        val procedureDao = DaoProcedure(procedure)
         scope.launch{
-            async{RetrofitInstance.api.postProcedure(procedure)}
+            val response = async{RetrofitInstance.api.postProcedure(procedureDao)}
+
         }
 
         return ""

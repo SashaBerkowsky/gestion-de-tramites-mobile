@@ -60,6 +60,12 @@
         <action
             android:id="@+id/action_procedureFormFragment2_to_pictureStepperFragment"
             app:destination="@id/pictureStepperFragment" />
+        <argument
+            android:name="procedureTitle"
+            app:argType="string" />
+        <argument
+            android:name="neededPictures"
+            app:argType="string[]" />
     </fragment>
     <fragment
         android:id="@+id/pictureStepperFragment"

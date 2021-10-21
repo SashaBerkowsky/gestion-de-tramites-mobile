@@ -7,7 +7,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RetrofitInstance {
 
     //URL API
-    val BASE_URL : String = "https://615b40f34a360f0017a81567.mockapi.io"
+    //val BASE_URL : String = "https://615b40f34a360f0017a81567.mockapi.io"
+    val BASE_URL: String = "http://192.168.56.1:3000"
 
     val api: ProcedureManagementAPI by lazy{
         Retrofit.Builder()

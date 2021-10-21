@@ -6,16 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
 import com.ort.gestiondetramitesmobile.R
 import com.ort.gestiondetramitesmobile.viewmodels.ProcedureFormViewModel
-import android.widget.EditText
 
 import android.app.DatePickerDialog
 import android.content.Context
 import android.util.Log
-import android.widget.Button
+import android.widget.*
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -23,6 +20,9 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.TextInputLayout
+import java.util.*
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener
+import java.text.SimpleDateFormat
 
 
 class ProcedureFormFragment : Fragment() {
@@ -38,10 +38,11 @@ class ProcedureFormFragment : Fragment() {
     lateinit var edtSurname: EditText
     lateinit var edtAddress: EditText
     lateinit var btnContinue: Button
+    lateinit var txtProcedureName: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         v = inflater.inflate(R.layout.procedure_form_fragment, container, false)
 
@@ -55,6 +56,7 @@ class ProcedureFormFragment : Fragment() {
         edtName = v.findViewById(R.id.edtName)
         edtSurname = v.findViewById(R.id.edtSurname)
         edtAddress = v.findViewById(R.id.edtAddress)
+        txtProcedureName = v.findViewById(R.id.tv_procedure_name)
 
         return v
     }
@@ -77,8 +79,18 @@ class ProcedureFormFragment : Fragment() {
         val builder = MaterialDatePicker.Builder.datePicker()
         val picker = builder.build()
         var textInputBirthday = v.findViewById<MaterialButton>(R.id.ti_birthday)
+        picker.addOnPositiveButtonClickListener {
+            // Do something...
+            val outputDateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).apply {
+                timeZone = TimeZone.getTimeZone("UTC")
+            }
+
+            val text = outputDateFormat.format(it)
+            textInputBirthday.text = text
+        }
         textInputBirthday.setOnClickListener {
             picker.show(myContext.supportFragmentManager, picker.toString())
+
         }
 
         // First select
@@ -94,8 +106,7 @@ class ProcedureFormFragment : Fragment() {
         autoCompleteTextView2.setAdapter(adapter2)
 
         btnContinue.setOnClickListener {
-            //Eventualmente el array neededPictures va a venir de la api o algo asi
-            val neededPictures = arrayOf("Primera foto", "Segunda foto", "Tercera y ultima foto")
+            val neededPictures = ProcedureFormFragmentArgs.fromBundle(requireArguments()).neededPictures
 
             viewModel.setProcedureUser(edtName.text.toString(),edtSurname.text.toString(), edtDni.text.toString(),
                 edtAddress.text.toString(),textInputBirthday.text.toString())
@@ -107,6 +118,7 @@ class ProcedureFormFragment : Fragment() {
             }
 
         }
+        txtProcedureName.text = ProcedureFormFragmentArgs.fromBundle(requireArguments()).procedureTitle
         edtDni.setText(viewModel.getDni())
         edtName.setText(viewModel.getName())
         edtSurname.setText(viewModel.getSurname())

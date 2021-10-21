@@ -1,5 +1,6 @@
 package com.ort.gestiondetramitesmobile.api
 
+import com.ort.gestiondetramitesmobile.daos.DaoProcedure
 import com.ort.gestiondetramitesmobile.models.Procedure
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -12,9 +13,8 @@ import retrofit2.http.POST
 //@[POST/GET/PUT]("/endpoint")
 //suspend fun nombreDeLaFuncion(@Body variable:TipoDeVariable): Response<TipoDeResponse>
 interface ProcedureManagementAPI {
-    @POST("/procedures")
-    suspend fun postProcedure(@Body procedure: Procedure): Response<ResponseBody>
-
     @GET("/procedures")
     fun getProceduresList() : Call<List<Procedure>>
+    @POST("/api/procedures")
+    suspend fun postProcedure(@Body procedure: DaoProcedure): Response<ResponseBody>
 }

@@ -26,7 +26,7 @@ class ProcedureFormViewModel : ViewModel() {
     }
 
     fun createProcedure( licenceType: String,licenceCode: String){
-        newProcedure = Procedure(0,0, procedureUser,Date(),Date(),licenceType,licenceCode,"", procedureUser.userID)
+        newProcedure = Procedure(0,0, procedureUser,Date(),Date(),licenceType,licenceCode,"")
     }
 
     fun getProcedure(): Procedure{

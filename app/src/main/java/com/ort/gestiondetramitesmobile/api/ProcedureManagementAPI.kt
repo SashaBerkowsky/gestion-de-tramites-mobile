@@ -14,7 +14,7 @@ import retrofit2.http.POST
 //suspend fun nombreDeLaFuncion(@Body variable:TipoDeVariable): Response<TipoDeResponse>
 interface ProcedureManagementAPI {
     @GET("/procedures")
-    fun getProceduresList() : Call<List<Procedure>>
+    fun getProceduresList() : Call<List<DaoProcedure>>
     @POST("/procedures")
     suspend fun postProcedure(@Body procedure: DaoProcedure): Response<ResponseBody>
 }

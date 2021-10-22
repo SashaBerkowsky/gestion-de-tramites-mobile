@@ -27,7 +27,7 @@ class ProcedureListAdapterCurrent (val onItemClick : (Int) -> Unit): RecyclerVie
 
     override fun onBindViewHolder(holder: ProcedureHolder, position: Int) {
         holder.setName(procedureList[position].getCurrentProcedureType().title)
-        holder.setDate(procedureList[position].creationDate.toString())
+        holder.setDate(procedureList[position].getFormatedCreationDate())
         holder.setState(procedureList[position].getCurrentProcedureState())
         holder.getCardView().setOnClickListener {
             onItemClick(position)
@@ -55,16 +55,7 @@ class ProcedureListAdapterCurrent (val onItemClick : (Int) -> Unit): RecyclerVie
         fun setDate(dateStr : String){
             val txt: TextView = view.findViewById(R.id.procedureDate)
 
-            //mascara  de la fecha que entra, ver https://developer.android.com/reference/kotlin/java/text/SimpleDateFormat#timezone
-            var format = SimpleDateFormat("EEE MMM dd hh:mm:ss z YYYY")
-            val newDate: Date = format.parse(dateStr)
-
-
-            //mascara de la fecha que sale, ver https://developer.android.com/reference/kotlin/java/text/SimpleDateFormat#timezone
-            format = SimpleDateFormat("dd/MM/YYYY hh:mm a")
-            val date: String = format.format(newDate)
-
-            txt.text = date
+            txt.text = dateStr
         }
         fun setState(state : ProcedureState){
             val txt: TextView = view.findViewById(R.id.stateProcedure)

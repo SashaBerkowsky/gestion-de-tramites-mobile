@@ -1,13 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.PictureStepperFragment"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.PictureStepperFragment">
+    android:layout_height="wrap_content"
+    android:gravity="start"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_margin="10dp">
 
     <TextView
+        android:id="@+id/tv_procedure_name"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="wrap_content"
+        android:textAllCaps="true"
+        android:textColor="@color/secondaryTheme"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="Nombre del trámite" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/txtDataDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Description"
+        android:textColor="@color/secondaryText"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btnOpenCamera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/white"
+        android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
+        app:icon="@drawable/picturebtnicon"
+        app:iconPadding="0dp"
+        app:iconTint="@color/primaryTheme" />
+
+    <ImageView
+        android:id="@+id/imgPictureTaken"
+        android:layout_width="199dp"
+        android:layout_height="250dp"
+        android:layout_gravity="left"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/profilepicplaceholder"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btnContinue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/secondaryTheme"
+        android:text="Continuar" />
+
+
+</LinearLayout>
+

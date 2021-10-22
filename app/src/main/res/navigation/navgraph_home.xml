@@ -60,6 +60,12 @@
         <action
             android:id="@+id/action_procedureFormFragment2_to_pictureStepperFragment"
             app:destination="@id/pictureStepperFragment" />
+        <argument
+            android:name="procedureTitle"
+            app:argType="string" />
+        <argument
+            android:name="neededPictures"
+            app:argType="string[]" />
     </fragment>
     <fragment
         android:id="@+id/pictureStepperFragment"
@@ -69,6 +75,19 @@
         <action
             android:id="@+id/action_pictureStepperFragment_to_procedureOverviewFragment2"
             app:destination="@id/procedureOverviewFragment2" />
+        <action
+            android:id="@+id/action_pictureStepperFragment_self"
+            app:destination="@id/pictureStepperFragment" />
+        <argument
+            android:name="pictureIdx"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <argument
+            android:name="neededPictures"
+            app:argType="string[]" />
+        <argument
+            android:name="procedure"
+            app:argType="com.ort.gestiondetramitesmobile.models.Procedure" />
     </fragment>
     <fragment
         android:id="@+id/procedureOverviewFragment2"
@@ -78,12 +97,19 @@
         <action
             android:id="@+id/action_procedureOverviewFragment2_to_procedureSendedFragment2"
             app:destination="@id/procedureSendedFragment2" />
+        <argument
+            android:name="procedure"
+            app:argType="com.ort.gestiondetramitesmobile.models.Procedure" />
     </fragment>
     <fragment
         android:id="@+id/procedureSendedFragment2"
         android:name="com.ort.gestiondetramitesmobile.fragments.ProcedureSendedFragment"
         android:label="procedure_sended_fragment"
-        tools:layout="@layout/procedure_sended_fragment" />
+        tools:layout="@layout/procedure_sended_fragment" >
+        <action
+            android:id="@+id/action_procedureSendedFragment2_to_procedureListFragment"
+            app:destination="@id/procedureListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/changePasswordFragment"
         android:name="com.ort.gestiondetramitesmobile.fragments.ChangePasswordFragment"

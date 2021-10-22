@@ -50,9 +50,9 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtDni"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
+                android:layout_height="wrap_content" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -65,9 +65,9 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
+                android:layout_height="wrap_content" />
 
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
@@ -79,9 +79,9 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtSurname"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
+                android:layout_height="wrap_content" />
 
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
@@ -93,9 +93,9 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtAddress"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
+                android:layout_height="wrap_content" />
 
         </com.google.android.material.textfield.TextInputLayout>
 <!--        <com.google.android.material.textfield.TextInputLayout-->
@@ -121,12 +121,12 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:drawableRight="@drawable/baseline_insert_invitation_24"
-            android:fontFamily="sans-serif"
+            android:fontFamily="sans-serif-medium"
             android:padding="14dp"
             android:text="Fecha de nacimiento"
             android:textAlignment="viewStart"
             android:textAllCaps="false"
-            android:textColor="@color/secondaryText"
+            android:textColor="@color/primaryText"
             android:textSize="15sp"
             app:strokeColor="#9E9E9E"
             app:strokeWidth="1dp" />
@@ -151,11 +151,10 @@
         <Button
             android:id="@+id/btn_continue"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="61dp"
             android:layout_margin="10dp"
-            android:background="@color/secondaryTheme"
-            android:text="Continuar"
-            style="@style/Widget.MaterialComponents.Button"/>
+            android:backgroundTint="@color/secondaryTheme"
+            android:text="Continuar" />
 
     </LinearLayout>
 </ScrollView>

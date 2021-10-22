@@ -39,5 +39,8 @@
     <string name="profile_button_Edit">EDITAR</string>
     <string name="Profile_change_Pass">CAMBIAR CONTRASEÑA</string>
 
+    <!--Strings para Procedure Lists -->
+    <string name="dateTitle">Entregado: </string>
+    <string name="stateTitle">Estado: </string>
 
 </resources>

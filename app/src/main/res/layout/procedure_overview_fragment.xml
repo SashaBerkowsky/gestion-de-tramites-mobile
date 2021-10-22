@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:focusable="false"
-                android:hint="Seleccione tipo de trámite">
+               >
 
                 <AutoCompleteTextView
                     android:id="@+id/acProcedureType"
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:focusable="false"
-                android:hint="Número de dni">
+               >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtDniNumber"
@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:focusable="false"
-                android:hint="Nombre">
+               >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtName"
@@ -98,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:focusable="false"
-                android:hint="Apellido">
+                >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtSurname"
@@ -115,7 +115,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:focusable="false"
-                android:hint="Domicilio">
+               >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtAddress"
@@ -132,7 +132,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:focusable="false"
-                android:hint="Fecha de nacimiento">
+                >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtBirthdate"
@@ -149,7 +149,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:focusable="false"
-                android:hint="Seleccione tipo de licencia">
+               >
 
                 <AutoCompleteTextView
                     android:id="@+id/acLicenceType"
@@ -228,13 +228,12 @@
                 android:layout_height="19dp" />
 
             <Button
-                android:id="@+id/btn_continue"
+                android:id="@+id/btnSendProcedure"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="61dp"
                 android:layout_margin="10dp"
-                android:background="@color/secondaryTheme"
-                android:text="Finalizar"
-                style="@style/Widget.MaterialComponents.Button"/>
+                android:backgroundTint="@color/secondaryTheme"
+                android:text="Finalizar" />
         </LinearLayout>
     </ScrollView>
 

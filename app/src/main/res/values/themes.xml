@@ -15,4 +15,12 @@
 
         <!-- Customize your theme here. -->
     </style>
+    <style name="Theme.GestionDeTramitesMobile.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="PrimaryButton">
+        <item name="colorPrimary">@color/secondaryTheme</item>
+    </style>
 </resources>

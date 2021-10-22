@@ -51,7 +51,7 @@
             android:textColor="@color/newProcedure"
             android:textSize="18sp"
             android:textStyle="bold"
-            tools:text="@string/SingUp_title" />
+            android:text="@string/SingUp_title" />
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -111,7 +111,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:backgroundTint="@color/secondaryTheme"
+            android:theme="@style/PrimaryButton"
+            android:background="@color/secondaryTheme"
             android:text="@string/SingUp_Button"
             android:textAlignment="center" />
 

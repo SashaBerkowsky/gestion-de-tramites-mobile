@@ -1,12 +1,12 @@
 package com.ort.gestiondetramitesmobile.models
 
-sealed class ProcedureState(val title: String) {
+sealed class ProcedureState(val title: String, val color: String) {
 
-    class PENDIENTE_DE_ANALISIS() : ProcedureState("Pendiente de análisis")
-    class EN_PROCESO_DE_ANALISIS() : ProcedureState("En proceso de análisis")
-    class ASIGNADO_A_RESPONSABLE() : ProcedureState("Asignado a responsable")
-    class PENDIENTE_DE_RETIRO() : ProcedureState("Pendiente de retiro")
-    class ESTADO_FINALIZADO() : ProcedureState("Finalizado")
+    class PENDIENTE_DE_ANALISIS() : ProcedureState("Pendiente de análisis", "#909090")
+    class EN_PROCESO_DE_ANALISIS() : ProcedureState("En proceso de análisis","#3D5AFE")
+    class ASIGNADO_A_RESPONSABLE() : ProcedureState("Asignado a responsable","#C17817")
+    class PENDIENTE_DE_RETIRO() : ProcedureState("Pendiente de retiro","#7C238C")
+    class ESTADO_FINALIZADO() : ProcedureState("Finalizado","#D60909")
 
 }
 

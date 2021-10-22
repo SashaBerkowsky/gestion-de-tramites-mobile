@@ -23,4 +23,7 @@
     <style name="PrimaryButton">
         <item name="colorPrimary">@color/secondaryTheme</item>
     </style>
+    <style name="SecondaryButton">
+        <item name="colorPrimary">@color/infoTheme</item>
+    </style>
 </resources>

@@ -38,6 +38,7 @@
     <string name="Profile_dateOfBirth">Fecha de Nacimiento : 01/01/2021 </string>
     <string name="profile_button_Edit">EDITAR</string>
     <string name="Profile_change_Pass">CAMBIAR CONTRASEÑA</string>
+    <string name="Log_out">Cerrar sesión</string>
 
     <!--Strings para Procedure Lists -->
     <string name="dateTitle">Entregado: </string>

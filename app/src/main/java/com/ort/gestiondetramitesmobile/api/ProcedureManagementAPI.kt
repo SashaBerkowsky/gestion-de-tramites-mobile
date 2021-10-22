@@ -15,6 +15,6 @@ import retrofit2.http.POST
 interface ProcedureManagementAPI {
     @GET("/procedures")
     fun getProceduresList() : Call<List<Procedure>>
-    @POST("/api/procedures")
+    @POST("/procedures")
     suspend fun postProcedure(@Body procedure: DaoProcedure): Response<ResponseBody>
 }

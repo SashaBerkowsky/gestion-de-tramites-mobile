@@ -26,4 +26,7 @@
     <style name="SecondaryButton">
         <item name="colorPrimary">@color/infoTheme</item>
     </style>
+    <style name="ErrorButton">
+        <item name="colorPrimary">@color/errorTheme</item>
+    </style>
 </resources>

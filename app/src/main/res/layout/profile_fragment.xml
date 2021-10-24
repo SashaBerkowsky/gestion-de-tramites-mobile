@@ -12,10 +12,10 @@
 
     <TextView
         android:id="@+id/profile_title"
-        android:text="@string/Profile_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:text="@string/Profile_title"
         android:textAllCaps="true"
         android:textColor="@color/primaryText"
         android:textSize="18sp"
@@ -23,92 +23,80 @@
 
     <TextView
         android:id="@+id/Profile_Name"
-        android:text="@string/Profile_Name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/Profile_Name"
         android:textColor="@color/secondaryText" />
 
     <TextView
         android:id="@+id/Profile_DNI"
-        android:text="@string/Profile_DNI"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/Profile_DNI"
         android:textColor="@color/secondaryText" />
 
     <TextView
         android:id="@+id/Profile_Address"
-        android:text="@string/Profile_Address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/Profile_Address"
         android:textColor="@color/secondaryText" />
 
     <TextView
         android:id="@+id/Profile_dateOfBirth"
-        android:text="@string/Profile_dateOfBirth"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/Profile_dateOfBirth"
         android:textColor="@color/secondaryText" />
 
     <TextView
         android:id="@+id/Profile_Email"
-        android:text="@string/Profile_Email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:layout_marginHorizontal="10dp"
-        android:textColor="@color/secondaryText"  />
-  
-      <Button
+        android:layout_marginBottom="10dp"
+        android:text="@string/Profile_Email"
+        android:textColor="@color/secondaryText" />
+
+    <Button
         android:id="@+id/btnEditProfile"
         android:layout_width="wrap_content"
         android:layout_height="38dp"
         android:layout_margin="10dp"
+        android:background="@color/secondaryTheme"
         android:backgroundTint="@color/secondaryTheme"
         android:text="@string/profile_button_Edit"
-        android:theme="@style/PrimaryButton"
-        android:background="@color/secondaryTheme"
- />
+        android:theme="@style/PrimaryButton" />
 
     <Button
         android:id="@+id/btnChangePassword"
         android:layout_width="wrap_content"
         android:layout_height="38dp"
-        android:layout_marginBottom="10dp"
         android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/infoTheme"
         android:text="@string/Profile_change_Pass"
         android:textColor="@color/primaryText"
-        android:theme="@style/SecondaryButton"
-        android:background="@color/infoTheme"/>
+        android:theme="@style/SecondaryButton" />
 
     <Button
-        android:id="@+id/btnEditProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="38dp"
-        android:layout_margin="10dp"
-        android:backgroundTint="@color/secondaryTheme"
-        android:text="@string/profile_button_Edit"
-        android:theme="@style/PrimaryButton"
-        android:background="@color/secondaryTheme"
- />
-  
-      <Button
         android:id="@+id/closeSession"
         android:layout_width="wrap_content"
         android:layout_height="38dp"
-        android:layout_margin="10dp"
-        android:backgroundTint="@color/secondaryTheme"
-        android:text="@string/profile_button_Edit"
-        android:theme="@style/PrimaryButton"
-        android:background="@color/secondaryTheme"
- />
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/errorTheme"
+        android:text="CERRAR SESION"
+        android:textColor="@color/white"
+        android:theme="@style/ErrorButton" />
 
 
 </LinearLayout>

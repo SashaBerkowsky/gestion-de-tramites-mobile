@@ -41,7 +41,6 @@ class ProfileFragment : Fragment() {
 
         btnEditProfile = v.findViewById(R.id.btnEditProfile)
         btnChangePassword = v.findViewById(R.id.btnChangePassword)
-        btnLogOut = v.findViewById(R.id.tvLogOut)
         btnCloseSession = v.findViewById(R.id.closeSession)
 
         return v
@@ -69,12 +68,6 @@ class ProfileFragment : Fragment() {
         btnChangePassword.setOnClickListener {
             val action = ProfileFragmentDirections.actionProfileFragmentToChangePasswordFragment()
             findNavController().navigate(action)
-        }
-
-        btnLogOut.setOnClickListener{
-            Firebase.auth.signOut()
-            val intent = Intent(activity, LoginActivity::class.java)
-            startActivity(intent)
         }
     }
     private fun navToSingInActivity() {

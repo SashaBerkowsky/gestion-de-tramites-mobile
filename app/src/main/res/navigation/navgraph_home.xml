@@ -33,6 +33,9 @@
         <action
             android:id="@+id/action_profileFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_loginActivity"
+            app:destination="@id/loginActivity" />
     </fragment>
     <fragment
         android:id="@+id/procedureListOldFragment"
@@ -119,4 +122,9 @@
         android:id="@+id/editProfileFragment"
         android:name="com.ort.gestiondetramitesmobile.fragments.EditProfileFragment"
         android:label="EditProfileFragment" />
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.ort.gestiondetramitesmobile.activities.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
 </navigation>

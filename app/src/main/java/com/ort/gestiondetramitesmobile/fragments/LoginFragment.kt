@@ -1,5 +1,6 @@
 package com.ort.gestiondetramitesmobile.fragments
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -8,9 +9,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import androidx.navigation.fragment.findNavController
 import com.ort.gestiondetramitesmobile.R
 import android.widget.TextView
+import android.widget.Toast
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.common.SignInButton
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -40,6 +43,8 @@ class LoginFragment : Fragment() {
     private lateinit var btnGoogle : SignInButton
     private lateinit var txtGoogle : String
     private lateinit var signUp : TextView
+    private lateinit var email : EditText
+    private lateinit var password: EditText
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -58,6 +63,8 @@ class LoginFragment : Fragment() {
         btnGoogle = v.findViewById(R.id.sign_in_button)
         signUp = v.findViewById(R.id.account2)
         txtGoogle = "Iniciar sesión con Google"
+        email = v.findViewById(R.id.Email)
+        password = v.findViewById(R.id.Pass)
 
         setGooglePlusButtonText(btnGoogle,txtGoogle)
 
@@ -77,8 +84,9 @@ class LoginFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         btnLogin.setOnClickListener {
-            navToHomeActivity()
+            logInWithEmailAndPass()
         }
+
         signUp.setOnClickListener {
             navToSignUpFragment()
         }
@@ -145,5 +153,26 @@ class LoginFragment : Fragment() {
         }
         val intent = Intent(activity, HomeActivity::class.java)
         startActivity(intent)
+    }
+    private fun logInWithEmailAndPass(){
+
+        if(email.text.toString().isNotEmpty() && password.text.toString().isNotEmpty()){
+            auth.signInWithEmailAndPassword(email.text.toString(),password.text.toString()).
+            addOnCompleteListener{
+                if(it.isSuccessful){
+                    val user = auth.currentUser
+                    updateUI(user)
+                } else {
+                    updateUI(null)
+                    Toast.makeText(this.context,"correo o contraceña incorrectos!",Toast.LENGTH_SHORT).show()
+                }
+
+            }
+
+        }else{
+            Toast.makeText(this.context,"tiene que ingresar el email y contraceña!", Toast.LENGTH_SHORT).show()
+        }
+
+
     }
 }

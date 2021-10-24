@@ -8,6 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.ort.gestiondetramitesmobile.R
 import com.ort.gestiondetramitesmobile.viewmodels.ProfileViewModel
 
@@ -16,7 +19,8 @@ class ProfileFragment : Fragment() {
     lateinit var v: View
     lateinit var btnEditProfile: Button
     lateinit var btnChangePassword: Button
-
+    lateinit var btnCloseSession: Button
+    private lateinit var auth: FirebaseAuth
     companion object {
         fun newInstance() = ProfileFragment()
     }
@@ -32,11 +36,13 @@ class ProfileFragment : Fragment() {
 
         btnEditProfile = v.findViewById(R.id.btnEditProfile)
         btnChangePassword = v.findViewById(R.id.btnChangePassword)
+        btnCloseSession = v.findViewById(R.id.closeSession)
 
         return v
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
+        auth = Firebase.auth
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
         // TODO: Use the ViewModel
@@ -44,6 +50,10 @@ class ProfileFragment : Fragment() {
 
     override fun onStart(){
         super.onStart()
+        btnCloseSession.setOnClickListener{
+            FirebaseAuth.getInstance().signOut()
+            navToSingInActivity()
+        }
 
         btnEditProfile.setOnClickListener {
             val action = ProfileFragmentDirections.actionProfileFragmentToEditProfileFragment()
@@ -55,5 +65,8 @@ class ProfileFragment : Fragment() {
             findNavController().navigate(action)
         }
     }
-
+    private fun navToSingInActivity() {
+        val action = ProfileFragmentDirections.actionProfileFragmentToLoginActivity()
+        findNavController().navigate(action)
+    }
 }

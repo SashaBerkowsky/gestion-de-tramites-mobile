@@ -1,21 +1,27 @@
 package com.ort.gestiondetramitesmobile.fragments
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
+import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import androidx.navigation.fragment.findNavController
 import com.ort.gestiondetramitesmobile.R
 import android.widget.TextView
+import android.widget.Toast
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.common.SignInButton
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
@@ -40,7 +46,10 @@ class LoginFragment : Fragment() {
     private lateinit var btnGoogle : SignInButton
     private lateinit var txtGoogle : String
     private lateinit var signUp : TextView
-
+    private lateinit var email : EditText
+    private lateinit var password: EditText
+    private lateinit var password_login: TextInputLayout
+    private lateinit var email_login: TextInputLayout
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         auth = Firebase.auth
@@ -58,7 +67,10 @@ class LoginFragment : Fragment() {
         btnGoogle = v.findViewById(R.id.sign_in_button)
         signUp = v.findViewById(R.id.account2)
         txtGoogle = "Iniciar sesión con Google"
-
+        email = v.findViewById(R.id.Email)
+        password = v.findViewById(R.id.Pass)
+        email_login = v.findViewById(R.id.email_login)
+        password_login = v.findViewById(R.id.password_login)
         setGooglePlusButtonText(btnGoogle,txtGoogle)
 
         return v
@@ -77,8 +89,9 @@ class LoginFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         btnLogin.setOnClickListener {
-            navToHomeActivity()
+            logInWithEmailAndPass()
         }
+
         signUp.setOnClickListener {
             navToSignUpFragment()
         }
@@ -145,5 +158,43 @@ class LoginFragment : Fragment() {
         }
         val intent = Intent(activity, HomeActivity::class.java)
         startActivity(intent)
+    }
+    private fun logInWithEmailAndPass(){
+
+        if(validateForm(email.text.toString(),password.text.toString())){
+            auth.signInWithEmailAndPassword(email.text.toString(),password.text.toString()).
+            addOnCompleteListener{
+                if(it.isSuccessful){
+                    val user = auth.currentUser
+                    updateUI(user)
+                }
+            }
+    }
+
+
+    }
+    private fun validateForm(email: String, password: String): Boolean {
+        return when {
+            TextUtils.isEmpty(email) -> {
+                email_login.error = "Campo requerido"
+                false
+            }
+            !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
+                email_login.error = "Email inválido"
+                false
+            }
+            TextUtils.isEmpty(password) -> {
+                password_login.error = "Campo requerido"
+                false
+            }
+            password.length < 4 -> {
+                password_login.error = "La contraseña debe tener al menos 4 caracteres"
+                false
+            }
+
+            else -> {
+                true
+            }
+        }
     }
 }

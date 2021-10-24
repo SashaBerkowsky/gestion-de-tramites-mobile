@@ -1,5 +1,6 @@
 package com.ort.gestiondetramitesmobile.adapters
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,8 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.ort.gestiondetramitesmobile.R
 import com.ort.gestiondetramitesmobile.models.Procedure
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ProcedureListAdapterOld (val onItemClick : (Int) -> Unit): RecyclerView.Adapter<ProcedureListAdapterOld.ProcedureHolder>(){
 
@@ -24,7 +27,7 @@ class ProcedureListAdapterOld (val onItemClick : (Int) -> Unit): RecyclerView.Ad
     override fun onBindViewHolder(holder: ProcedureHolder, position: Int) {
         holder.setName(procedureList[position].getCurrentProcedureType().title)
         holder.setDate(procedureList[position].creationDate.toString())
-        holder.setState(procedureList[position].getCurrentProcedureState().title)
+        holder.setState(procedureList[position])
         holder.getCardView().setOnClickListener {
             onItemClick(position)
         }
@@ -47,13 +50,31 @@ class ProcedureListAdapterOld (val onItemClick : (Int) -> Unit): RecyclerView.Ad
             val txt: TextView = view.findViewById(R.id.procedureName)
             txt.text = name
         }
-        fun setDate(date : String){
+        //TODO mover esto a dao
+        fun setDate(dateStr : String){
             val txt: TextView = view.findViewById(R.id.procedureDate)
+
+            //mascara de la fecha que entra, ver https://developer.android.com/reference/kotlin/java/text/SimpleDateFormat#timezone
+            var format = SimpleDateFormat("EEE MMM dd hh:mm:ss z YYYY")
+            val newDate: Date = format.parse(dateStr)
+
+            //mascara de la fecha que sale, ver https://developer.android.com/reference/kotlin/java/text/SimpleDateFormat#timezone
+            format = SimpleDateFormat("dd/MM/YYYY hh:mm a")
+            val date: String = format.format(newDate)
+
             txt.text = date
         }
-        fun setState(state : String){
+        fun setState(procedure : Procedure){
             val txt: TextView = view.findViewById(R.id.stateProcedure)
-            txt.text = state
+            val state: String = procedure.getCurrentProcedureState().title
+
+            if(procedure.isProcedureCanceled()){
+                txt.setTextColor(Color.parseColor(procedure.getCurrentProcedureState().color))
+                txt.text = "Rechazado"
+            } else{
+                txt.text = state
+            }
+
         }
         fun getCardView () : CardView {
             return view.findViewById(R.id.procedure_list_card)

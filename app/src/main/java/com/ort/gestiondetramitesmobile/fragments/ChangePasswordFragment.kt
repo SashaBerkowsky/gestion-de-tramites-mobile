@@ -2,6 +2,8 @@ package com.ort.gestiondetramitesmobile.fragments
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.text.TextUtils
+import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -26,6 +29,7 @@ class ChangePasswordFragment : Fragment() {
     private lateinit var btnSend : Button
     private lateinit var auth: FirebaseAuth
     private lateinit var viewModel: ChangePasswordViewModel
+    private lateinit var change_email:TextInputLayout
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,6 +37,7 @@ class ChangePasswordFragment : Fragment() {
         v =inflater.inflate(R.layout.change_password_fragment, container, false)
         email = v.findViewById(R.id.email)
         btnSend =v.findViewById(R.id.btn_continue)
+        change_email = v.findViewById(R.id.change_email)
         return v
     }
 
@@ -56,6 +61,7 @@ class ChangePasswordFragment : Fragment() {
     }
 
     private fun resetPassword(){
+        if(validateForm(email.text.toString())){
         auth.setLanguageCode("es")
         auth.sendPasswordResetEmail(email.text.toString()).addOnCompleteListener{
             if (it.isSuccessful) {
@@ -66,6 +72,23 @@ class ChangePasswordFragment : Fragment() {
                     "se ha producido un error al enviar correo",
                     Toast.LENGTH_SHORT
                 ).show()
+            }
+        }
+     }
+    }
+    private fun validateForm(email: String): Boolean {
+        return when {
+            TextUtils.isEmpty(email) -> {
+                change_email.error = "Campo requerido"
+                false
+            }
+            !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
+                change_email.error = "Email inválido"
+                false
+            }
+
+            else -> {
+                true
             }
         }
     }

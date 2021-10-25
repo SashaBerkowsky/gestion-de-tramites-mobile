@@ -23,4 +23,10 @@
     <style name="PrimaryButton">
         <item name="colorPrimary">@color/secondaryTheme</item>
     </style>
+    <style name="SecondaryButton">
+        <item name="colorPrimary">@color/infoTheme</item>
+    </style>
+    <style name="ErrorButton">
+        <item name="colorPrimary">@color/errorTheme</item>
+    </style>
 </resources>

@@ -21,6 +21,7 @@ import com.google.android.gms.common.SignInButton
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -35,18 +36,18 @@ class LoginFragment : Fragment() {
 
     companion object {
         fun newInstance() = LoginFragment()
-         const val RC_SIGN_IN = 4926
+        const val RC_SIGN_IN = 4926
     }
 
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
 
     private lateinit var v: View
-    private lateinit var btnLogin : Button
-    private lateinit var btnGoogle : SignInButton
-    private lateinit var txtGoogle : String
-    private lateinit var signUp : TextView
-    private lateinit var email : EditText
+    private lateinit var btnLogin: Button
+    private lateinit var btnGoogle: SignInButton
+    private lateinit var txtGoogle: String
+    private lateinit var signUp: TextView
+    private lateinit var email: EditText
     private lateinit var password: EditText
     private lateinit var password_login: TextInputLayout
     private lateinit var email_login: TextInputLayout
@@ -60,7 +61,7 @@ class LoginFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View{
+    ): View {
         v = inflater.inflate(R.layout.login_fragment, container, false)
 
         btnLogin = v.findViewById(R.id.btn_login)
@@ -71,7 +72,7 @@ class LoginFragment : Fragment() {
         password = v.findViewById(R.id.Pass)
         email_login = v.findViewById(R.id.email_login)
         password_login = v.findViewById(R.id.password_login)
-        setGooglePlusButtonText(btnGoogle,txtGoogle)
+        setGooglePlusButtonText(btnGoogle, txtGoogle)
 
         return v
     }
@@ -111,7 +112,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun getGSO(): GoogleSignInOptions {
-        return  GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        return GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
@@ -152,27 +153,32 @@ class LoginFragment : Fragment() {
                 }
             }
     }
+
     private fun updateUI(currentUser: FirebaseUser?) {
-        if(currentUser == null){
+        if (currentUser == null) {
             return
         }
         val intent = Intent(activity, HomeActivity::class.java)
         startActivity(intent)
     }
-    private fun logInWithEmailAndPass(){
 
-        if(validateForm(email.text.toString(),password.text.toString())){
-            auth.signInWithEmailAndPassword(email.text.toString(),password.text.toString()).
-            addOnCompleteListener{
-                if(it.isSuccessful){
-                    val user = auth.currentUser
-                    updateUI(user)
+    private fun logInWithEmailAndPass() {
+
+        if (validateForm(email.text.toString(), password.text.toString())) {
+            auth.signInWithEmailAndPassword(email.text.toString(), password.text.toString())
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        val user = auth.currentUser
+                        updateUI(user)
+                    } else {
+                        email_login.error = " "
+                        password_login.error = "Usuario o contraseña incorrecto"
+                    }
                 }
-            }
-    }
-
+        }
 
     }
+
     private fun validateForm(email: String, password: String): Boolean {
         return when {
             TextUtils.isEmpty(email) -> {

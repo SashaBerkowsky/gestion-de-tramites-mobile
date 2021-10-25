@@ -17,6 +17,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.material.progressindicator.LinearProgressIndicator
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -43,6 +44,7 @@ class SignupFragment : Fragment() {
     private lateinit var inputSignUpEmailLayout: TextInputLayout
     private lateinit var inputSignUpPassLayout: TextInputLayout
     private lateinit var inputSignUpConfirmPassLayout: TextInputLayout
+    private lateinit var progressBar: LinearProgressIndicator
     private lateinit var btnSignUp: Button
 
     override fun onCreateView(
@@ -60,7 +62,8 @@ class SignupFragment : Fragment() {
         inputSignUpEmailLayout = v.findViewById(R.id.input_sing_up_email_layout)
         inputSignUpPassLayout = v.findViewById(R.id.input_sing_up_pass_layout)
         inputSignUpConfirmPassLayout = v.findViewById(R.id.input_sing_up_confirm_pass_layout)
-
+        progressBar = v.findViewById(R.id.progress_bar)
+        progressBar.hide()
 
         return v
     }
@@ -81,24 +84,18 @@ class SignupFragment : Fragment() {
     }
 
     private fun registerUser() {
-        signUpTitle = v.findViewById(R.id.tv_sing_up_title)
-        inputSignUpEmail = v.findViewById(R.id.input_sing_up_email)
-        inputSignUpPass = v.findViewById(R.id.input_sing_up_pass)
-        inputSignUpConfirmPass = v.findViewById(R.id.input_sing_up_confirm_pass)
-        inputSignUpEmailLayout = v.findViewById(R.id.input_sing_up_email_layout)
-        inputSignUpPassLayout = v.findViewById(R.id.input_sing_up_pass_layout)
-        inputSignUpConfirmPassLayout = v.findViewById(R.id.input_sing_up_confirm_pass_layout)
         // Here we get the text from editText and trim the space
         val email: String = inputSignUpEmail.text.toString()
         val password: String = inputSignUpPass.text.toString()
         val confirmPass: String = inputSignUpConfirmPass.text.toString()
 
         if (validateForm(email, password, confirmPass)) {
-
+            progressBar.show()
+            btnSignUp.isEnabled = false
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(
                     OnCompleteListener<AuthResult> { task ->
-
+                        progressBar.hide()
                         // If the registration is successfully done
                         if (task.isSuccessful) {
 
@@ -109,12 +106,15 @@ class SignupFragment : Fragment() {
                             Log.i("registeredEmail", registeredEmail)
                             val intent = Intent(activity, HomeActivity::class.java)
                             startActivity(intent)
+
                         } else {
+
                             Toast.makeText(
                                 requireActivity(),
                                 task.exception!!.message,
                                 Toast.LENGTH_SHORT
                             ).show()
+
                         }
                     })
         }

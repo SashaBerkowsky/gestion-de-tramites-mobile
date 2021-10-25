@@ -1,122 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="start"
+    android:orientation="vertical"
+    android:padding="16dp">
     tools:context=".fragments.SignupFragment">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
-
-</FrameLayout>
-
-    <?xml version="1.0" encoding="utf-8"?>
-   <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".fragments.UserDataFormFragment">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Hello" />
-
-    </FrameLayout> -->
-
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true"
-    tools:context=".activities.ProcedureActivity">
-
-    <LinearLayout
+        android:id="@+id/tv_sing_up_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:gravity="start"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:text="@string/SingUp_title"
+        android:textAllCaps="true"
+        android:textColor="@color/newProcedure"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/SingUp_title"
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_sing_up_email_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="@string/SingUp_Email"
+        android:inputType="textEmailAddress"
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_sing_up_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:gravity="start"
-            android:textAllCaps="true"
-            android:textColor="@color/newProcedure"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:text="@string/SingUp_title" />
+            android:textColorHint="@color/hintTextColor"
+            tools:ignore="TextContrastCheck" />
 
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/SingUp_Email"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_sing_up_pass_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="@string/SingUp_Pass"
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_sing_up_pass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/SingUp_Email"
-            android:layout_margin="10dp"
-            android:inputType="textEmailAddress"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@color/hintTextColor"
-                tools:ignore="TextContrastCheck" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/SingUp_pass"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/SingUp_Pass"
-            android:layout_margin="10dp"
             android:inputType="textPassword"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            android:textColorHint="@color/hintTextColor"
+            tools:ignore="TextContrastCheck" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@color/hintTextColor"
-                tools:ignore="TextContrastCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_sing_up_confirm_pass_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="@string/SingUp_ConfirmPass"
+        app:errorEnabled="true">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/SingUp_ConfirmPass"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_sing_up_confirm_pass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/SingUp_ConfirmPass"
-            android:layout_margin="10dp"
             android:inputType="textPassword"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@color/hintTextColor"
-                tools:ignore="TextContrastCheck" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:textColorHint="@color/hintTextColor"
+            tools:ignore="TextContrastCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 
-        <Button
-            android:id="@+id/SingUp_Button"
-            style="@style/Widget.MaterialComponents.Button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:theme="@style/PrimaryButton"
-            android:background="@color/secondaryTheme"
-            android:text="@string/SingUp_Button"
-            android:textAlignment="center" />
+    <Button
+        android:id="@+id/btn_sign_up"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/secondaryTheme"
+        android:text="@string/SingUp_Button"
+        android:textAlignment="center"
+        android:theme="@style/PrimaryButton" />
 
-
-
-    </LinearLayout>
-</ScrollView>
+</LinearLayout>

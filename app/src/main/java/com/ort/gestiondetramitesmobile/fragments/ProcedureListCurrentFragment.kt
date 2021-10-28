@@ -21,7 +21,7 @@ class ProcedureListCurrentFragment : Fragment() {
     private lateinit var v: View
     private lateinit var  recTramite : RecyclerView
     private val adapter = ProcedureListAdapterCurrent {
-        onItemClick()
+        onItemClick(it)
     }
     private val viewModel: ProcedureListCurrentViewModel by viewModels()
 
@@ -59,9 +59,14 @@ class ProcedureListCurrentFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
     }
 
-    private fun onItemClick(){
-        val action = ProcedureListFragmentDirections.actionProcedureListFragmentToProcedureDetailFragment()
-        findNavController().navigate(action)
+    private fun onItemClick(selectedIdx: Int){
+        val selectedProcedure = viewModel.getSelectedProcedure(selectedIdx)
+        val action = selectedProcedure?.let {
+            ProcedureListFragmentDirections.actionProcedureListFragmentToProcedureDetailFragment(it)
+        }
+        if (action != null) {
+            findNavController().navigate(action)
+        }
     }
 
     override fun onStart(){

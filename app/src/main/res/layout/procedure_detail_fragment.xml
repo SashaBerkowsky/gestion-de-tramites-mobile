@@ -43,7 +43,7 @@
             android:paddingEnd="15dp">
 
             <TextView
-                android:id="@+id/tv_procedure_name"
+                android:id="@+id/txtProcedureName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -65,7 +65,7 @@
                 android:hint="Seleccione tipo de trámite">
 
                 <AutoCompleteTextView
-                    android:id="@+id/acProcedureType"
+                    android:id="@+id/edtProcedureType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:focusable="false"
@@ -169,7 +169,7 @@
                 android:hint="Seleccione tipo de licencia">
 
                 <AutoCompleteTextView
-                    android:id="@+id/acLicenceType"
+                    android:id="@+id/edtLicenceType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:focusable="false"
@@ -184,21 +184,24 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/imageView9"
+                    android:id="@+id/imgSelfieDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:minWidth="96dp"
+                    android:src="@drawable/profilepicplaceholder" />
+
+                <ImageView
+                    android:minWidth="96dp"
+                    android:id="@+id/imgSelfieDniDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:src="@drawable/profilepicplaceholder" />
 
                 <ImageView
-                    android:id="@+id/imageView10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@drawable/profilepicplaceholder" />
-
-                <ImageView
-                    android:id="@+id/imageView11"
+                    android:minWidth="96dp"
+                    android:id="@+id/imgFrontDniDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -216,14 +219,16 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/imageView9"
+                    android:minWidth="96dp"
+                    android:id="@+id/imgBackDniDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:src="@drawable/profilepicplaceholder" />
 
                 <ImageView
-                    android:id="@+id/imageView10"
+                    android:minWidth="96dp"
+                    android:id="@+id/imgDebtFreeDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -234,7 +239,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:src="@drawable/profilepicplaceholder" />
+                    android:minWidth="96dp"
+                    android:src="@drawable/profilepicplaceholder"
+                    android:visibility="invisible" />
             </LinearLayout>
 
         </LinearLayout>

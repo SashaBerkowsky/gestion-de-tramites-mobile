@@ -62,4 +62,25 @@ class ProcedureOverviewViewModel : ViewModel() {
 
     }
 
+    fun getSelfieUrl(): String{
+        return procedure.selfieUrl
+    }
+
+    fun getSelfieDniUrl(): String{
+        return procedure.selfieDniUrl
+    }
+
+    fun getFrontDniUrl(): String{
+        return procedure.frontDniUrl
+    }
+
+    fun getBackDniUrl(): String{
+        return procedure.backDniUrl
+    }
+
+   fun getDebtFree(): String{
+       return procedure.debtFreeUrl
+   }
+
+
 }

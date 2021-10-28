@@ -54,6 +54,10 @@ class Procedure(var idProcedureState: Int, private var idProcedureType: Int, var
         return isProcedureFinished() && canceledReason?.isNotEmpty() ?: false
     }
 
+    fun isProcedureApproved(): Boolean{
+        return isProcedureFinished() && !isProcedureCanceled()
+    }
+
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(idProcedureState)
         parcel.writeInt(idProcedureType)

@@ -30,9 +30,8 @@ class DaoProcedure (procedure: Procedure){
     val frontDniUrl= procedure.frontDniUrl
     val backDniUrl = procedure.backDniUrl
     val debtFreeUrl= procedure.debtFreeUrl
-
-   // val revisionDate
-   // val withdrawalDate
+    val revisionDate = procedure.revisionDate
+    val withdrawalDate = procedure.withdrawalDate
 
     private fun formatDateForDatabase(date: Date):String{
         val format = SimpleDateFormat("EEE MMM dd hh:mm:ss z YYYY")
@@ -67,14 +66,11 @@ class DaoProcedure (procedure: Procedure){
 
     fun createProcedure(): Procedure{
         val user = User(userName, userSurname, userDni, userAddress, formatBirthdateForProcedure(userBirthdate), idUserCiudadano)
-        val p = Procedure(idProcedureState, idProcedureType - 1,user,formatDateForProcedure(creationDate),formatDateForProcedure(lastModificationDate),subProcedureType,licenceCode,canceledReason)
-        p.selfieUrl = selfieUrl
-        p.selfieDniUrl = selfieDniUrl
-        p.frontDniUrl = frontDniUrl
-        p.backDniUrl = backDniUrl
-        p.debtFreeUrl = debtFreeUrl
+        return Procedure(idProcedureState, idProcedureType - 1,user,
+            formatDateForProcedure(creationDate),formatDateForProcedure(lastModificationDate)
+            ,subProcedureType,licenceCode, canceledReason
+            ,selfieUrl,selfieDniUrl,frontDniUrl,backDniUrl,debtFreeUrl,revisionDate,withdrawalDate)
 
-        return p
     }
 
     fun isProcedureFinished():Boolean{

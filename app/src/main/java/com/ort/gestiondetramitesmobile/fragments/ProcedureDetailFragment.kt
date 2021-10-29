@@ -75,8 +75,8 @@ class ProcedureDetailFragment : Fragment() {
         super.onStart()
 
         var procedure = ProcedureDetailFragmentArgs.fromBundle(requireArguments()).selectedProcedure
-        viewModel.setProcedure(procedure)
 
+        viewModel.setProcedure(procedure)
 
         edtName.setText(viewModel.getUserName())
         edtSurname.setText(viewModel.getUserSurname())
@@ -86,12 +86,12 @@ class ProcedureDetailFragment : Fragment() {
         edtLicenceCode.setText(viewModel.getLicenceCode())
         edtProcedureType.setText(viewModel.getProcedureType())
         txtProcedureName.setText(viewModel.getProcedureName())
+
         Glide.with(requireContext()).load(viewModel.getSelfieUrl()).centerInside().into(imgSelfieDetail)
         Glide.with(requireContext()).load(viewModel.getSelfieDniUrl()).centerInside().into(imgSelfieDni)
         Glide.with(requireContext()).load(viewModel.getFrontDniUrl()).centerInside().into(imgFrontDni)
         Glide.with(requireContext()).load(viewModel.getBackDniUrl()).centerInside().into(imgBackDni)
         Glide.with(requireContext()).load(viewModel.getDebtFreeUrl()).centerInside().into(imgDebtFree)
-
 
         btnCheckState.setOnClickListener {
             showStateDialog()

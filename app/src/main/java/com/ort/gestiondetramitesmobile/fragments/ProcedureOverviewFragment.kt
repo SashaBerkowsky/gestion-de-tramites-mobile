@@ -73,16 +73,17 @@ class ProcedureOverviewFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        Glide.with(requireContext()).load(viewModel.getSelfieUrl()).centerInside().into(imgSelfie)
-        Glide.with(requireContext()).load(viewModel.getSelfieDniUrl()).centerInside().into(imgSelfieDni)
-        Glide.with(requireContext()).load(viewModel.getFrontDniUrl()).centerInside().into(imgFrontDni)
-        Glide.with(requireContext()).load(viewModel.getBackDniUrl()).centerInside().into(imgBackDni)
-        Glide.with(requireContext()).load(viewModel.getDebtFree()).centerInside().into(imgDebtFree)
-        Log.d("selfie", viewModel.getSelfieUrl())
-        Log.d("selfie dni", viewModel.getSelfieDniUrl())
-        Log.d("dni front", viewModel.getFrontDniUrl())
-        Log.d("dni back", viewModel.getBackDniUrl())
-        Log.d("debt free", viewModel.getDebtFree())
+        Glide.with(requireContext()).load(viewModel.selfieUrl()).centerInside().into(imgSelfie)
+        Glide.with(requireContext()).load(viewModel.selfieDniUrl()).centerInside().into(imgSelfieDni)
+        Glide.with(requireContext()).load(viewModel.frontDniUrl()).centerInside().into(imgFrontDni)
+        Glide.with(requireContext()).load(viewModel.backDniUrl()).centerInside().into(imgBackDni)
+        Glide.with(requireContext()).load(viewModel.debtFreeUrl()).centerInside().into(imgDebtFree)
+
+        Log.d("selfie url", viewModel.selfieUrl())
+        Log.d("dni url", viewModel.selfieDniUrl())
+        Log.d("front dni", viewModel.frontDniUrl())
+        Log.d("back dni", viewModel.backDniUrl())
+        Log.d("debt free url", viewModel.debtFreeUrl())
 
         edtDni.setHint(viewModel.getDni())
         edtName.setHint(viewModel.getName())

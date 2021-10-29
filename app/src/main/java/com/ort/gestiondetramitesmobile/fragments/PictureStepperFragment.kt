@@ -3,10 +3,12 @@ package com.ort.gestiondetramitesmobile.fragments
 import android.Manifest
 import android.app.Activity
 import android.app.Activity.RESULT_OK
+import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.net.Uri
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -36,14 +38,23 @@ import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 import android.graphics.drawable.BitmapDrawable
+import android.opengl.Visibility
 import android.os.Environment
 import android.os.Environment.DIRECTORY_PICTURES
 import android.os.Environment.getExternalStorageDirectory
+import android.view.Window
+import android.widget.ProgressBar
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
+import java.io.ByteArrayOutputStream
 
 
 class PictureStepperFragment : Fragment() {
 
     lateinit var v: View
+
+    private val storage = Firebase.storage
+    private val storageRef = storage.reference.child("imagesTest")
 
     private val viewModel: PictureStepperViewModel by viewModels()
 
@@ -102,18 +113,52 @@ class PictureStepperFragment : Fragment() {
         }
 
         btnContinue.setOnClickListener {
-            val needMorePictures = neededPictures.size - 1 != pictureIdx
-            var action: NavDirections = if(needMorePictures){
-                PictureStepperFragmentDirections.actionPictureStepperFragmentSelf(pictureIdx+1, neededPictures, viewModel.getCurrentProcedure())
-            } else{
-                PictureStepperFragmentDirections.actionPictureStepperFragmentToProcedureOverviewFragment2(viewModel.getCurrentProcedure())
-            }
-
-           viewModel.uploadPicture((imgPictureTaken.drawable as BitmapDrawable).bitmap,pictureIdx)
-
-            findNavController().navigate(action)
+            uploadPicture((imgPictureTaken.drawable as BitmapDrawable).bitmap,pictureIdx, neededPictures)
         }
 
+    }
+
+    private fun uploadPicture(pictureBitmap: Bitmap, pictureNeededIdx: Int, neededPictures:Array<String>){
+        val needMorePictures = neededPictures.size - 1 != pictureNeededIdx
+        val baos = ByteArrayOutputStream()
+        pictureBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val data = baos.toByteArray()
+
+        val imageRef = storageRef.child(viewModel.createImageName(pictureNeededIdx))
+
+        val dialog = Dialog(requireContext())
+
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.loading_dialog)
+
+        dialog.show()
+
+        var uploadTask = imageRef.putBytes(data)
+        val urlTask = uploadTask.continueWithTask {
+            imageRef.downloadUrl
+
+        }.addOnCompleteListener {
+            if(it.isSuccessful){
+                val downloadUri = it.result
+
+                viewModel.setProcedurePhoto(pictureNeededIdx, downloadUri)
+
+                dialog.dismiss()
+
+                var action : NavDirections = if(needMorePictures){
+                    PictureStepperFragmentDirections.actionPictureStepperFragmentSelf(pictureNeededIdx+1, neededPictures, viewModel.getCurrentProcedure())
+                } else{
+                    PictureStepperFragmentDirections.actionPictureStepperFragmentToProcedureOverviewFragment2(viewModel.getCurrentProcedure())
+                }
+
+                findNavController().navigate(action)
+                //else throw toast diciendo error subiendo foto
+            } else{
+                dialog.dismiss()
+            }
+
+        }
     }
 
     private fun getPhotoFile(fileName: String): File {

@@ -64,23 +64,23 @@ class ProcedureDetailViewModel : ViewModel() {
     }
 
     fun getSelfieUrl(): String{
-        return selectedProcedure.selfieUrl
+        return selectedProcedure.selfieUrl.toString()
     }
 
     fun getSelfieDniUrl(): String{
-        return selectedProcedure.selfieDniUrl
+        return selectedProcedure.selfieDniUrl.toString()
     }
 
     fun getFrontDniUrl(): String{
-        return selectedProcedure.frontDniUrl
+        return selectedProcedure.frontDniUrl.toString()
     }
 
     fun getBackDniUrl(): String{
-        return selectedProcedure.backDniUrl
+        return selectedProcedure.backDniUrl.toString()
     }
 
     fun getDebtFreeUrl(): String{
-        return selectedProcedure.debtFreeUrl
+        return selectedProcedure.debtFreeUrl.toString()
     }
 
     fun isProcedureApproved(): Boolean {
@@ -92,9 +92,9 @@ class ProcedureDetailViewModel : ViewModel() {
     }
 
     fun getProcedureState(): ProcedureState {
-        TODO("Not yet implemented")
         return selectedProcedure.getCurrentProcedureState()
     }
+
 
 
 }

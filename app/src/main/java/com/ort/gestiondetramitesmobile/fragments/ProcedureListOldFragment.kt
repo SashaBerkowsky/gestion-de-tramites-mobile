@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.ort.gestiondetramitesmobile.R
 import com.ort.gestiondetramitesmobile.adapters.ProcedureListAdapterOld
+import com.ort.gestiondetramitesmobile.models.Procedure
 import com.ort.gestiondetramitesmobile.viewmodels.ProcedureListOldViewModel
 
 class ProcedureListOldFragment : Fragment() {
@@ -21,7 +22,7 @@ class ProcedureListOldFragment : Fragment() {
     private lateinit var v: View
     private lateinit var  recTramite : RecyclerView
     private val adapter = ProcedureListAdapterOld {
-        onItemClick()
+        onItemClick(it)
     }
     private val viewModel : ProcedureListOldViewModel by viewModels()
 
@@ -59,9 +60,14 @@ class ProcedureListOldFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
     }
 
-    private fun onItemClick(){
-        val action = ProcedureListFragmentDirections.actionProcedureListFragmentToProcedureDetailFragment()
-        findNavController().navigate(action)
+    private fun onItemClick(selectedIdx: Int){
+        val selectedProcedure = viewModel.getSelectedProcedure(selectedIdx)
+        val action = selectedProcedure?.let {
+            ProcedureListFragmentDirections.actionProcedureListFragmentToProcedureDetailFragment(it)
+        }
+        if (action != null) {
+            findNavController().navigate(action)
+        }
     }
 
     override fun onStart(){
@@ -70,3 +76,7 @@ class ProcedureListOldFragment : Fragment() {
         recTramite.layoutManager = LinearLayoutManager(context)
     }
 }
+
+
+
+

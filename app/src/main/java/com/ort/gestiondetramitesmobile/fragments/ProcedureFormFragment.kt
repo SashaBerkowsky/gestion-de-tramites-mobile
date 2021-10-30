@@ -1,6 +1,5 @@
 package com.ort.gestiondetramitesmobile.fragments
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,19 +8,14 @@ import android.view.ViewGroup
 import com.ort.gestiondetramitesmobile.R
 import com.ort.gestiondetramitesmobile.viewmodels.ProcedureFormViewModel
 
-import android.app.DatePickerDialog
 import android.content.Context
-import android.util.Log
 import android.widget.*
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.android.material.textfield.TextInputLayout
 import java.util.*
-import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener
 import java.text.SimpleDateFormat
 
 
@@ -56,7 +50,7 @@ class ProcedureFormFragment : Fragment() {
         edtName = v.findViewById(R.id.edtName)
         edtSurname = v.findViewById(R.id.edtSurname)
         edtAddress = v.findViewById(R.id.edtAddress)
-        txtProcedureName = v.findViewById(R.id.tv_procedure_name)
+        txtProcedureName = v.findViewById(R.id.txtProcedureName)
 
         return v
     }

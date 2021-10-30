@@ -1,5 +1,6 @@
 package com.ort.gestiondetramitesmobile.viewmodels
 
+import android.icu.text.StringPrepParseException
 import androidx.lifecycle.ViewModel
 import com.ort.gestiondetramitesmobile.api.RetrofitInstance
 import com.ort.gestiondetramitesmobile.daos.DaoProcedure
@@ -55,11 +56,28 @@ class ProcedureOverviewViewModel : ViewModel() {
         val procedureDao = DaoProcedure(procedure)
         scope.launch{
             val response = async{RetrofitInstance.api.postProcedure(procedureDao)}
-
         }
 
         return ""
-
     }
 
+    fun selfieUrl(): String{
+        return procedure.selfieUrl.toString()
+    }
+
+    fun selfieDniUrl(): String{
+        return procedure.selfieDniUrl.toString()
+    }
+
+    fun frontDniUrl(): String{
+        return procedure.frontDniUrl.toString()
+    }
+
+    fun backDniUrl(): String{
+        return procedure.backDniUrl.toString()
+    }
+
+    fun debtFreeUrl(): String{
+        return procedure.debtFreeUrl.toString()
+    }
 }

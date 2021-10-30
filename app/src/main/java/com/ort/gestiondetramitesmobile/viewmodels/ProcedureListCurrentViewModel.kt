@@ -38,4 +38,9 @@ class ProcedureListCurrentViewModel : ViewModel() {
 
         })
     }
+
+
+    fun getSelectedProcedure(idx: Int): Procedure? {
+        return procedureList.value?.get(idx)
+    }
 }

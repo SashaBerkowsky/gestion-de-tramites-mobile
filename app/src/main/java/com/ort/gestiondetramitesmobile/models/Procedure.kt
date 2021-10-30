@@ -9,16 +9,12 @@ import kotlin.random.Random.Default.nextInt
 class Procedure(var idProcedureState: Int, private var idProcedureType: Int, var userCiudadano: User, var creationDate: Date,
                 var lastModificationDate: Date,
                 var licenceType: String?,var licenceCode: String?,
-                var canceledReason: String?):Parcelable {
+                var canceledReason: String?, var selfieUrl: String?, var selfieDniUrl: String?,
+                var frontDniUrl: String?, var backDniUrl: String?, var debtFreeUrl: String?,
+                var revisionDate: String?, var withdrawalDate: String?):Parcelable {
 
     //Atado con alambre para que ande
     var id = nextInt(1000000, 9999999)
-
-    var selfieUrl = ""
-    var selfieDniUrl = ""
-    var frontDniUrl=""
-    var backDniUrl = ""
-    var debtFreeUrl= ""
 
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
@@ -28,13 +24,15 @@ class Procedure(var idProcedureState: Int, private var idProcedureType: Int, var
         TODO("lastModificationDate"),
         parcel.readString(),
         parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
         parcel.readString()) {
         id = parcel.readInt()
-        selfieUrl = parcel.readString().toString()
-        selfieDniUrl = parcel.readString().toString()
-        frontDniUrl = parcel.readString().toString()
-        backDniUrl = parcel.readString().toString()
-        debtFreeUrl = parcel.readString().toString()
     }
 
 
@@ -54,32 +52,8 @@ class Procedure(var idProcedureState: Int, private var idProcedureType: Int, var
         return isProcedureFinished() && canceledReason?.isNotEmpty() ?: false
     }
 
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(idProcedureState)
-        parcel.writeInt(idProcedureType)
-        parcel.writeString(licenceType)
-        parcel.writeString(licenceCode)
-        parcel.writeString(canceledReason)
-        parcel.writeInt(id)
-        parcel.writeString(selfieUrl)
-        parcel.writeString(selfieDniUrl)
-        parcel.writeString(frontDniUrl)
-        parcel.writeString(backDniUrl)
-        parcel.writeString(debtFreeUrl)
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<Procedure> {
-        override fun createFromParcel(parcel: Parcel): Procedure {
-            return Procedure(parcel)
-        }
-
-        override fun newArray(size: Int): Array<Procedure?> {
-            return arrayOfNulls(size)
-        }
+    fun isProcedureApproved(): Boolean{
+        return isProcedureFinished() && !isProcedureCanceled()
     }
 
     fun getFormatedLastModificationDate(): String{
@@ -100,5 +74,35 @@ class Procedure(var idProcedureState: Int, private var idProcedureType: Int, var
         //mascara de la fecha que sale, ver https://developer.android.com/reference/kotlin/java/text/SimpleDateFormat#timezone
         format = SimpleDateFormat("dd/MM/YYYY hh:mm a")
         return format.format(newDate)
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(idProcedureState)
+        parcel.writeInt(idProcedureType)
+        parcel.writeString(licenceType)
+        parcel.writeString(licenceCode)
+        parcel.writeString(canceledReason)
+        parcel.writeString(selfieUrl)
+        parcel.writeString(selfieDniUrl)
+        parcel.writeString(frontDniUrl)
+        parcel.writeString(backDniUrl)
+        parcel.writeString(debtFreeUrl)
+        parcel.writeString(revisionDate)
+        parcel.writeString(withdrawalDate)
+        parcel.writeInt(id)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Procedure> {
+        override fun createFromParcel(parcel: Parcel): Procedure {
+            return Procedure(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Procedure?> {
+            return arrayOfNulls(size)
+        }
     }
 }

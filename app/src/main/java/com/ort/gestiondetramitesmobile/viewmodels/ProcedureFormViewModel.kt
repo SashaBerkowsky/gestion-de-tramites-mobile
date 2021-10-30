@@ -16,17 +16,18 @@ class ProcedureFormViewModel : ViewModel() {
         //getUserData
         currentUser = User("nombre usuario 1",
             "apellido usuario 1","123456789",
-            "domicilio usuario 1","DD/MM/YYYY",
+            "domicilio usuario 1","04/07/2000",
             3)
     }
 
     fun setProcedureUser(name: String, surname: String,  dni: String,  address: String,
-                   birthdate: String){
+                         birthdate: String){
         procedureUser = User(name, surname, dni, address, birthdate, currentUser.userID)
     }
 
     fun createProcedure( licenceType: String,licenceCode: String){
-        newProcedure = Procedure(0,0, procedureUser,Date(),Date(),licenceType,licenceCode,"")
+        newProcedure = Procedure(0,0, procedureUser,Date(),Date(),licenceType,licenceCode,
+            "","","","","","","","")
     }
 
     fun getProcedure(): Procedure{

@@ -2,25 +2,20 @@ package com.ort.gestiondetramitesmobile.fragments
 
 import android.app.Dialog
 import android.graphics.Color
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.support.v4.media.session.MediaSessionCompat.Token.fromBundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.widget.AutoCompleteTextView
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.button.MaterialButton
+import com.bumptech.glide.Glide
 import com.ort.gestiondetramitesmobile.R
 import com.ort.gestiondetramitesmobile.models.User
 import com.ort.gestiondetramitesmobile.models.TramiteLicenciaConducir
-import com.ort.gestiondetramitesmobile.viewmodels.ProcedureFormViewModel
 import com.ort.gestiondetramitesmobile.viewmodels.ProcedureOverviewViewModel
 import kotlinx.coroutines.*
 
@@ -37,6 +32,11 @@ class ProcedureOverviewFragment : Fragment() {
     private lateinit var edtLicenceType : AutoCompleteTextView
     private lateinit var edtLicenceCode : AutoCompleteTextView
     private lateinit var btnSendProcedure : Button
+    private lateinit var imgSelfie: ImageView
+    private lateinit var imgSelfieDni: ImageView
+    private lateinit var imgFrontDni: ImageView
+    private lateinit var imgBackDni: ImageView
+    private lateinit var imgDebtFree: ImageView
 
     companion object {
         fun newInstance() = ProcedureOverviewFragment()
@@ -58,15 +58,32 @@ class ProcedureOverviewFragment : Fragment() {
         edtSurname = v.findViewById(R.id.edtSurname)
         edtAddress = v.findViewById(R.id.edtAddress)
         edtBirthdate = v.findViewById(R.id.edtBirthdate)
-        edtLicenceType = v.findViewById(R.id.acProcedureType)
-        edtLicenceCode = v.findViewById(R.id.acLicenceType)
+        edtLicenceType = v.findViewById(R.id.edtProcedureType)
+        edtLicenceCode = v.findViewById(R.id.edtLicenceType)
         btnSendProcedure = v.findViewById(R.id.btnSendProcedure)
+        imgSelfie = v.findViewById(R.id.imgSelfieOverview)
+        imgSelfieDni = v.findViewById(R.id.imgSelfieDniOverview)
+        imgFrontDni = v.findViewById(R.id.imgFrontDniOverview)
+        imgBackDni = v.findViewById(R.id.imgBackDniOverview)
+        imgDebtFree = v.findViewById(R.id.imgDebtFreeOverview)
 
         return v
     }
 
     override fun onStart() {
         super.onStart()
+
+        Glide.with(requireContext()).load(viewModel.selfieUrl()).centerInside().into(imgSelfie)
+        Glide.with(requireContext()).load(viewModel.selfieDniUrl()).centerInside().into(imgSelfieDni)
+        Glide.with(requireContext()).load(viewModel.frontDniUrl()).centerInside().into(imgFrontDni)
+        Glide.with(requireContext()).load(viewModel.backDniUrl()).centerInside().into(imgBackDni)
+        Glide.with(requireContext()).load(viewModel.debtFreeUrl()).centerInside().into(imgDebtFree)
+
+        Log.d("selfie url", viewModel.selfieUrl())
+        Log.d("dni url", viewModel.selfieDniUrl())
+        Log.d("front dni", viewModel.frontDniUrl())
+        Log.d("back dni", viewModel.backDniUrl())
+        Log.d("debt free url", viewModel.debtFreeUrl())
 
         edtDni.setHint(viewModel.getDni())
         edtName.setHint(viewModel.getName())

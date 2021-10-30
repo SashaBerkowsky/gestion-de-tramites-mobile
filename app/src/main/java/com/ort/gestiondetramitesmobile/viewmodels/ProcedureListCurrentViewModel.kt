@@ -19,7 +19,8 @@ class ProcedureListCurrentViewModel : ViewModel() {
 
     fun getProceduresList() {
 
-        val response = repository.getProceduresList()
+        val userId = "3"
+        val response = repository.getProceduresList(userId)
 
         response.enqueue(object : Callback<List<DaoProcedure>>{
             override fun onResponse(call: Call<List<DaoProcedure>>, response: Response<List<DaoProcedure>>) {

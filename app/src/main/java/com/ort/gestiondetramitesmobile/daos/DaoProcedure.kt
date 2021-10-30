@@ -1,5 +1,6 @@
 package com.ort.gestiondetramitesmobile.daos
 
+import android.util.Log
 import com.ort.gestiondetramitesmobile.models.Procedure
 import com.ort.gestiondetramitesmobile.models.User
 import com.ort.gestiondetramitesmobile.models.getProcedureStates
@@ -44,6 +45,12 @@ class DaoProcedure (procedure: Procedure){
        return format.parse(date)
     }
 
+    private fun test(date : String) : Date {
+        var format = SimpleDateFormat("YYYY-MM-dd")
+
+        return format.parse(date)
+    }
+
     private fun formatBirthDateForDatabase(birthdate: String): String{
         var format = SimpleDateFormat("dd/MM/YYYY")
         val newDate: Date = format.parse(birthdate)
@@ -64,7 +71,7 @@ class DaoProcedure (procedure: Procedure){
 
     fun createProcedure(): Procedure{
         val user = User(userName, userSurname, userDni, userAddress, formatBirthdateForProcedure(userBirthdate), idUserCiudadano)
-        return Procedure(idProcedureState, idProcedureType - 1,user,formatDateForProcedure(creationDate),formatDateForProcedure(lastModificationDate),subProcedureType,licenceCode,canceledReason)
+        return Procedure(idProcedureState, idProcedureType - 1,user,test(creationDate),test(lastModificationDate),subProcedureType,licenceCode,canceledReason)
     }
 
     fun isProcedureFinished():Boolean{

@@ -4,5 +4,5 @@ import com.ort.gestiondetramitesmobile.api.RetrofitInstance
 
 class ProcedureRepository(private val retrofit: RetrofitInstance) {
 
-    fun getProceduresList() = retrofit.api.getProceduresList()
+    fun getProceduresList(idUser : String) = retrofit.api.getProceduresList(idUser)
 }

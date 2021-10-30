@@ -12,7 +12,8 @@ class DaoProcedure (procedure: Procedure){
     val tipoLicencia = procedure.licenceType
     val idProcedureType = procedure.getCurrentProcedureType().value*/
 
-    val idUserCiudadano = procedure.userCiudadano.userID
+    val id = procedure.id
+    val idUser = procedure.userCiudadano.userID
     val idProcedureState = procedure.idProcedureState
     val idProcedureType = procedure.getCurrentProcedureType().value
     val userName = procedure.userCiudadano.name
@@ -72,7 +73,7 @@ class DaoProcedure (procedure: Procedure){
     }
 
     fun createProcedure(): Procedure{
-        val user = User(userName, userSurname, userDni, userAddress, formatBirthdateForProcedure(userBirthdate), idUserCiudadano)
+        val user = User(userName, userSurname, userDni, userAddress, formatBirthdateForProcedure(userBirthdate), idUser)
 
         return Procedure(idProcedureState, idProcedureType - 1,user,test(creationDate),test(lastModificationDate),subProcedureType,licenceCode,canceledReason
                          ,selfieUrl,selfieDniUrl,frontDniUrl,backDniUrl,debtFreeUrl,revisionDate,withdrawalDate)

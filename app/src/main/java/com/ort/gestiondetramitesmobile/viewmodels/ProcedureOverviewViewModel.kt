@@ -55,7 +55,7 @@ class ProcedureOverviewViewModel : ViewModel() {
         val scope = CoroutineScope(Dispatchers.Default + parentJob)
         val procedureDao = DaoProcedure(procedure)
         scope.launch{
-            val response = async{RetrofitInstance.api.postProcedure(procedureDao)}
+            val response = async{RetrofitInstance.apiProcedures.postProcedure(procedureDao)}
         }
 
         return ""

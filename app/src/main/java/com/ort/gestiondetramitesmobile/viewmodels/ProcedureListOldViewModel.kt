@@ -10,7 +10,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ProcedureListOldViewModel ()  : ViewModel() {
+class ProcedureListOldViewModel : ViewModel() {
 
     val procedureList = MutableLiveData<List<Procedure>>()
     val errorMessage = MutableLiveData<String>()
@@ -19,7 +19,8 @@ class ProcedureListOldViewModel ()  : ViewModel() {
 
     fun getProceduresList() {
 
-        val response = repository.getProceduresList()
+        val userId = "3"
+        val response = repository.getProceduresList(userId)
 
         response.enqueue(object : Callback<List<DaoProcedure>> {
             override fun onResponse(call: Call<List<DaoProcedure>>, response: Response<List<DaoProcedure>>) {

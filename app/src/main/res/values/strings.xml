@@ -44,4 +44,6 @@
     <string name="dateTitle">Entregado: </string>
     <string name="stateTitle">Estado: </string>
 
+    <!--Strings para Item Notification -->
+    <string name="Notification">Notificado: </string>
 </resources>

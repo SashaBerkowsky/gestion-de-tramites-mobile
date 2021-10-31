@@ -98,5 +98,16 @@
         android:textColor="@color/white"
         android:theme="@style/ErrorButton" />
 
+    <Button
+        android:id="@+id/notificacion"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/errorTheme"
+        android:text="@string/Notification"
+        android:textColor="@color/white"
+        android:theme="@style/ErrorButton" />
+
 
 </LinearLayout>

@@ -8,8 +8,8 @@ object RetrofitInstance {
 
     //URL API
     //val BASE_URL : String = "https://615b40f34a360f0017a81567.mockapi.io"
-    //val BASE_URL : String = "http://172.25.176.1:3000/api/"
-    val BASE_URL: String = "http://192.168.16.1:3000/api/"
+    
+    val BASE_URL: String = "http://ponetuIP:3000/api/"
 
     val apiProcedures: ProcedureManagementAPI by lazy{
         Retrofit.Builder()

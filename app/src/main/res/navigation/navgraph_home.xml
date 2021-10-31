@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_profileFragment_to_loginActivity"
             app:destination="@id/loginActivity" />
+        <action
+            android:id="@+id/action_profileFragment_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
     </fragment>
     <fragment
         android:id="@+id/procedureListOldFragment"
@@ -131,4 +134,9 @@
         android:name="com.ort.gestiondetramitesmobile.activities.LoginActivity"
         android:label="activity_login"
         tools:layout="@layout/activity_login" />
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.ort.gestiondetramitesmobile.fragments.NotificationFragment"
+        android:label="notification_fragment"
+        tools:layout="@layout/notification_fragment" />
 </navigation>

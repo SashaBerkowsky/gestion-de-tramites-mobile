@@ -1,146 +1,112 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="start"
+    android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".fragments.ProfileFragment">
 
     <TextView
         android:id="@+id/profile_title"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:layout_marginBottom="20dp"
+        android:layout_margin="10dp"
         android:text="@string/Profile_title"
         android:textAllCaps="true"
         android:textColor="@color/primaryText"
         android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/Profile_DNI"
-        app:layout_constraintEnd_toEndOf="@+id/Profile_DNI"
-        app:layout_constraintStart_toStartOf="@+id/Profile_DNI"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/Profile_DNI"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:text="@string/Profile_DNI"
-        android:textColor="@color/secondaryText"
-        app:layout_constraintBottom_toTopOf="@+id/Profile_Name"
-        app:layout_constraintEnd_toEndOf="@+id/Profile_Name"
-        app:layout_constraintStart_toStartOf="@+id/Profile_Name"
-        app:layout_constraintTop_toBottomOf="@+id/profile_title" />
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/Profile_Name"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/Profile_Name"
-        android:textColor="@color/secondaryText"
-        app:layout_constraintBottom_toTopOf="@+id/Profile_Address"
-        app:layout_constraintEnd_toEndOf="@+id/Profile_Address"
-        app:layout_constraintStart_toStartOf="@+id/Profile_Address"
-        app:layout_constraintTop_toBottomOf="@+id/Profile_DNI" />
+        android:textColor="@color/secondaryText" />
+
+    <TextView
+        android:id="@+id/Profile_DNI"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/Profile_DNI"
+        android:textColor="@color/secondaryText" />
 
     <TextView
         android:id="@+id/Profile_Address"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/Profile_Address"
-        android:textColor="@color/secondaryText"
-        app:layout_constraintBottom_toTopOf="@+id/Profile_dateOfBirth"
-        app:layout_constraintEnd_toEndOf="@+id/Profile_dateOfBirth"
-        app:layout_constraintStart_toStartOf="@+id/Profile_dateOfBirth"
-        app:layout_constraintTop_toBottomOf="@+id/Profile_Name" />
+        android:textColor="@color/secondaryText" />
 
     <TextView
         android:id="@+id/Profile_dateOfBirth"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/Profile_dateOfBirth"
-        android:textColor="@color/secondaryText"
-        app:layout_constraintBottom_toTopOf="@+id/Profile_Email"
-        app:layout_constraintEnd_toEndOf="@+id/Profile_Email"
-        app:layout_constraintStart_toStartOf="@+id/Profile_Email"
-        app:layout_constraintTop_toBottomOf="@+id/Profile_Address" />
+        android:textColor="@color/secondaryText" />
 
     <TextView
         android:id="@+id/Profile_Email"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="9dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/Profile_Email"
-        android:textColor="@color/secondaryText"
-        app:layout_constraintBottom_toTopOf="@+id/btnChangePassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/btnChangePassword"
-        app:layout_constraintTop_toBottomOf="@+id/Profile_dateOfBirth" />
-
-    <Button
-        android:id="@+id/btnChangePassword"
-        android:layout_width="263dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="42dp"
-        android:layout_marginBottom="15dp"
-        android:background="@color/infoTheme"
-        android:text="@string/Profile_change_Pass"
-        android:textColor="@color/primaryText"
-        android:theme="@style/SecondaryButton"
-        app:layout_constraintBottom_toTopOf="@+id/btnEditProfile"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Profile_Email"
-        tools:ignore="TouchTargetSizeCheck" />
+        android:textColor="@color/secondaryText" />
 
     <Button
         android:id="@+id/btnEditProfile"
-        android:layout_width="117dp"
-        android:layout_height="36dp"
-        android:layout_marginBottom="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_margin="10dp"
         android:background="@color/secondaryTheme"
         android:backgroundTint="@color/secondaryTheme"
         android:text="@string/profile_button_Edit"
-        android:theme="@style/PrimaryButton"
-        app:layout_constraintBottom_toTopOf="@+id/closeSession"
-        app:layout_constraintStart_toStartOf="@+id/btnChangePassword"
-        app:layout_constraintTop_toBottomOf="@+id/btnChangePassword"
-        tools:ignore="TouchTargetSizeCheck" />
+        android:theme="@style/PrimaryButton" />
+
+    <Button
+        android:id="@+id/btnChangePassword"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/infoTheme"
+        android:text="@string/Profile_change_Pass"
+        android:textColor="@color/primaryText"
+        android:theme="@style/SecondaryButton" />
 
     <Button
         android:id="@+id/closeSession"
-        android:layout_width="185dp"
-        android:layout_height="36dp"
-        android:layout_marginBottom="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@color/errorTheme"
-        android:text="@string/cerrar_sesion"
+        android:text="@string/Log_out"
         android:textColor="@color/white"
-        android:theme="@style/ErrorButton"
-        app:layout_constraintBottom_toTopOf="@+id/notificacion"
-        app:layout_constraintStart_toStartOf="@+id/btnEditProfile"
-        app:layout_constraintTop_toBottomOf="@+id/btnEditProfile"
-        tools:ignore="TouchTargetSizeCheck" />
+        android:theme="@style/ErrorButton" />
 
     <Button
         android:id="@+id/notificacion"
-        android:layout_width="176dp"
-        android:layout_height="37dp"
-        android:layout_marginBottom="230dp"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@color/errorTheme"
         android:text="@string/Notification"
         android:textColor="@color/white"
-        android:theme="@style/ErrorButton"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/closeSession"
-        app:layout_constraintTop_toBottomOf="@+id/closeSession"
-        tools:ignore="TouchTargetSizeCheck" />
+        android:theme="@style/ErrorButton" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -21,7 +21,7 @@ import com.ort.gestiondetramitesmobile.viewmodels.ProcedureListOldViewModel
 class ProcedureListOldFragment : Fragment() {
 
     private lateinit var v: View
-    private lateinit var  recTramite : RecyclerView
+    private lateinit var  recProcedure : RecyclerView
     private val adapter = ProcedureListAdapterOld {
         onItemClick(it)
     }
@@ -33,7 +33,7 @@ class ProcedureListOldFragment : Fragment() {
     ): View? {
 
         v = inflater.inflate(R.layout.procedure_list_old_fragment, container, false)
-        recTramite = v.findViewById(R.id.rec_OldProcedures)
+        recProcedure = v.findViewById(R.id.rec_OldProcedures)
 
         var btnCreateNew = v.findViewById<FloatingActionButton>(R.id.btn_create_procedure)
         btnCreateNew.setOnClickListener {
@@ -41,7 +41,7 @@ class ProcedureListOldFragment : Fragment() {
             findNavController().navigate(action)
         }
 
-        recTramite.adapter = adapter
+        recProcedure.adapter = adapter
 
         viewModel.procedureList.observe(viewLifecycleOwner, Observer {
             Log.d( "Procedure Old","onCreate: $it")
@@ -52,7 +52,7 @@ class ProcedureListOldFragment : Fragment() {
             Toast.makeText(
                 this.context,
                 "Se ha producido un error al traer los trámites",
-                Toast.LENGTH_LONG
+                Toast.LENGTH_SHORT
             ).show()
         })
 
@@ -77,8 +77,8 @@ class ProcedureListOldFragment : Fragment() {
 
     override fun onStart(){
         super.onStart()
-        recTramite.setHasFixedSize(true)
-        recTramite.layoutManager = LinearLayoutManager(context)
+        recProcedure.setHasFixedSize(true)
+        recProcedure.layoutManager = LinearLayoutManager(context)
     }
 }
 

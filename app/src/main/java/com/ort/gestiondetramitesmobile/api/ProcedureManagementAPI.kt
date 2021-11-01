@@ -12,7 +12,6 @@ import retrofit2.http.*
 interface ProcedureManagementAPI {
 
     @GET("procedures/user")
-    //fun getProceduresList(): Call<List<DaoProcedure>>
     fun getProceduresList(@Query("idUser") idUser : String): Call<List<DaoProcedure>>
 
     @POST("procedures")

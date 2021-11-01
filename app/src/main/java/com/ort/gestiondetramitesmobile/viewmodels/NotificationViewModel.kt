@@ -19,14 +19,13 @@ class NotificationViewModel : ViewModel() {
 
     fun getNotificationList() {
 
-        val userId = 3
+        val userId = "3"
         val response = repository.getNotificationList(userId)
 
         response.enqueue(object : Callback<List<Notification>>{
             override fun onResponse(call: Call<List<Notification>>, response: Response<List<Notification>>) {
 
-                    if(!response.body().isNullOrEmpty()) {
-
+                    if(response.body()?.size!! > 0) {
                         notificationList.postValue(response.body())
                     }
             }

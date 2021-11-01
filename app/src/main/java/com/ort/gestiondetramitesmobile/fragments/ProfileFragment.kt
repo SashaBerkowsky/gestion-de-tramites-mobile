@@ -25,7 +25,7 @@ class ProfileFragment : Fragment() {
     lateinit var btnChangePassword: Button
     lateinit var btnCloseSession: Button
     private lateinit var auth: FirebaseAuth
-    lateinit var notificacion: Button
+
 
     companion object {
         fun newInstance() = ProfileFragment()
@@ -43,7 +43,7 @@ class ProfileFragment : Fragment() {
         btnEditProfile = v.findViewById(R.id.btnEditProfile)
         btnChangePassword = v.findViewById(R.id.btnChangePassword)
         btnCloseSession = v.findViewById(R.id.closeSession)
-        notificacion = v.findViewById(R.id.notificacion)
+
         return v
     }
 
@@ -59,10 +59,6 @@ class ProfileFragment : Fragment() {
         btnCloseSession.setOnClickListener{
             FirebaseAuth.getInstance().signOut()
             navToSingInActivity()
-        }
-        notificacion.setOnClickListener {
-            val action = ProfileFragmentDirections.actionProfileFragmentToNotificationFragment()
-            findNavController().navigate(action)
         }
 
         btnEditProfile.setOnClickListener {

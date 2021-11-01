@@ -29,8 +29,8 @@ class NotificationAdapter () : RecyclerView.Adapter<NotificationAdapter.Notifica
 
 
     override fun onBindViewHolder(holder: NotificationAdapter.NotificationHolder, position: Int) {
-        holder.setMessage(notificationList[position].menssage)
-        holder.setDate(notificationList[position].NotificationDate)
+        holder.setMessage(notificationList[position].message)
+        holder.setDate(notificationList[position].notificationDate)
 
     }
 

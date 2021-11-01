@@ -16,5 +16,5 @@ import retrofit2.http.Query
 //suspend fun nombreDeLaFuncion(@Body variable:TipoDeVariable): Response<TipoDeResponse>
 interface NotificationManagementAPI {
     @GET("users/citizens/notifications")
-    fun getNotificationList(@Query("idUser") idUser : Int): Call<List<Notification>>
+    fun getNotificationList(@Query("idUser") idUser : String): Call<List<Notification>>
 }

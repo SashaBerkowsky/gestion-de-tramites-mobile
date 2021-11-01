@@ -4,5 +4,5 @@ import com.ort.gestiondetramitesmobile.api.RetrofitInstance
 
 class NotificationRepository (private val retrofit: RetrofitInstance){
 
-    fun getNotificationList(idUser : Int) = retrofit.apiNotification.getNotificationList(idUser)
+    fun getNotificationList(idUser : String) = retrofit.apiNotification.getNotificationList(idUser)
 }

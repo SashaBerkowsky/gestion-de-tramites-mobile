@@ -22,9 +22,8 @@
         android:name="com.ort.gestiondetramitesmobile.fragments.ProcedureDetailFragment"
         android:label="procedure_detail_fragment"
         tools:layout="@layout/procedure_detail_fragment">
-        <argument
-            android:name="selectedProcedure"
-            app:argType="com.ort.gestiondetramitesmobile.models.Procedure" />
+        <argument android:name="idProcedure"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"

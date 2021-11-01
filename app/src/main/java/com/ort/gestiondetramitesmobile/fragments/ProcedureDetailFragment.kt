@@ -17,7 +17,10 @@ import android.graphics.Color
 import android.util.Log
 import android.widget.EditText
 import android.widget.ImageView
+import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
+import com.ort.gestiondetramitesmobile.adapters.ProcedureRepository
+import com.ort.gestiondetramitesmobile.api.RetrofitInstance
 import com.ort.gestiondetramitesmobile.models.Procedure
 import com.ort.gestiondetramitesmobile.models.ProcedureState
 
@@ -40,12 +43,13 @@ class ProcedureDetailFragment : Fragment() {
     private lateinit var imgFrontDni: ImageView
     private lateinit var imgBackDni: ImageView
     private lateinit var imgDebtFree: ImageView
+    private lateinit var dialog: Dialog
 
     companion object {
         fun newInstance() = ProcedureDetailFragment()
     }
 
-    private lateinit var viewModel: ProcedureDetailViewModel
+    private val viewModel: ProcedureDetailViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,30 +72,52 @@ class ProcedureDetailFragment : Fragment() {
         imgBackDni = v.findViewById(R.id.imgBackDniDetail)
         imgDebtFree = v.findViewById(R.id.imgDebtFreeDetail)
 
+        dialog = Dialog(requireContext())
+
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.loading_dialog)
+
+        dialog.show()
+
+        var idProcedure = ProcedureDetailFragmentArgs.fromBundle(requireArguments()).idProcedure
+        viewModel.setProcedure(idProcedure)
+
+
         return v
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+
     }
 
     override fun onStart() {
         super.onStart()
 
-        var procedure = ProcedureDetailFragmentArgs.fromBundle(requireArguments()).selectedProcedure
+        viewModel.procedure.observe(viewLifecycleOwner, {
+            viewModel.selectedProcedure = it
+            edtName.setText(viewModel.getUserName())
+            edtSurname.setText(viewModel.getUserSurname())
+            edtDni.setText(viewModel.getUserDni())
+            edtBirthdate.setText(viewModel.getUserBirthdate())
+            edtAddress.setText(viewModel.getUserAddress())
+            edtLicenceCode.setText(viewModel.getLicenceCode())
+            edtProcedureType.setText(viewModel.getProcedureType())
+            txtProcedureName.setText(viewModel.getProcedureName())
 
-        viewModel.setProcedure(procedure)
+            Glide.with(requireContext()).load(viewModel.getSelfieUrl()).centerInside().into(imgSelfieDetail)
+            Glide.with(requireContext()).load(viewModel.getSelfieDniUrl()).centerInside().into(imgSelfieDni)
+            Glide.with(requireContext()).load(viewModel.getFrontDniUrl()).centerInside().into(imgFrontDni)
+            Glide.with(requireContext()).load(viewModel.getBackDniUrl()).centerInside().into(imgBackDni)
+            Glide.with(requireContext()).load(viewModel.getDebtFreeUrl()).centerInside().into(imgDebtFree)
 
-        edtName.setText(viewModel.getUserName())
-        edtSurname.setText(viewModel.getUserSurname())
-        edtDni.setText(viewModel.getUserDni())
-        edtBirthdate.setText(viewModel.getUserBirthdate())
-        edtAddress.setText(viewModel.getUserAddress())
-        edtLicenceCode.setText(viewModel.getLicenceCode())
-        edtProcedureType.setText(viewModel.getProcedureType())
-        txtProcedureName.setText(viewModel.getProcedureName())
+            dialog.dismiss()
+        })
 
-        Glide.with(requireContext()).load(viewModel.getSelfieUrl()).centerInside().into(imgSelfieDetail)
-        Glide.with(requireContext()).load(viewModel.getSelfieDniUrl()).centerInside().into(imgSelfieDni)
-        Glide.with(requireContext()).load(viewModel.getFrontDniUrl()).centerInside().into(imgFrontDni)
-        Glide.with(requireContext()).load(viewModel.getBackDniUrl()).centerInside().into(imgBackDni)
-        Glide.with(requireContext()).load(viewModel.getDebtFreeUrl()).centerInside().into(imgDebtFree)
+
 
         btnCheckState.setOnClickListener {
             showStateDialog()
@@ -125,7 +151,6 @@ class ProcedureDetailFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ProcedureDetailViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

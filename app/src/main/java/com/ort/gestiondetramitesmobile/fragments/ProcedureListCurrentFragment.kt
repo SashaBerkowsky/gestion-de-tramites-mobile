@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -19,7 +20,7 @@ import com.ort.gestiondetramitesmobile.viewmodels.ProcedureListCurrentViewModel
 class ProcedureListCurrentFragment : Fragment() {
 
     private lateinit var v: View
-    private lateinit var  recTramite : RecyclerView
+    private lateinit var  recProcedure : RecyclerView
     private val adapter = ProcedureListAdapterCurrent {
         onItemClick(it)
     }
@@ -31,7 +32,7 @@ class ProcedureListCurrentFragment : Fragment() {
     ): View? {
 
         v = inflater.inflate(R.layout.procedure_list_current_fragment, container, false)
-        recTramite = v.findViewById(R.id.rec_current_list)
+        recProcedure = v.findViewById(R.id.rec_current_list)
 
         var btnCreateNew = v.findViewById<FloatingActionButton>(R.id.btn_create_procedure)
         btnCreateNew.setOnClickListener {
@@ -39,7 +40,7 @@ class ProcedureListCurrentFragment : Fragment() {
             findNavController().navigate(action)
         }
 
-        recTramite.adapter = adapter
+        recProcedure.adapter = adapter
 
         viewModel.procedureList.observe(viewLifecycleOwner, Observer {
             Log.d( "Procedure Current","onCreate: $it")
@@ -47,16 +48,16 @@ class ProcedureListCurrentFragment : Fragment() {
         })
 
         viewModel.errorMessage.observe(viewLifecycleOwner, Observer {
-
+            Toast.makeText(
+                this.context,
+                "Se ha producido un error al traer los trámites",
+                Toast.LENGTH_LONG
+            ).show()
         })
 
         viewModel.getProceduresList()
 
         return v
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
     }
 
     private fun onItemClick(selectedIdx: Int){
@@ -71,7 +72,7 @@ class ProcedureListCurrentFragment : Fragment() {
 
     override fun onStart(){
         super.onStart()
-        recTramite.setHasFixedSize(true)
-        recTramite.layoutManager = LinearLayoutManager(context)
+        recProcedure.setHasFixedSize(true)
+        recProcedure.layoutManager = LinearLayoutManager(context)
     }
 }

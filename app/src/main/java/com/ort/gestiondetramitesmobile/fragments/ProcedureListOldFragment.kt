@@ -63,7 +63,7 @@ class ProcedureListOldFragment : Fragment() {
     private fun onItemClick(selectedIdx: Int){
         val selectedProcedure = viewModel.getSelectedProcedure(selectedIdx)
         val action = selectedProcedure?.let {
-            ProcedureListFragmentDirections.actionProcedureListFragmentToProcedureDetailFragment(it)
+            ProcedureListFragmentDirections.actionProcedureListFragmentToProcedureDetailFragment(it.id)
         }
         if (action != null) {
             findNavController().navigate(action)

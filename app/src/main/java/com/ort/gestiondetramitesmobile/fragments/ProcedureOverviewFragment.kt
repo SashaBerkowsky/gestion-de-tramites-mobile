@@ -79,12 +79,6 @@ class ProcedureOverviewFragment : Fragment() {
         Glide.with(requireContext()).load(viewModel.backDniUrl()).centerInside().into(imgBackDni)
         Glide.with(requireContext()).load(viewModel.debtFreeUrl()).centerInside().into(imgDebtFree)
 
-        Log.d("selfie url", viewModel.selfieUrl())
-        Log.d("dni url", viewModel.selfieDniUrl())
-        Log.d("front dni", viewModel.frontDniUrl())
-        Log.d("back dni", viewModel.backDniUrl())
-        Log.d("debt free url", viewModel.debtFreeUrl())
-
         edtDni.setHint(viewModel.getDni())
         edtName.setHint(viewModel.getName())
         edtSurname.setHint(viewModel.getSurname())
@@ -102,9 +96,6 @@ class ProcedureOverviewFragment : Fragment() {
             } else{
                 showErrorDialog(procedureErrorMsg)
             }
-
-
-
 
         }
 

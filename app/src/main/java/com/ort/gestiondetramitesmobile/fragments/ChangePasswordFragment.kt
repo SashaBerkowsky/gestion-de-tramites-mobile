@@ -1,5 +1,6 @@
 package com.ort.gestiondetramitesmobile.fragments
 
+import android.app.Dialog
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.text.TextUtils
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -30,6 +32,8 @@ class ChangePasswordFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var viewModel: ChangePasswordViewModel
     private lateinit var change_email:TextInputLayout
+    private lateinit var dialog: Dialog
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -51,6 +55,13 @@ class ChangePasswordFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         btnSend.setOnClickListener{
+            dialog = Dialog(requireContext())
+
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog.setCancelable(false)
+            dialog.setContentView(R.layout.loading_dialog)
+
+            dialog.show()
             if(email.text.isNotEmpty()){
                 resetPassword()
             }else {
@@ -64,6 +75,7 @@ class ChangePasswordFragment : Fragment() {
         if(validateForm(email.text.toString())){
         auth.setLanguageCode("es")
         auth.sendPasswordResetEmail(email.text.toString()).addOnCompleteListener{
+            dialog.dismiss()
             if (it.isSuccessful) {
                 Toast.makeText(this.context,"se ha enviado un correo para restablecer la contraceña",Toast.LENGTH_SHORT).show()
             }else {
@@ -73,6 +85,7 @@ class ChangePasswordFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
+
         }
      }
     }

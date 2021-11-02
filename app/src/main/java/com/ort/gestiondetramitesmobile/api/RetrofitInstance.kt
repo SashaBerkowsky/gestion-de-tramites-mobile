@@ -8,8 +8,8 @@ object RetrofitInstance {
 
     //URL API
     //val BASE_URL : String = "https://615b40f34a360f0017a81567.mockapi.io"
-    val BASE_URL : String = "http://ip:300/api/"
-    //val BASE_URL: String = "http://192.168.16.1:3000/api/"
+    val BASE_URL : String = "http://ip:3000/api/"
+
 
     val apiProcedures: ProcedureManagementAPI by lazy{
         Retrofit.Builder()
@@ -25,6 +25,14 @@ object RetrofitInstance {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(NotificationManagementAPI::class.java)
+    }
+
+    val apiUser: UserManagementAPI by lazy{
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(UserManagementAPI::class.java)
     }
 
 }

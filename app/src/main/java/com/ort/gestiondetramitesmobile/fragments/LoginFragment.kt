@@ -16,6 +16,8 @@ import androidx.navigation.fragment.findNavController
 import com.ort.gestiondetramitesmobile.R
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.navigation.NavDirections
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.common.SignInButton
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -30,6 +32,9 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.ort.gestiondetramitesmobile.activities.HomeActivity
 import com.ort.gestiondetramitesmobile.activities.LoginActivity
+import com.ort.gestiondetramitesmobile.viewmodels.LoginViewModel
+import com.ort.gestiondetramitesmobile.viewmodels.ProcedureListCurrentViewModel
+import kotlinx.coroutines.*
 
 
 class LoginFragment : Fragment() {
@@ -38,6 +43,8 @@ class LoginFragment : Fragment() {
         fun newInstance() = LoginFragment()
         const val RC_SIGN_IN = 4926
     }
+
+    private val viewModel: LoginViewModel by viewModels()
 
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
@@ -96,7 +103,7 @@ class LoginFragment : Fragment() {
         signUp.setOnClickListener {
             navToSignUpFragment()
         }
-        // Check if user is signed in (non-null) and update UI accordingly.
+//         Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
         updateUI(currentUser)
     }
@@ -147,19 +154,32 @@ class LoginFragment : Fragment() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI go to home activity
                     val user = auth.currentUser
+                    Log.d("user", user.toString())
                     updateUI(user)
                 } else {
+                    Log.d("user error", "error")
                     updateUI(null)
                 }
             }
     }
 
     private fun updateUI(currentUser: FirebaseUser?) {
+
         if (currentUser == null) {
             return
         }
-        val intent = Intent(activity, HomeActivity::class.java)
-        startActivity(intent)
+        Log.d("hola", "hola")
+
+        viewModel.getCurrentUser(currentUser.email.toString()) { isNewUser ->
+            var action: NavDirections = if (isNewUser) {
+                LoginFragmentDirections.actionLoginFragmentToUserDataFormFragment()
+            } else {
+                LoginFragmentDirections.actionLoginFragmentToHomeActivity()
+            }
+
+            findNavController().navigate(action)
+        }
+
     }
 
     private fun logInWithEmailAndPass() {

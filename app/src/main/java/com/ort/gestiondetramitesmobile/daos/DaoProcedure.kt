@@ -13,7 +13,7 @@ class DaoProcedure (procedure: Procedure){
     val idProcedureType = procedure.getCurrentProcedureType().value*/
 
     val id = procedure.id
-    val idUser = procedure.userCiudadano.userID
+    val idUser = procedure.userCiudadano.id
     val idProcedureState = procedure.idProcedureState
     val idProcedureType = procedure.getCurrentProcedureType().value
     val userName = procedure.userCiudadano.name

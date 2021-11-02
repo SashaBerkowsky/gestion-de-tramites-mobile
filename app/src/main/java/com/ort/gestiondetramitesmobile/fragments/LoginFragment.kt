@@ -1,7 +1,9 @@
 package com.ort.gestiondetramitesmobile.fragments
 
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -167,17 +169,9 @@ class LoginFragment : Fragment() {
         if (currentUser == null) {
             return
         }
-        Log.d("hola", "hola")
 
-        viewModel.getCurrentUser(currentUser.email.toString()) { isNewUser ->
-            updateUI2(isNewUser)
-        }
-
-    }
-
-    private fun updateUI2(isNewUser: Boolean) {
-
-
+        viewModel.getCurrentUser(currentUser.email.toString()) { isNewUser, userID ->
+            setSharedPreferences(userID)
             var action: NavDirections = if (isNewUser) {
                 LoginFragmentDirections.actionLoginFragmentToUserDataFormFragment()
             } else {
@@ -185,9 +179,21 @@ class LoginFragment : Fragment() {
             }
 
             findNavController().navigate(action)
-
+        }
 
     }
+
+    private fun setSharedPreferences(userID: Int?) {
+        if(userID !== null){
+            val USER_PREF = "userPreferences"
+            val sharedPref: SharedPreferences = requireContext().getSharedPreferences(USER_PREF, Context.MODE_PRIVATE)
+            val editor = sharedPref.edit()
+
+            editor.putInt("userID", userID)
+            editor.apply()
+        }
+    }
+
 
     private fun logInWithEmailAndPass() {
 

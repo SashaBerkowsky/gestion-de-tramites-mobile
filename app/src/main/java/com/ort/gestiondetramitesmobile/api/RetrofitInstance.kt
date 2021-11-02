@@ -11,6 +11,7 @@ object RetrofitInstance {
     val BASE_URL : String = "http://ip:3000/api/"
 
 
+
     val apiProcedures: ProcedureManagementAPI by lazy{
         Retrofit.Builder()
             .baseUrl(BASE_URL)

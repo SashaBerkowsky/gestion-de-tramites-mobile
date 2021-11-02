@@ -154,7 +154,6 @@ class LoginFragment : Fragment() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI go to home activity
                     val user = auth.currentUser
-                    Log.d("user", user.toString())
                     updateUI(user)
                 } else {
                     Log.d("user error", "error")
@@ -171,6 +170,14 @@ class LoginFragment : Fragment() {
         Log.d("hola", "hola")
 
         viewModel.getCurrentUser(currentUser.email.toString()) { isNewUser ->
+            updateUI2(isNewUser)
+        }
+
+    }
+
+    private fun updateUI2(isNewUser: Boolean) {
+
+
             var action: NavDirections = if (isNewUser) {
                 LoginFragmentDirections.actionLoginFragmentToUserDataFormFragment()
             } else {
@@ -178,7 +185,7 @@ class LoginFragment : Fragment() {
             }
 
             findNavController().navigate(action)
-        }
+
 
     }
 

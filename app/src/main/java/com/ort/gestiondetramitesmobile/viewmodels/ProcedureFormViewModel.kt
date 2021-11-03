@@ -22,7 +22,7 @@ class ProcedureFormViewModel : ViewModel() {
 
     fun setProcedureUser(name: String, surname: String,  dni: String,  address: String,
                          birthdate: String){
-        procedureUser = User(name, surname, dni, address, birthdate, currentUser.userID)
+        procedureUser = User(name, surname, dni, address, birthdate, currentUser.id)
     }
 
     fun createProcedure( licenceType: String,licenceCode: String){

@@ -38,34 +38,35 @@ class UserDataFormFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
          v = inflater.inflate(R.layout.user_data_form_fragment, container, false)
-//        edtDni = v.findViewById(R.id.UserDataForm_DNI)
-//        edtName = v.findViewById(R.id.UserDataForm_Name)
-//        edtSurname = v.findViewById(R.id.UserDataForm_LastName)
-//        edtAddress = v.findViewById(R.id.UserDataForm_Address)
+        edtDni = v.findViewById(R.id.UserDataForm_DNI)
+        edtName = v.findViewById(R.id.UserDataForm_Name)
+        edtSurname = v.findViewById(R.id.UserDataForm_LastName)
+        edtAddress = v.findViewById(R.id.UserDataForm_Address)
         saveButton = v.findViewById(R.id.UserDataForm_SaveButton)
         return v
     }
 
     override fun onStart() {
         super.onStart()
+        myContext = activity as FragmentActivity
         // Date picker
-//        val builder = MaterialDatePicker.Builder.datePicker()
-//        val picker = builder.build()
-//        var textInputBirthday = v.findViewById<MaterialButton>(R.id.UserDataForm_dateOfBirth)
-//        picker.addOnPositiveButtonClickListener {
-//            // Do something...
-//            val outputDateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).apply {
-//                timeZone = TimeZone.getTimeZone("UTC")
-//            }
-//
-//            val text = outputDateFormat.format(it)
-//            textInputBirthday.text = text
-//        }
-//        textInputBirthday.setOnClickListener {
-//            picker.show(myContext.supportFragmentManager, picker.toString())
-//
-//        }
+        val builder = MaterialDatePicker.Builder.datePicker()
+        val picker = builder.build()
+        var textInputBirthday = v.findViewById<MaterialButton>(R.id.UserDataForm_dateOfBirth)
+        picker.addOnPositiveButtonClickListener {
+            // Do something...
+            val outputDateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).apply {
+                timeZone = TimeZone.getTimeZone("UTC")
+            }
+
+            val text = outputDateFormat.format(it)
+            textInputBirthday.text = text
+        }
+        textInputBirthday.setOnClickListener {
+            picker.show(myContext.supportFragmentManager, picker.toString())
+        }
         saveButton.setOnClickListener{
+            // Aca tengo que hacer la llamada al post
             val intent = Intent(activity, HomeActivity::class.java)
             startActivity(intent)
         }

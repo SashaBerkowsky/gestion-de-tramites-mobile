@@ -30,6 +30,7 @@ class ProfileFragment : Fragment() {
     lateinit var btnCloseSession: Button
     private lateinit var auth: FirebaseAuth
 
+
     companion object {
         fun newInstance() = ProfileFragment()
     }
@@ -88,4 +89,5 @@ class ProfileFragment : Fragment() {
         val action = ProfileFragmentDirections.actionProfileFragmentToLoginActivity()
         findNavController().navigate(action)
     }
+
 }

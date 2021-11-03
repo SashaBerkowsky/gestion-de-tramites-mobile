@@ -11,10 +11,8 @@ class Procedure(var idProcedureState: Int, private var idProcedureType: Int, var
                 var licenceType: String?,var licenceCode: String?,
                 var canceledReason: String?, var selfieUrl: String?, var selfieDniUrl: String?,
                 var frontDniUrl: String?, var backDniUrl: String?, var debtFreeUrl: String?,
-                var revisionDate: String?, var withdrawalDate: String?):Parcelable {
+                var revisionDate: String?, var withdrawalDate: String?, var id: Int):Parcelable {
 
-    //Atado con alambre para que ande
-    var id = nextInt(1000000, 9999999)
 
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
@@ -31,10 +29,9 @@ class Procedure(var idProcedureState: Int, private var idProcedureType: Int, var
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readString()) {
-        id = parcel.readInt()
+        parcel.readString(),
+        parcel.readInt()) {
     }
-
 
     fun getCurrentProcedureState(): ProcedureState{
         return getProcedureStates()[idProcedureState]

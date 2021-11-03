@@ -76,11 +76,36 @@ class DaoProcedure (procedure: Procedure){
         val user = User(userName, userSurname, userDni, userAddress, formatBirthdateForProcedure(userBirthdate), idUser)
 
         return Procedure(idProcedureState, idProcedureType - 1,user,test(creationDate),test(lastModificationDate),subProcedureType,licenceCode,canceledReason
-                         ,selfieUrl,selfieDniUrl,frontDniUrl,backDniUrl,debtFreeUrl,revisionDate,withdrawalDate)
+                         ,selfieUrl,selfieDniUrl,frontDniUrl,backDniUrl,debtFreeUrl,revisionDate,withdrawalDate,id)
     }
+
 
     fun isProcedureFinished():Boolean{
         return idProcedureState == getProcedureStates().size - 1
+    }
+
+    override fun toString(): String{
+        return (id.toString()+" "+
+                idUser+" "+
+                idProcedureState+" "+
+                idProcedureType+" "+
+                userName+" "+
+                userSurname+" "+
+                userDni+" "+
+                userAddress+" "+
+                userBirthdate+" "+
+                subProcedureType+" "+
+                licenceCode+" "+
+                canceledReason+" "+
+                creationDate+" "+
+                lastModificationDate.toString()+" "+
+                selfieUrl+" "+
+                selfieDniUrl+" "+
+                frontDniUrl+" "+
+                backDniUrl+" "+
+                debtFreeUrl+" "+
+                revisionDate+" "+
+                withdrawalDate )
     }
 
 }

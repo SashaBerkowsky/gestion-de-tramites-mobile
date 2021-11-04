@@ -51,7 +51,7 @@ class ProcedureListCurrentFragment : Fragment() {
             Toast.makeText(
                 this.context,
                 "Se ha producido un error al traer los trámites",
-                Toast.LENGTH_LONG
+                Toast.LENGTH_SHORT
             ).show()
         })
 

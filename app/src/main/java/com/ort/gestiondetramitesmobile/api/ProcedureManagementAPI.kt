@@ -1,6 +1,7 @@
 package com.ort.gestiondetramitesmobile.api
 
 import com.ort.gestiondetramitesmobile.daos.DaoProcedure
+import com.ort.gestiondetramitesmobile.models.ProcedureType
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response

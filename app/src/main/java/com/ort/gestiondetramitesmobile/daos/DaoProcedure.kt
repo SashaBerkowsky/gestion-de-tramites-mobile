@@ -1,10 +1,15 @@
 package com.ort.gestiondetramitesmobile.daos
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import com.ort.gestiondetramitesmobile.models.Procedure
 import com.ort.gestiondetramitesmobile.models.User
 import com.ort.gestiondetramitesmobile.models.getProcedureStates
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class DaoProcedure (procedure: Procedure){
@@ -41,41 +46,34 @@ class DaoProcedure (procedure: Procedure){
         return format.format(date)
     }
 
-    private fun formatDateForProcedure(date: String): Date{
-        //mascara  de la fecha que entra, ver https://developer.android.com/reference/kotlin/java/text/SimpleDateFormat#timezone
-        var format = SimpleDateFormat("EEE MMM dd hh:mm:ss z YYYY")
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun transformStrToDate(date : String) : Date {
+        var simpleFormat =  DateTimeFormatter.ISO_DATE;
+        val convertedDate = LocalDate.parse(date, simpleFormat)
 
-       return format.parse(date)
-    }
 
-    private fun test(date : String) : Date {
-        var format = SimpleDateFormat("YYYY-MM-dd")
-
-        return format.parse(date)
+        return Date.from(convertedDate.atStartOfDay()
+            .atZone(ZoneId.systemDefault())
+            .toInstant());
     }
 
     private fun formatBirthDateForDatabase(birthdate: String): String{
-        var format = SimpleDateFormat("dd/MM/YYYY")
-        val newDate: Date = format.parse(birthdate)
+        val splitedBirthdate = birthdate.split("/")
 
-        //mascara de la fecha que sale, ver https://developer.android.com/reference/kotlin/java/text/SimpleDateFormat#timezone
-        format = SimpleDateFormat("YYYY-MM-dd")
-        return format.format(newDate)
+        return splitedBirthdate[2]+"-"+splitedBirthdate[1]+"-"+splitedBirthdate[0]
     }
 
     private fun formatBirthdateForProcedure(birthdate: String):String{
-        var format = SimpleDateFormat("YYYY-MM-dd")
-        val newDate: Date = format.parse(birthdate)
+        val splitedBirthdate = birthdate.split("-")
 
-        //mascara de la fecha que sale, ver https://developer.android.com/reference/kotlin/java/text/SimpleDateFormat#timezone
-        format = SimpleDateFormat("dd/MM/YYYY")
-        return format.format(newDate)
+        return splitedBirthdate[2]+"/"+splitedBirthdate[1]+"/"+splitedBirthdate[0]
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun createProcedure(): Procedure{
         val user = User(userName, userSurname, userDni, userAddress, formatBirthdateForProcedure(userBirthdate), idUser)
 
-        return Procedure(idProcedureState, idProcedureType - 1,user,test(creationDate),test(lastModificationDate),subProcedureType,licenceCode,canceledReason
+        return Procedure(idProcedureState, idProcedureType - 1,user,transformStrToDate(creationDate),transformStrToDate(lastModificationDate),subProcedureType,licenceCode,canceledReason
                          ,selfieUrl,selfieDniUrl,frontDniUrl,backDniUrl,debtFreeUrl,revisionDate,withdrawalDate,id)
     }
 

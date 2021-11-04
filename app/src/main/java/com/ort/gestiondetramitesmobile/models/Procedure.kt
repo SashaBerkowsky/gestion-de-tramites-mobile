@@ -1,10 +1,13 @@
 package com.ort.gestiondetramitesmobile.models
 
+import android.os.Build
 import android.os.Parcel
 import android.os.Parcelable
-import java.text.SimpleDateFormat
+import androidx.annotation.RequiresApi
+import java.sql.Date.valueOf
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.random.Random.Default.nextInt
 
 class Procedure(var idProcedureState: Int, private var idProcedureType: Int, var userCiudadano: User, var creationDate: Date,
                 var lastModificationDate: Date,
@@ -53,24 +56,16 @@ class Procedure(var idProcedureState: Int, private var idProcedureType: Int, var
         return isProcedureFinished() && !isProcedureCanceled()
     }
 
-    fun getFormatedLastModificationDate(): String{
-        //mascara de la fecha que entra, ver https://developer.android.com/reference/kotlin/java/text/SimpleDateFormat#timezone
-        var format = SimpleDateFormat("EEE MMM dd hh:mm:ss z YYYY")
-        val newDate: Date = format.parse(lastModificationDate.toString())
-
-        //mascara de la fecha que sale, ver https://developer.android.com/reference/kotlin/java/text/SimpleDateFormat#timezone
-        format = SimpleDateFormat("dd/MM/YYYY hh:mm a")
-        return format.format(newDate)
-    }
-
+    @RequiresApi(Build.VERSION_CODES.O)
     fun getFormatedCreationDate():String{
-        //mascara de la fecha que entra, ver https://developer.android.com/reference/kotlin/java/text/SimpleDateFormat#timezone
-        var format = SimpleDateFormat("EEE MMM dd hh:mm:ss z YYYY")
-        val newDate: Date = format.parse(creationDate.toString())
+        val datetime = creationDate.toInstant()
+            .atZone(ZoneId.systemDefault())
+            .toLocalDateTime();
 
-        //mascara de la fecha que sale, ver https://developer.android.com/reference/kotlin/java/text/SimpleDateFormat#timezone
-        format = SimpleDateFormat("dd/MM/YYYY hh:mm a")
-        return format.format(newDate)
+
+
+
+        return datetime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

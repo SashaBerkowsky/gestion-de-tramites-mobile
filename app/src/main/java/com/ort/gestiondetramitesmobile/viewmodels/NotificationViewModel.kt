@@ -1,6 +1,9 @@
 package com.ort.gestiondetramitesmobile.viewmodels
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.util.Log
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.MutableLiveData
 import com.ort.gestiondetramitesmobile.adapters.Notification.NotificationRepository
@@ -17,9 +20,12 @@ class NotificationViewModel : ViewModel() {
     val errorMessage = MutableLiveData<String>()
     private val repository = NotificationRepository(RetrofitInstance)
 
-    fun getNotificationList() {
+    fun getNotificationList(userId: String) {
 
-        val userId = "3"
+
+
+
+
         val response = repository.getNotificationList(userId)
 
         response.enqueue(object : Callback<List<Notification>>{

@@ -17,9 +17,8 @@ class ProcedureListCurrentViewModel : ViewModel() {
     val currentList = mutableListOf<Procedure>()
     private val repository = ProcedureRepository(RetrofitInstance)
 
-    fun getProceduresList() {
+    fun getProceduresList(userId : Int) {
 
-        val userId = "3"
         val response = repository.getProceduresList(userId)
 
         response.enqueue(object : Callback<List<DaoProcedure>>{

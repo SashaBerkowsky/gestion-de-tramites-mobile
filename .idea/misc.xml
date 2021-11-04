@@ -7,9 +7,6 @@
         <entry key="..\:/Archivos/Escritorio/Ort/4to Cuatrimestre/PRF/GestiondeTramitesMobile/app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="..\:/Archivos/Escritorio/Ort/4to Cuatrimestre/PRF/GestiondeTramitesMobile/app/src/main/res/layout/activity_login.xml" value="0.35643115942028986" />
         <entry key="..\:/Archivos/Escritorio/Ort/4to Cuatrimestre/PRF/GestiondeTramitesMobile/app/src/main/res/layout/activity_procedure.xml" value="0.35643115942028986" />
-        <entry key="..\:/Archivos/Escritorio/Ort/4to Cuatrimestre/PRF/GestiondeTramitesMobile/app/src/main/res/layout/change_password_fragment.xml" value="0.36666666666666664" />
-        <entry key="..\:/Archivos/Escritorio/Ort/4to Cuatrimestre/PRF/GestiondeTramitesMobile/app/src/main/res/layout/edit_profile_fragment.xml" value="0.36666666666666664" />
-        <entry key="..\:/Archivos/Escritorio/Ort/4to Cuatrimestre/PRF/GestiondeTramitesMobile/app/src/main/res/layout/loading_dialog.xml" value="0.36666666666666664" />
         <entry key="..\:/Archivos/Escritorio/Ort/4to Cuatrimestre/PRF/GestiondeTramitesMobile/app/src/main/res/layout/news_fragment.xml" value="0.11296296296296296" />
         <entry key="..\:/Archivos/Escritorio/Ort/4to Cuatrimestre/PRF/GestiondeTramitesMobile/app/src/main/res/layout/procedure_detail_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/Archivos/Escritorio/Ort/4to Cuatrimestre/PRF/GestiondeTramitesMobile/app/src/main/res/layout/procedure_list_fragment.xml" value="0.36666666666666664" />
@@ -62,6 +59,7 @@
         <entry key="..\:/Users/tabrevaya/Desktop/Android Studio/gestion-de-tramites-mobile/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/tabrevaya/Desktop/Android Studio/gestion-de-tramites-mobile/app/src/main/res/layout/activity_procedure.xml" value="0.2557291666666667" />
         <entry key="..\:/Users/tabrevaya/Desktop/Android Studio/gestion-de-tramites-mobile/app/src/main/res/layout/item_procedures.xml" value="0.5" />
+        <entry key="..\:/Users/tabrevaya/Desktop/Android Studio/gestion-de-tramites-mobile/app/src/main/res/layout/list_item.xml" value="0.24479166666666666" />
         <entry key="..\:/Users/tabrevaya/Desktop/Android Studio/gestion-de-tramites-mobile/app/src/main/res/layout/new_procedure_fragment.xml" value="0.33" />
         <entry key="..\:/Users/tabrevaya/Desktop/Android Studio/gestion-de-tramites-mobile/app/src/main/res/layout/picture_stepper_fragment.xml" value="0.24479166666666666" />
         <entry key="..\:/Users/tabrevaya/Desktop/Android Studio/gestion-de-tramites-mobile/app/src/main/res/layout/procedure_detail_fragment.xml" value="0.25104166666666666" />

@@ -1,6 +1,5 @@
 package com.ort.gestiondetramitesmobile.fragments
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
-import androidx.cardview.widget.CardView
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,8 +19,7 @@ import com.ort.gestiondetramitesmobile.viewmodels.NewProcedureViewModel
 class NewProcedureFragment : Fragment() {
 
     private lateinit var v: View
-    private lateinit var  recProcedure : RecyclerView
-    lateinit var card : CardView
+    private lateinit var recProcedure : RecyclerView
 
     companion object {
         fun newInstance() = NewProcedureFragment()
@@ -37,12 +35,12 @@ class NewProcedureFragment : Fragment() {
         v = inflater.inflate(R.layout.new_procedure_fragment, container, false)
         recProcedure = v.findViewById(R.id.recyclerProcedures)
 
-        var items = mutableListOf<String>()
+        var prodecureTypesList = mutableListOf<String>()
 
         getProcedureTypes().forEach() {
-            items.add(it.title)
+            prodecureTypesList.add(it.title)
         }
-        val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
+        val adapter = ArrayAdapter(requireContext(), R.layout.list_item, prodecureTypesList)
         var autoCompleteTextView = v.findViewById<AutoCompleteTextView>(R.id.procedureType)
         autoCompleteTextView.setAdapter(adapter)
 

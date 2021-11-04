@@ -12,5 +12,4 @@ class ProcedureRepository(private val retrofit: RetrofitInstance) {
 
     fun getProcedureById(idProcedure: Int) : Call<DaoProcedure> = retrofit.apiProcedures.getProcedure(idProcedure)
 
-
 }

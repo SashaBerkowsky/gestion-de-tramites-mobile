@@ -184,14 +184,18 @@ class LoginFragment : Fragment() {
     }
 
     private fun setSharedPreferences(userID: Int?, email: String?) {
-        if(userID !== null){
-            val USER_PREF = "userPreferences"
-            val sharedPref: SharedPreferences = requireContext().getSharedPreferences(USER_PREF, Context.MODE_PRIVATE)
-            val editor = sharedPref.edit()
-            editor.putString("userEmail", email)
+
+        val USER_PREF = "userPreferences"
+        val sharedPref: SharedPreferences =
+            requireContext().getSharedPreferences(USER_PREF, Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        Log.d("EMAIL setSharedPreferences", email.toString())
+        editor.putString("userEmail", email)
+        if (userID !== null) {
             editor.putInt("userID", userID)
-            editor.apply()
         }
+        editor.apply()
+
     }
 
 

@@ -23,7 +23,11 @@
         android:id="@+id/userDataFormFragment"
         android:name="com.ort.gestiondetramitesmobile.fragments.UserDataFormFragment"
         android:label="user_data_form_fragment"
-        tools:layout="@layout/user_data_form_fragment" />
+        tools:layout="@layout/user_data_form_fragment" >
+        <action
+            android:id="@+id/action_userDataFormFragment_to_homeActivity"
+            app:destination="@id/homeActivity" />
+    </fragment>
     <fragment
         android:id="@+id/signupFragment"
         android:name="com.ort.gestiondetramitesmobile.fragments.SignupFragment"

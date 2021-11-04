@@ -171,7 +171,7 @@ class LoginFragment : Fragment() {
         }
 
         viewModel.getCurrentUser(currentUser.email.toString()) { isNewUser, userID ->
-            setSharedPreferences(userID)
+            setSharedPreferences(userID, currentUser.email)
             var action: NavDirections = if (isNewUser) {
                 LoginFragmentDirections.actionLoginFragmentToUserDataFormFragment()
             } else {
@@ -183,12 +183,12 @@ class LoginFragment : Fragment() {
 
     }
 
-    private fun setSharedPreferences(userID: Int?) {
+    private fun setSharedPreferences(userID: Int?, email: String?) {
         if(userID !== null){
             val USER_PREF = "userPreferences"
             val sharedPref: SharedPreferences = requireContext().getSharedPreferences(USER_PREF, Context.MODE_PRIVATE)
             val editor = sharedPref.edit()
-
+            editor.putString("userEmail", email)
             editor.putInt("userID", userID)
             editor.apply()
         }

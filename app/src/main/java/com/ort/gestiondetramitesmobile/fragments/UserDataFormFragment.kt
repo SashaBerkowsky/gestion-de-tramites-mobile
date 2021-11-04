@@ -1,8 +1,11 @@
 package com.ort.gestiondetramitesmobile.fragments
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,10 +13,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.FragmentActivity
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.ort.gestiondetramitesmobile.R
 import com.ort.gestiondetramitesmobile.activities.HomeActivity
+import com.ort.gestiondetramitesmobile.models.UserToCreate
 import com.ort.gestiondetramitesmobile.viewmodels.UserDataFormViewModel
 import java.text.SimpleDateFormat
 import java.util.*
@@ -31,13 +37,13 @@ class UserDataFormFragment : Fragment() {
     lateinit var edtName: EditText
     lateinit var edtSurname: EditText
     lateinit var edtAddress: EditText
-    lateinit var  myContext: FragmentActivity
+    lateinit var myContext: FragmentActivity
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-         v = inflater.inflate(R.layout.user_data_form_fragment, container, false)
+        v = inflater.inflate(R.layout.user_data_form_fragment, container, false)
         edtDni = v.findViewById(R.id.UserDataForm_DNI)
         edtName = v.findViewById(R.id.UserDataForm_Name)
         edtSurname = v.findViewById(R.id.UserDataForm_LastName)
@@ -65,10 +71,31 @@ class UserDataFormFragment : Fragment() {
         textInputBirthday.setOnClickListener {
             picker.show(myContext.supportFragmentManager, picker.toString())
         }
-        saveButton.setOnClickListener{
-            // Aca tengo que hacer la llamada al post
-            val intent = Intent(activity, HomeActivity::class.java)
-            startActivity(intent)
+
+        val sharedPref: SharedPreferences =
+            requireContext().getSharedPreferences("userPreferences", Context.MODE_PRIVATE)
+
+        // GET userID from shared preferences, this was set in LoginFragment
+        var savedEmail = sharedPref.getString("email", null)!!
+        Log.d("EMAILLLL", savedEmail)
+
+        saveButton.setOnClickListener {
+            val userToCreate = UserToCreate(
+                name = edtName.text.toString(),
+                email = savedEmail,
+                surname = edtSurname.text.toString(),
+                dni = edtDni.text.toString(),
+                birthdate = textInputBirthday.text.toString(),
+                address = edtAddress.text.toString(),
+                pass = "12345678"
+            )
+
+            viewModel.setCreateUser(userToCreate) { isUserCreated ->
+                if(isUserCreated){
+                    val intent = Intent(activity, HomeActivity::class.java)
+                    startActivity(intent)
+                }
+            }
         }
     }
 

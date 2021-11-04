@@ -2,6 +2,7 @@ package com.ort.gestiondetramitesmobile.api
 
 import com.ort.gestiondetramitesmobile.daos.DaoUser
 import com.ort.gestiondetramitesmobile.models.User
+import com.ort.gestiondetramitesmobile.models.UserToCreate
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response
@@ -15,5 +16,5 @@ interface UserManagementAPI {
     fun getUser(@Query("email") email : String): Call<User>
 
     @POST("users/citizens")
-    suspend fun postUser(@Body user: User): Response<ResponseBody>
+    fun postUser(@Body user: UserToCreate): Call<User>
 }

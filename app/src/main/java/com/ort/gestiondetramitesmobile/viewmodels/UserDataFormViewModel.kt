@@ -19,8 +19,8 @@ class UserDataFormViewModel : ViewModel() {
         repository.postUser(user).enqueue(object : retrofit2.Callback<User> {
 
             override fun onResponse(call: Call<User>, response: Response<User>) {
-                Log.i("", "post submitted to API." + response.body()!!)
-                onResult(response.isSuccessful())
+                Log.i("", "post submitted to API." + response.isSuccessful)
+                onResult(response.isSuccessful)
 
             }
 

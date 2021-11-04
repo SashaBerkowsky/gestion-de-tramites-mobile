@@ -75,27 +75,27 @@ class UserDataFormFragment : Fragment() {
         val sharedPref: SharedPreferences =
             requireContext().getSharedPreferences("userPreferences", Context.MODE_PRIVATE)
 
-        // GET userID from shared preferences, this was set in LoginFragment
-    //    var savedEmail = sharedPref.getString("email", null)!!
-        //   Log.d("EMAILLLL", savedEmail)
+
+           var savedEmail = sharedPref.getString("userEmail", "")!!
+           Log.d("EMAILLLL", savedEmail)
 
         saveButton.setOnClickListener {
-       //     val userToCreate = UserToCreate(
-       //         name = edtName.text.toString(),
-       //         email = savedEmail,
-       //         surname = edtSurname.text.toString(),
-       //         dni = edtDni.text.toString(),
-       //         birthdate = textInputBirthday.text.toString(),
-       //         address = edtAddress.text.toString(),
-       //         pass = "12345678"
-       //     )
+            val userToCreate = UserToCreate(
+                name = edtName.text.toString(),
+                email = savedEmail,
+                surname = edtSurname.text.toString(),
+                dni = edtDni.text.toString(),
+                birthdate = "2019-01-01",
+                address = edtAddress.text.toString(),
 
-         //   viewModel.setCreateUser(userToCreate) { isUserCreated ->
-         //       if(isUserCreated){
+            )
+
+            viewModel.setCreateUser(userToCreate) { isUserCreated ->
+                if(isUserCreated){
                     val intent = Intent(activity, HomeActivity::class.java)
                     startActivity(intent)
-         //       }
-        //  }
+                }
+          }
         }
     }
 

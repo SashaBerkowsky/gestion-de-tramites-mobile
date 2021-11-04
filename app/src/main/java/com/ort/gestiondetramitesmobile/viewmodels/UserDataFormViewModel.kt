@@ -15,12 +15,12 @@ import retrofit2.Response
 class UserDataFormViewModel : ViewModel() {
     val errorMessage = MutableLiveData<String>()
     private val repository = UserRepository(RetrofitInstance)
-    fun setCreateUser(user: UserToCreate, onResult: (Boolean) -> Unit) {
+    fun setCreateUser(user: UserToCreate, onResult: (Boolean, Int?) -> Unit) {
         repository.postUser(user).enqueue(object : retrofit2.Callback<User> {
 
             override fun onResponse(call: Call<User>, response: Response<User>) {
-                Log.i("", "post submitted to API." + response.body()!!)
-                onResult(response.isSuccessful())
+                Log.i("", "post submitted to API." + response.isSuccessful)
+                onResult(response.isSuccessful, response.body()?.id)
 
             }
 

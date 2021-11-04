@@ -14,6 +14,7 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.FragmentActivity
 import androidx.navigation.NavDirections
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -75,27 +76,35 @@ class UserDataFormFragment : Fragment() {
         val sharedPref: SharedPreferences =
             requireContext().getSharedPreferences("userPreferences", Context.MODE_PRIVATE)
 
-        // GET userID from shared preferences, this was set in LoginFragment
-    //    var savedEmail = sharedPref.getString("email", null)!!
-        //   Log.d("EMAILLLL", savedEmail)
 
+        var savedEmail = sharedPref.getString("userEmail", "")!!
+        Log.d("EMAILLLL", savedEmail)
+
+        // TODO: use method to format date correctly
         saveButton.setOnClickListener {
-       //     val userToCreate = UserToCreate(
-       //         name = edtName.text.toString(),
-       //         email = savedEmail,
-       //         surname = edtSurname.text.toString(),
-       //         dni = edtDni.text.toString(),
-       //         birthdate = textInputBirthday.text.toString(),
-       //         address = edtAddress.text.toString(),
-       //         pass = "12345678"
-       //     )
+            val userToCreate = UserToCreate(
+                name = edtName.text.toString(),
+                email = savedEmail,
+                surname = edtSurname.text.toString(),
+                dni = edtDni.text.toString(),
+                birthdate = "2019-01-01",
+                address = edtAddress.text.toString(),
+            )
 
-         //   viewModel.setCreateUser(userToCreate) { isUserCreated ->
-         //       if(isUserCreated){
-                    val intent = Intent(activity, HomeActivity::class.java)
-                    startActivity(intent)
-         //       }
-        //  }
+            viewModel.setCreateUser(userToCreate) { isUserCreated, userID ->
+                if (isUserCreated) {
+                    if (userID !== null) {
+                        val editor = sharedPref.edit()
+                        editor.putInt("userID", userID)
+                        editor.apply()
+                    }
+                    val action = UserDataFormFragmentDirections.actionUserDataFormFragmentToHomeActivity()
+                    val navOptions = NavOptions.Builder()
+                        .setPopUpTo(R.id.procedureListFragment, true)
+                        .build();
+                    findNavController().navigate(action, navOptions)
+                }
+            }
         }
     }
 

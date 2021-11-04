@@ -1,11 +1,8 @@
 package com.ort.gestiondetramitesmobile.api
 
-import com.ort.gestiondetramitesmobile.daos.DaoUser
 import com.ort.gestiondetramitesmobile.models.User
 import com.ort.gestiondetramitesmobile.models.UserToCreate
-import okhttp3.ResponseBody
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST

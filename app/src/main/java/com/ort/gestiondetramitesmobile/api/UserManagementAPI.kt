@@ -9,8 +9,12 @@ import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface UserManagementAPI {
+
     @GET("users/citizens")
     fun getUser(@Query("email") email : String): Call<User>
+
+    @GET("users/citizens")
+    fun getUserById(@Query("idUser") idUser : Int): Call<User>
 
     @POST("users/citizens")
     fun postUser(@Body user: UserToCreate): Call<User>

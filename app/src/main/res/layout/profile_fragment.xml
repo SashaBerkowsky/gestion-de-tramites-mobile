@@ -21,7 +21,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/Profile_Name"
+        android:id="@+id/profile_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
@@ -30,7 +30,7 @@
         android:textColor="@color/secondaryText" />
 
     <TextView
-        android:id="@+id/Profile_DNI"
+        android:id="@+id/profile_DNI"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
@@ -39,7 +39,7 @@
         android:textColor="@color/secondaryText" />
 
     <TextView
-        android:id="@+id/Profile_Address"
+        android:id="@+id/profile_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
@@ -48,7 +48,7 @@
         android:textColor="@color/secondaryText" />
 
     <TextView
-        android:id="@+id/Profile_dateOfBirth"
+        android:id="@+id/profile_dob"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
@@ -57,7 +57,7 @@
         android:textColor="@color/secondaryText" />
 
     <TextView
-        android:id="@+id/Profile_Email"
+        android:id="@+id/profile_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"

@@ -43,6 +43,7 @@
     <!--Strings para Procedure Lists -->
     <string name="dateTitle">Entregado: </string>
     <string name="stateTitle">Estado: </string>
+    <string name="sign">¡No hay trámites disponibles!</string>
 
     <!--Strings para Item Notification -->
     <string name="Notification">Notificado: </string>

@@ -9,6 +9,7 @@ import com.ort.gestiondetramitesmobile.R
 import com.ort.gestiondetramitesmobile.viewmodels.ProcedureFormViewModel
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.widget.*
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.viewModels
@@ -40,9 +41,10 @@ class ProcedureFormFragment : Fragment() {
     ): View? {
         v = inflater.inflate(R.layout.procedure_form_fragment, container, false)
 
-        //Set current user data
-        viewModel.setCurrentUser()
+        val sharedPref: SharedPreferences = requireContext().getSharedPreferences("userPreferences", Context.MODE_PRIVATE)
+        var userId = sharedPref.getInt("userID", 0)!!
 
+        viewModel.setCurrentUser(userId)
 
         btnContinue = v.findViewById(R.id.btn_continue)
 
@@ -51,6 +53,7 @@ class ProcedureFormFragment : Fragment() {
         edtSurname = v.findViewById(R.id.edtSurname)
         edtAddress = v.findViewById(R.id.edtAddress)
         txtProcedureName = v.findViewById(R.id.txtProcedureName)
+
 
         return v
     }
@@ -112,12 +115,22 @@ class ProcedureFormFragment : Fragment() {
             }
 
         }
-        txtProcedureName.text = ProcedureFormFragmentArgs.fromBundle(requireArguments()).procedureTitle
-        edtDni.setText(viewModel.getDni())
-        edtName.setText(viewModel.getName())
-        edtSurname.setText(viewModel.getSurname())
-        edtAddress.setText( viewModel.getAddress())
-        textInputBirthday.setText(viewModel.getBirthdate())
+        viewModel.currentUser.observe(viewLifecycleOwner,{
+            var dob = formatBirthdate(viewModel.getBirthdate())
+            txtProcedureName.text = ProcedureFormFragmentArgs.fromBundle(requireArguments()).procedureTitle
+            edtDni.setText(viewModel.getDni())
+            edtName.setText(viewModel.getName())
+            edtSurname.setText(viewModel.getSurname())
+            edtAddress.setText( viewModel.getAddress())
+            textInputBirthday.setText(dob)
+        })
+    }
+
+    private fun formatBirthdate(birthdate : String?) : String {
+        var format = SimpleDateFormat("YYYY-MM-dd")
+        val newDate: Date = format.parse(birthdate)
+        format = SimpleDateFormat("dd/MM/YYYY")
+        return format.format(newDate)
     }
 
 }

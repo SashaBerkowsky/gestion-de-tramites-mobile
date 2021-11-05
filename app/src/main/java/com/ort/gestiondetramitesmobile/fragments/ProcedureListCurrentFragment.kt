@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -27,6 +28,7 @@ class ProcedureListCurrentFragment : Fragment() {
         onItemClick(it)
     }
     private val viewModel: ProcedureListCurrentViewModel by viewModels()
+    private lateinit var signNoProc : TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +37,7 @@ class ProcedureListCurrentFragment : Fragment() {
 
         v = inflater.inflate(R.layout.procedure_list_current_fragment, container, false)
         recProcedure = v.findViewById(R.id.rec_current_list)
+        signNoProc = v.findViewById(R.id.sign_no_proc)
 
         var btnCreateNew = v.findViewById<FloatingActionButton>(R.id.btn_create_procedure)
         btnCreateNew.setOnClickListener {
@@ -45,7 +48,13 @@ class ProcedureListCurrentFragment : Fragment() {
         recProcedure.adapter = adapter
 
         viewModel.procedureList.observe(viewLifecycleOwner, Observer {
-            Log.d( "Procedure Current","onCreate: $it")
+
+            if(it.isNotEmpty()) {
+                signNoProc.visibility = View.GONE
+            } else {
+                signNoProc.visibility = View.VISIBLE
+            }
+
             adapter.setProcedureListItems(it)
         })
 

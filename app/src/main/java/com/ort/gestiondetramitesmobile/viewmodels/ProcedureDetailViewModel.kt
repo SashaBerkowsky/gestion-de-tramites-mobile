@@ -1,7 +1,9 @@
 package com.ort.gestiondetramitesmobile.viewmodels
 
 import android.icu.text.StringPrepParseException
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.android.gms.tasks.Tasks.await
@@ -22,19 +24,20 @@ class ProcedureDetailViewModel() : ViewModel() {
     // TODO: Implement the ViewModel
 
     lateinit var selectedProcedure: Procedure
-    var procedure = MutableLiveData<Procedure>()
     val errorMessage = MutableLiveData<String>()
     private val repository = ProcedureRepository(RetrofitInstance)
 
-    fun setProcedure(idProcedure: Int){
+    fun setProcedure(idProcedure: Int, onResult:()->Unit){
         val response = repository.getProcedureById(idProcedure)
         Log.d("idProcedure", idProcedure.toString())
         response.enqueue(object : retrofit2.Callback<DaoProcedure> {
+            @RequiresApi(Build.VERSION_CODES.O)
             override fun onResponse(call: Call<DaoProcedure>, response: Response<DaoProcedure>) {
 
                 if(response.isSuccessful){
                     val dao = response.body()
-                    procedure.value = dao?.createProcedure()!!
+                    selectedProcedure = dao?.createProcedure()!!
+                    onResult()
                 }
             }
 
@@ -117,38 +120,12 @@ class ProcedureDetailViewModel() : ViewModel() {
         return selectedProcedure.getCurrentProcedureType().title
     }
 
-    fun getSelfieUrl(): String{
-        return selectedProcedure.selfieUrl.toString()
-    }
-
-    fun getSelfieDniUrl(): String{
-        return selectedProcedure.selfieDniUrl.toString()
-    }
-
-    fun getFrontDniUrl(): String{
-        return selectedProcedure.frontDniUrl.toString()
-    }
-
-    fun getBackDniUrl(): String{
-        return selectedProcedure.backDniUrl.toString()
-    }
-
-    fun getDebtFreeUrl(): String{
-        return selectedProcedure.debtFreeUrl.toString()
+    fun getImagesAsArray(): Array<String>{
+        return selectedProcedure.getImagesAsArray()
     }
 
     fun isProcedureApproved(): Boolean {
         return selectedProcedure.isProcedureApproved()
     }
-
-    fun isProcedureCanceled(): Boolean{
-        return selectedProcedure.isProcedureCanceled()
-    }
-
-    fun getProcedureState(): ProcedureState {
-        return selectedProcedure.getCurrentProcedureState()
-    }
-
-
 
 }

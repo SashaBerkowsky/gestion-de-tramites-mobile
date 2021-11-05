@@ -18,7 +18,10 @@ import android.util.Log
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.ort.gestiondetramitesmobile.adapters.ImageListAdapter
 import com.ort.gestiondetramitesmobile.adapters.ProcedureRepository
 import com.ort.gestiondetramitesmobile.api.RetrofitInstance
 import com.ort.gestiondetramitesmobile.models.Procedure
@@ -38,12 +41,8 @@ class ProcedureDetailFragment : Fragment() {
     private lateinit var edtBirthdate: EditText
     private lateinit var edtAddress: EditText
     private lateinit var edtLicenceCode: EditText
-    private lateinit var imgSelfieDetail: ImageView
-    private lateinit var imgSelfieDni: ImageView
-    private lateinit var imgFrontDni: ImageView
-    private lateinit var imgBackDni: ImageView
-    private lateinit var imgDebtFree: ImageView
     private lateinit var dialog: Dialog
+    private lateinit var imagesRec: RecyclerView
 
     companion object {
         fun newInstance() = ProcedureDetailFragment()
@@ -66,11 +65,7 @@ class ProcedureDetailFragment : Fragment() {
         edtBirthdate = v.findViewById(R.id.edtBirthdate)
         edtLicenceCode = v.findViewById(R.id.edtLicenceType)
         edtAddress = v.findViewById(R.id.edtAddress)
-        imgSelfieDetail= v.findViewById(R.id.imgSelfieDetail)
-        imgSelfieDni = v.findViewById(R.id.imgSelfieDniDetail)
-        imgFrontDni = v.findViewById(R.id.imgFrontDniDetail)
-        imgBackDni = v.findViewById(R.id.imgBackDniDetail)
-        imgDebtFree = v.findViewById(R.id.imgDebtFreeDetail)
+        imagesRec = v.findViewById(R.id.recImages)
 
         dialog = Dialog(requireContext())
 
@@ -79,10 +74,6 @@ class ProcedureDetailFragment : Fragment() {
         dialog.setContentView(R.layout.loading_dialog)
 
         dialog.show()
-
-        var idProcedure = ProcedureDetailFragmentArgs.fromBundle(requireArguments()).idProcedure
-        viewModel.setProcedure(idProcedure)
-
 
         return v
     }
@@ -97,8 +88,9 @@ class ProcedureDetailFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        viewModel.procedure.observe(viewLifecycleOwner, {
-            viewModel.selectedProcedure = it
+
+        var idProcedure = ProcedureDetailFragmentArgs.fromBundle(requireArguments()).idProcedure
+        viewModel.setProcedure(idProcedure){
             edtName.setText(viewModel.getUserName())
             edtSurname.setText(viewModel.getUserSurname())
             edtDni.setText(viewModel.getUserDni())
@@ -108,14 +100,12 @@ class ProcedureDetailFragment : Fragment() {
             edtProcedureType.setText(viewModel.getProcedureType())
             txtProcedureName.setText(viewModel.getProcedureName())
 
-            Glide.with(requireContext()).load(viewModel.getSelfieUrl()).centerInside().into(imgSelfieDetail)
-            Glide.with(requireContext()).load(viewModel.getSelfieDniUrl()).centerInside().into(imgSelfieDni)
-            Glide.with(requireContext()).load(viewModel.getFrontDniUrl()).centerInside().into(imgFrontDni)
-            Glide.with(requireContext()).load(viewModel.getBackDniUrl()).centerInside().into(imgBackDni)
-            Glide.with(requireContext()).load(viewModel.getDebtFreeUrl()).centerInside().into(imgDebtFree)
+            val adapter = ImageListAdapter(viewModel.getImagesAsArray(),requireContext())
+            imagesRec.adapter = adapter
+            imagesRec.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
             dialog.dismiss()
-        })
+        }
 
 
 

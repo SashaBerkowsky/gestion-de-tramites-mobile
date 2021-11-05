@@ -163,52 +163,12 @@
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="19dp" />
-            <HorizontalScrollView
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recImages"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:id="@+id/imgSelfieOverview"
-                        android:src="@drawable/profilepicplaceholder" />
-
-                    <ImageView
-                        android:layout_marginEnd="10dp"
-                        android:id="@+id/imgSelfieDniOverview"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/profilepicplaceholder" />
-
-                    <ImageView
-                        android:layout_marginEnd="10dp"
-                        android:id="@+id/imgFrontDniOverview"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/profilepicplaceholder" />
-
-                    <ImageView
-                        android:layout_marginEnd="10dp"
-                        android:id="@+id/imgBackDniOverview"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/profilepicplaceholder" />
-
-                    <ImageView
-                        android:layout_marginEnd="10dp"
-                        android:id="@+id/imgDebtFreeOverview"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/profilepicplaceholder" />
-
-                </LinearLayout>
-            </HorizontalScrollView>
+                android:layout_height="match_parent"
+                android:orientation="horizontal" />
 
 
             <Space

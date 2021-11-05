@@ -1,5 +1,6 @@
 package com.ort.gestiondetramitesmobile.fragments
 
+import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import com.ort.gestiondetramitesmobile.viewmodels.ProcedureFormViewModel
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.view.Window
 import android.widget.*
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.viewModels
@@ -34,6 +36,7 @@ class ProcedureFormFragment : Fragment() {
     lateinit var edtAddress: EditText
     lateinit var btnContinue: Button
     lateinit var txtProcedureName: TextView
+    private lateinit var dialog: Dialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,6 +56,14 @@ class ProcedureFormFragment : Fragment() {
         edtSurname = v.findViewById(R.id.edtSurname)
         edtAddress = v.findViewById(R.id.edtAddress)
         txtProcedureName = v.findViewById(R.id.txtProcedureName)
+
+        dialog = Dialog(requireContext())
+
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.loading_dialog)
+
+        dialog.show()
 
 
         return v
@@ -123,6 +134,7 @@ class ProcedureFormFragment : Fragment() {
             edtSurname.setText(viewModel.getSurname())
             edtAddress.setText( viewModel.getAddress())
             textInputBirthday.setText(dob)
+            dialog.dismiss()
         })
     }
 

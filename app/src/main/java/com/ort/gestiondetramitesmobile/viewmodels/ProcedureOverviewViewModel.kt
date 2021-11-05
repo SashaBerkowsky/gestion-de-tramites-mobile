@@ -49,6 +49,10 @@ class ProcedureOverviewViewModel : ViewModel() {
         return procedure.licenceType.toString()
     }
 
+    fun getImagesAsArray(): Array<String>{
+        return procedure.getImagesAsArray()
+    }
+
     //TODO Error handling
     fun sendProcedure():String{
         val parentJob = Job()
@@ -61,23 +65,4 @@ class ProcedureOverviewViewModel : ViewModel() {
         return ""
     }
 
-    fun selfieUrl(): String{
-        return procedure.selfieUrl.toString()
-    }
-
-    fun selfieDniUrl(): String{
-        return procedure.selfieDniUrl.toString()
-    }
-
-    fun frontDniUrl(): String{
-        return procedure.frontDniUrl.toString()
-    }
-
-    fun backDniUrl(): String{
-        return procedure.backDniUrl.toString()
-    }
-
-    fun debtFreeUrl(): String{
-        return procedure.debtFreeUrl.toString()
-    }
 }

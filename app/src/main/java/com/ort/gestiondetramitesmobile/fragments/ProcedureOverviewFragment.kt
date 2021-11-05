@@ -12,8 +12,11 @@ import android.view.Window
 import android.widget.*
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ort.gestiondetramitesmobile.R
+import com.ort.gestiondetramitesmobile.adapters.ImageListAdapter
 import com.ort.gestiondetramitesmobile.models.User
 import com.ort.gestiondetramitesmobile.models.TramiteLicenciaConducir
 import com.ort.gestiondetramitesmobile.viewmodels.ProcedureOverviewViewModel
@@ -32,11 +35,7 @@ class ProcedureOverviewFragment : Fragment() {
     private lateinit var edtLicenceType : AutoCompleteTextView
     private lateinit var edtLicenceCode : AutoCompleteTextView
     private lateinit var btnSendProcedure : Button
-    private lateinit var imgSelfie: ImageView
-    private lateinit var imgSelfieDni: ImageView
-    private lateinit var imgFrontDni: ImageView
-    private lateinit var imgBackDni: ImageView
-    private lateinit var imgDebtFree: ImageView
+    private lateinit var imagesRec: RecyclerView
 
     companion object {
         fun newInstance() = ProcedureOverviewFragment()
@@ -61,11 +60,7 @@ class ProcedureOverviewFragment : Fragment() {
         edtLicenceType = v.findViewById(R.id.edtProcedureType)
         edtLicenceCode = v.findViewById(R.id.edtLicenceType)
         btnSendProcedure = v.findViewById(R.id.btnSendProcedure)
-        imgSelfie = v.findViewById(R.id.imgSelfieOverview)
-        imgSelfieDni = v.findViewById(R.id.imgSelfieDniOverview)
-        imgFrontDni = v.findViewById(R.id.imgFrontDniOverview)
-        imgBackDni = v.findViewById(R.id.imgBackDniOverview)
-        imgDebtFree = v.findViewById(R.id.imgDebtFreeOverview)
+        imagesRec = v.findViewById(R.id.recImages)
 
         return v
     }
@@ -73,11 +68,9 @@ class ProcedureOverviewFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        Glide.with(requireContext()).load(viewModel.selfieUrl()).centerInside().into(imgSelfie)
-        Glide.with(requireContext()).load(viewModel.selfieDniUrl()).centerInside().into(imgSelfieDni)
-        Glide.with(requireContext()).load(viewModel.frontDniUrl()).centerInside().into(imgFrontDni)
-        Glide.with(requireContext()).load(viewModel.backDniUrl()).centerInside().into(imgBackDni)
-        Glide.with(requireContext()).load(viewModel.debtFreeUrl()).centerInside().into(imgDebtFree)
+        val adapter = ImageListAdapter(viewModel.getImagesAsArray(), requireContext())
+        imagesRec.adapter = adapter
+        imagesRec.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
         edtDni.setHint(viewModel.getDni())
         edtName.setHint(viewModel.getName())

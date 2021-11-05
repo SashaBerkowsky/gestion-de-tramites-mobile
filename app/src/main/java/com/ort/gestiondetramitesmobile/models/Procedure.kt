@@ -56,6 +56,10 @@ class Procedure(var idProcedureState: Int, private var idProcedureType: Int, var
         return isProcedureFinished() && !isProcedureCanceled()
     }
 
+    fun getImagesAsArray(): Array<String>{
+        return arrayOf(selfieUrl.toString(), selfieUrl.toString(), frontDniUrl.toString(),backDniUrl.toString(),debtFreeUrl.toString())
+    }
+
     @RequiresApi(Build.VERSION_CODES.O)
     fun getFormatedCreationDate():String{
         val datetime = creationDate.toInstant()

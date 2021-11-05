@@ -1,5 +1,7 @@
 package com.ort.gestiondetramitesmobile.fragments
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContentProviderCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -45,8 +48,11 @@ class NotificationFragment : Fragment() {
 
         })
 
+        val sharedPref: SharedPreferences =
+            requireContext().getSharedPreferences("userPreferences", Context.MODE_PRIVATE)
 
-        viewModel.getNotificationList()
+        var userId = sharedPref.getInt("userID", 0)!!
+        viewModel.getNotificationList(userId.toString())
 
         return v
     }

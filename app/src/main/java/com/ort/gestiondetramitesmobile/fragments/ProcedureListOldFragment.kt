@@ -1,5 +1,7 @@
 package com.ort.gestiondetramitesmobile.fragments
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -15,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.ort.gestiondetramitesmobile.R
 import com.ort.gestiondetramitesmobile.adapters.ProcedureListAdapterOld
-import com.ort.gestiondetramitesmobile.models.Procedure
 import com.ort.gestiondetramitesmobile.viewmodels.ProcedureListOldViewModel
 
 class ProcedureListOldFragment : Fragment() {
@@ -56,7 +57,10 @@ class ProcedureListOldFragment : Fragment() {
             ).show()
         })
 
-        viewModel.getProceduresList()
+        val sharedPref: SharedPreferences = requireContext().getSharedPreferences("userPreferences", Context.MODE_PRIVATE)
+        var userId = sharedPref.getInt("userID", 0)!!
+
+        viewModel.getProceduresList(userId)
 
         return v
     }

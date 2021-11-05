@@ -1,5 +1,7 @@
 package com.ort.gestiondetramitesmobile.fragments
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -51,11 +53,14 @@ class ProcedureListCurrentFragment : Fragment() {
             Toast.makeText(
                 this.context,
                 "Se ha producido un error al traer los trámites",
-                Toast.LENGTH_LONG
+                Toast.LENGTH_SHORT
             ).show()
         })
 
-        viewModel.getProceduresList()
+        val sharedPref: SharedPreferences = requireContext().getSharedPreferences("userPreferences", Context.MODE_PRIVATE)
+        var userId = sharedPref.getInt("userID", 0)!!
+
+        viewModel.getProceduresList(userId)
 
         return v
     }

@@ -29,6 +29,7 @@ class NotificationAdapter () : RecyclerView.Adapter<NotificationAdapter.Notifica
 
 
     override fun onBindViewHolder(holder: NotificationAdapter.NotificationHolder, position: Int) {
+        holder.setTitle(notificationList[position].title)
         holder.setMessage(notificationList[position].message)
         holder.setDate(notificationList[position].notificationDate)
 
@@ -48,8 +49,13 @@ class NotificationAdapter () : RecyclerView.Adapter<NotificationAdapter.Notifica
 
         private var view: View = v
 
+        fun setTitle(title : String){
+            val txt: TextView = view.findViewById(R.id.NotificationTitle)
+            txt.text = title
+        }
+
         fun setMessage(message : String){
-            val txt: TextView = view.findViewById(R.id.NotificationMessaje)
+            val txt: TextView = view.findViewById(R.id.NotificationMessage)
             txt.text = message
         }
 

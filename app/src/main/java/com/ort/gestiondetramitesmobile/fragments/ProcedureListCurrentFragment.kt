@@ -2,6 +2,7 @@ package com.ort.gestiondetramitesmobile.fragments
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -15,6 +16,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.ort.gestiondetramitesmobile.R
 import com.ort.gestiondetramitesmobile.adapters.ProcedureListAdapterCurrent
@@ -24,6 +26,7 @@ class ProcedureListCurrentFragment : Fragment() {
 
     private lateinit var v: View
     private lateinit var  recProcedure : RecyclerView
+    private lateinit var refreshLayout: SwipeRefreshLayout
     private val adapter = ProcedureListAdapterCurrent {
         onItemClick(it)
     }
@@ -38,12 +41,14 @@ class ProcedureListCurrentFragment : Fragment() {
         v = inflater.inflate(R.layout.procedure_list_current_fragment, container, false)
         recProcedure = v.findViewById(R.id.rec_current_list)
         signNoProc = v.findViewById(R.id.sign_no_proc)
+        refreshLayout = v.findViewById(R.id.swipeContainer)
 
         var btnCreateNew = v.findViewById<FloatingActionButton>(R.id.btn_create_procedure)
         btnCreateNew.setOnClickListener {
             val action = ProcedureListFragmentDirections.actionProcedureListFragmentToNewProcedureFragment2()
             findNavController().navigate(action)
         }
+
 
         recProcedure.adapter = adapter
 
@@ -70,6 +75,12 @@ class ProcedureListCurrentFragment : Fragment() {
         var userId = sharedPref.getInt("userID", 0)!!
 
         viewModel.getProceduresList(userId)
+
+        refreshLayout.setColorSchemeColors(Color.GRAY, Color.GRAY, Color.GRAY);
+        refreshLayout.setOnRefreshListener {
+            viewModel.refreshProcedureList(userId)
+            refreshLayout.isRefreshing = false
+        }
 
         return v
     }

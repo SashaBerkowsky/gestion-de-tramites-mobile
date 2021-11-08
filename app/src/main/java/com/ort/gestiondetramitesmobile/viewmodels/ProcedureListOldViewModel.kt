@@ -37,6 +37,27 @@ class ProcedureListOldViewModel : ViewModel() {
         })
     }
 
+    fun refreshProcedureList(userId: Int){
+        val response = repository.getProceduresList(userId)
+
+        response.enqueue(object : Callback<List<DaoProcedure>>{
+            override fun onResponse(call: Call<List<DaoProcedure>>, response: Response<List<DaoProcedure>>) {
+                oldList.clear()
+                response.body()?.forEach {
+                    if (it.isProcedureFinished()) {
+                        oldList.add(it.createProcedure())
+                    }
+                }
+                procedureList.postValue(oldList)
+            }
+
+            override fun onFailure(call: Call<List<DaoProcedure>>, t: Throwable) {
+                errorMessage.postValue(t.message)
+            }
+
+        })
+    }
+
     fun getSelectedProcedure(idx: Int): Procedure? {
         return procedureList.value?.get(idx)
     }

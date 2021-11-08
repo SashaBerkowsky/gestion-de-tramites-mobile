@@ -1,14 +1,12 @@
 package com.ort.gestiondetramitesmobile.api
 
-import com.ort.gestiondetramitesmobile.daos.DaoProcedure
 import com.ort.gestiondetramitesmobile.models.Notification
+import com.ort.gestiondetramitesmobile.models.NotificationReaded
+import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 
 //Se declaran todos los llamados a la API con este formato:
@@ -17,4 +15,6 @@ import retrofit2.http.Query
 interface NotificationManagementAPI {
     @GET("users/citizens/notifications")
     fun getNotificationList(@Query("idUser") idUser : String): Call<List<Notification>>
+    @PUT("users/citizens/notifications")
+    suspend fun putNotificationReaded(@Body notificationReaded : NotificationReaded): Response<Void>
 }

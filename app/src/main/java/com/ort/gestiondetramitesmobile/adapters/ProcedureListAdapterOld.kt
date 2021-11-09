@@ -1,10 +1,12 @@
 package com.ort.gestiondetramitesmobile.adapters
 
 import android.graphics.Color
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.ort.gestiondetramitesmobile.R
@@ -24,6 +26,7 @@ class ProcedureListAdapterOld (val onItemClick : (Int) -> Unit): RecyclerView.Ad
         return(ProcedureHolder(view))
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ProcedureHolder, position: Int) {
         holder.setName(procedureList[position].getCurrentProcedureType().title)
         holder.setDate(procedureList[position].getFormatedCreationDate())

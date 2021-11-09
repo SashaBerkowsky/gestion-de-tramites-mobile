@@ -18,9 +18,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.getExternalFilesDirs
 import androidx.core.content.ContextCompat
@@ -43,7 +40,7 @@ import android.os.Environment
 import android.os.Environment.DIRECTORY_PICTURES
 import android.os.Environment.getExternalStorageDirectory
 import android.view.Window
-import android.widget.ProgressBar
+import android.widget.*
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import java.io.ByteArrayOutputStream
@@ -113,7 +110,16 @@ class PictureStepperFragment : Fragment() {
         }
 
         btnContinue.setOnClickListener {
-            uploadPicture((imgPictureTaken.drawable as BitmapDrawable).bitmap,pictureIdx, neededPictures)
+            if (imgPictureTaken.visibility == View.VISIBLE) {
+                uploadPicture((imgPictureTaken.drawable as BitmapDrawable).bitmap,pictureIdx, neededPictures)
+            } else {
+                Toast.makeText(
+                    this.context,
+                    "Debe tomar una foto",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
         }
 
     }
@@ -151,8 +157,8 @@ class PictureStepperFragment : Fragment() {
                 } else{
                     PictureStepperFragmentDirections.actionPictureStepperFragmentToProcedureOverviewFragment2(viewModel.getCurrentProcedure())
                 }
-
                 findNavController().navigate(action)
+
                 //else throw toast diciendo error subiendo foto
             } else{
                 dialog.dismiss()

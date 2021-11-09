@@ -66,9 +66,6 @@ class Procedure(var idProcedureState: Int, private var idProcedureType: Int, var
             .atZone(ZoneId.systemDefault())
             .toLocalDateTime();
 
-
-
-
         return datetime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 

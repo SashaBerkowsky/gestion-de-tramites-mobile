@@ -19,7 +19,7 @@ class DaoProcedure (procedure: Procedure){
 
     val id = procedure.id
     val idUser = procedure.userCiudadano.id
-    val idProcedureState = procedure.idProcedureState
+    val idState = procedure.idProcedureState
     val idProcedureType = procedure.getCurrentProcedureType().value
     val userName = procedure.userCiudadano.name
     val userSurname = procedure.userCiudadano.surname
@@ -28,7 +28,7 @@ class DaoProcedure (procedure: Procedure){
     val userBirthdate = formatBirthDateForDatabase(procedure.userCiudadano.birthdate)
     val subProcedureType = procedure.licenceType
     val licenceCode = procedure.licenceCode
-    val canceledReason = procedure.canceledReason
+    val reasonRejection = procedure.canceledReason
     val creationDate = formatDateForDatabase(procedure.creationDate)
     val lastModificationDate = formatDateForDatabase(procedure.lastModificationDate)
     //TODO Add pictures URL and add it to Procedure
@@ -73,19 +73,19 @@ class DaoProcedure (procedure: Procedure){
     fun createProcedure(): Procedure{
         val user = User(userName, userSurname, userDni, userAddress, formatBirthdateForProcedure(userBirthdate), idUser)
 
-        return Procedure(idProcedureState, idProcedureType - 1,user,transformStrToDate(creationDate),transformStrToDate(lastModificationDate),subProcedureType,licenceCode,canceledReason
+        return Procedure(idState-1, idProcedureType - 1,user,transformStrToDate(creationDate),transformStrToDate(lastModificationDate),subProcedureType,licenceCode,reasonRejection
                          ,selfieUrl,selfieDniUrl,frontDniUrl,backDniUrl,debtFreeUrl,revisionDate,withdrawalDate,id)
     }
 
 
     fun isProcedureFinished():Boolean{
-        return idProcedureState == getProcedureStates().size - 1
+        return idState == getProcedureStates().size
     }
 
     override fun toString(): String{
         return (id.toString()+" "+
                 idUser+" "+
-                idProcedureState+" "+
+                idState+" "+
                 idProcedureType+" "+
                 userName+" "+
                 userSurname+" "+
@@ -94,7 +94,7 @@ class DaoProcedure (procedure: Procedure){
                 userBirthdate+" "+
                 subProcedureType+" "+
                 licenceCode+" "+
-                canceledReason+" "+
+                reasonRejection+" "+
                 creationDate+" "+
                 lastModificationDate.toString()+" "+
                 selfieUrl+" "+

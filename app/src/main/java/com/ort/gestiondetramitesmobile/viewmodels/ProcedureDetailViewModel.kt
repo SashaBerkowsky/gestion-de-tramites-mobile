@@ -76,7 +76,7 @@ class ProcedureDetailViewModel() : ViewModel() {
         } else if(!selectedProcedure.withdrawalDate.isNullOrEmpty()){
             retDates += "Fecha de revision: " + selectedProcedure.withdrawalDate
         }
-
+        Log.d("date",selectedProcedure.revisionDate.toString())
         return retDates
     }
 

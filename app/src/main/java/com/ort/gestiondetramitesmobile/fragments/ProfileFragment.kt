@@ -1,6 +1,6 @@
 package com.ort.gestiondetramitesmobile.fragments
 
-import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -36,6 +37,7 @@ class ProfileFragment : Fragment() {
     private lateinit var profileAddress : TextView
     private lateinit var profileDob : TextView
     private lateinit var profileEmail : TextView
+    private lateinit var dialog : Dialog
 
     companion object {
         fun newInstance() = ProfileFragment()
@@ -70,6 +72,8 @@ class ProfileFragment : Fragment() {
             profileAddress.text = "Dirección: " + viewModel.user.value?.address
             profileDob.text = "Fecha de nacimiento: " + dob
             profileEmail.text = "Email: " + userEmail
+
+            dialog.dismiss()
         })
 
         viewModel.errorMessage.observe(viewLifecycleOwner, Observer {
@@ -122,6 +126,14 @@ class ProfileFragment : Fragment() {
             val action = ProfileFragmentDirections.actionProfileFragmentToChangePasswordFragment()
             findNavController().navigate(action)
         }
+
+        dialog = Dialog(requireContext())
+
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.loading_dialog)
+
+        dialog.show()
     }
 
     private fun navToSingInActivity() {

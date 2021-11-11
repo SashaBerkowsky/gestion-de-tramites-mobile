@@ -176,7 +176,7 @@ class ProcedureFormFragment : Fragment() {
                 dniLayout.error = "Campo Requerido"
                 false
             }
-            dni.length != 9->{
+            dni.length != 8->{
                 dniLayout.error = "Dni invalido"
                 false
             }

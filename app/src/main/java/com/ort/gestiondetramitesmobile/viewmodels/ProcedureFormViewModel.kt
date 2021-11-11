@@ -68,8 +68,4 @@ class ProcedureFormViewModel : ViewModel() {
         return currentUser.value?.birthdate
     }
 
-    //validar datos del procedure
-    fun isDataValid(): Boolean{
-        return true
-    }
 }

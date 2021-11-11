@@ -11,13 +11,17 @@ import com.ort.gestiondetramitesmobile.viewmodels.ProcedureFormViewModel
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.text.TextUtils
+import android.util.Patterns
 import android.view.Window
 import android.widget.*
+import androidx.core.view.isEmpty
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.textfield.TextInputLayout
 import java.util.*
 import java.text.SimpleDateFormat
 
@@ -36,7 +40,15 @@ class ProcedureFormFragment : Fragment() {
     lateinit var edtAddress: EditText
     lateinit var btnContinue: Button
     lateinit var txtProcedureName: TextView
+    private lateinit var selectProcedureLayout: TextInputLayout
+    private lateinit var dniLayout: TextInputLayout
+    private lateinit var nameLayout: TextInputLayout
+    private lateinit var surnameLayout: TextInputLayout
+    private lateinit var addressLayout: TextInputLayout
+    private lateinit var birhtdateLayout: TextInputLayout
+    private lateinit var licenceTypeLayout: TextInputLayout
     private lateinit var dialog: Dialog
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,6 +68,12 @@ class ProcedureFormFragment : Fragment() {
         edtSurname = v.findViewById(R.id.edtSurname)
         edtAddress = v.findViewById(R.id.edtAddress)
         txtProcedureName = v.findViewById(R.id.txtProcedureName)
+        selectProcedureLayout = v.findViewById(R.id.ti_select_procedure)
+        dniLayout = v.findViewById(R.id.tf_dni)
+        nameLayout = v.findViewById(R.id.tf_name)
+        surnameLayout = v.findViewById(R.id.tf_lastName)
+        addressLayout = v.findViewById(R.id.tf_address)
+        licenceTypeLayout = v.findViewById(R.id.ti_licence_type)
 
         dialog = Dialog(requireContext())
 
@@ -114,16 +132,19 @@ class ProcedureFormFragment : Fragment() {
         autoCompleteTextView2.setAdapter(adapter2)
 
         btnContinue.setOnClickListener {
-            val neededPictures = ProcedureFormFragmentArgs.fromBundle(requireArguments()).neededPictures
+            if(isFormValid(autoCompleteTextView.text.toString(), edtDni.text.toString(), edtName.text.toString(), edtSurname.text.toString(), edtAddress.text.toString(), textInputBirthday.text.toString(),  autoCompleteTextView2.text.toString())){
+                val neededPictures = ProcedureFormFragmentArgs.fromBundle(requireArguments()).neededPictures
 
-            viewModel.setProcedureUser(edtName.text.toString(),edtSurname.text.toString(), edtDni.text.toString(),
-                edtAddress.text.toString(),textInputBirthday.text.toString())
-            viewModel.createProcedure(autoCompleteTextView.text.toString(), autoCompleteTextView2.text.toString())
+                viewModel.setProcedureUser(edtName.text.toString(),edtSurname.text.toString(), edtDni.text.toString(),
+                    edtAddress.text.toString(),textInputBirthday.text.toString())
+                viewModel.createProcedure(autoCompleteTextView.text.toString(), autoCompleteTextView2.text.toString())
 
-            if(viewModel.isDataValid()){
+
                 val action = ProcedureFormFragmentDirections.actionProcedureFormFragment2ToPictureStepperFragment(0,neededPictures,viewModel.getProcedure())
                 findNavController().navigate(action)
+
             }
+
 
         }
         viewModel.currentUser.observe(viewLifecycleOwner,{
@@ -143,6 +164,46 @@ class ProcedureFormFragment : Fragment() {
         val newDate: Date = format.parse(birthdate)
         format = SimpleDateFormat("dd/MM/YYYY")
         return format.format(newDate)
+    }
+
+    private fun isFormValid(procedureType: String, dni: String, name: String, surname: String, address: String, birthdate: String, licenceCode: String): Boolean {
+        return when {
+            procedureType.isEmpty() -> {
+                selectProcedureLayout.error = "Campo requerido"
+                false
+            }
+            dni.isEmpty() ->{
+                dniLayout.error = "Campo Requerido"
+                false
+            }
+            dni.length != 9->{
+                dniLayout.error = "Dni invalido"
+                false
+            }
+            name.isEmpty()->{
+                nameLayout.error = "Campo requerido"
+                false
+            }
+            surname.isEmpty()->{
+                surnameLayout.error = "Campo requerido"
+                false
+            }
+            address.isEmpty()->{
+                addressLayout.error = "Campo requerido"
+                false
+            }
+            birthdate.isEmpty()->{
+                birhtdateLayout.error = ""
+                false
+            }
+            licenceCode.isEmpty()->{
+                licenceTypeLayout.error = ""
+                false
+            }
+            else -> {
+                true
+            }
+        }
     }
 
 }

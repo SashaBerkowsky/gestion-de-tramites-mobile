@@ -35,6 +35,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/UserDataForm_DNI"
             android:layout_margin="10dp"
+            app:errorEnabled="true"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -52,6 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/UserDataForm_Name"
+            app:errorEnabled="true"
             android:layout_margin="10dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -67,6 +69,7 @@
             android:id="@+id/til_lastName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:errorEnabled="true"
             android:hint="@string/UserDataForm_LastName"
             android:layout_margin="10dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -84,6 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/UserDataForm_Address"
+            app:errorEnabled="true"
             android:layout_margin="10dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -95,23 +99,26 @@
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
-            android:id="@+id/UserDataForm_dateOfBirth"
-            style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_date_picker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Fecha de nacimiento"
+            app:errorEnabled="true"
             android:layout_margin="10dp"
-            android:drawableRight="@drawable/baseline_insert_invitation_24"
-            android:fontFamily="sans-serif-medium"
-            android:padding="14dp"
-            android:text="Fecha de nacimiento"
-            android:textAlignment="viewStart"
-            android:textAllCaps="false"
-            android:textColor="@color/primaryText"
-            android:textSize="15sp"
-            app:strokeColor="#9E9E9E"
-            app:strokeWidth="1dp" />
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/UserDataForm_date_picker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:textColorHint="@color/hintTextColor"
+                android:drawableRight="@drawable/baseline_insert_invitation_24"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
 
         <Button
             android:id="@+id/UserDataForm_SaveButton"

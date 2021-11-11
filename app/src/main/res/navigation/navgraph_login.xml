@@ -32,7 +32,14 @@
         android:id="@+id/signupFragment"
         android:name="com.ort.gestiondetramitesmobile.fragments.SignupFragment"
         android:label="signup_fragment"
-        tools:layout="@layout/signup_fragment" />
+        tools:layout="@layout/signup_fragment" >
+        <action
+            android:id="@+id/action_signupFragment_to_userDataFormFragment"
+            app:destination="@id/userDataFormFragment" />
+        <action
+            android:id="@+id/action_signupFragment_to_homeActivity"
+            app:destination="@id/homeActivity" />
+    </fragment>
     <activity
         android:id="@+id/homeActivity"
         android:name="com.ort.gestiondetramitesmobile.activities.HomeActivity"

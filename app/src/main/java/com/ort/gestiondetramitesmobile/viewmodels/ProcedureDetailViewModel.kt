@@ -62,9 +62,10 @@ class ProcedureDetailViewModel() : ViewModel() {
     }
 
     fun getDescriptionText(): String?{
-        return when(selectedProcedure.getCurrentProcedureState()){
-            ProcedureState.ESTADO_FINALIZADO() -> getFinishedStateCanceledReason()
-            ProcedureState.PENDIENTE_DE_RETIRO() -> getProcedureDates()
+        return when(selectedProcedure.idProcedureState){
+            4 -> getFinishedStateCanceledReason()
+            3 -> getProcedureDates()
+            2 -> getProcedureDates()
             else -> ""
         }
     }
@@ -72,11 +73,12 @@ class ProcedureDetailViewModel() : ViewModel() {
     private fun getProcedureDates(): String?{
         var retDates = ""
         if(!selectedProcedure.revisionDate.isNullOrEmpty()){
-            retDates += "Fecha de revision: " + selectedProcedure.revisionDate + "\n"
-        } else if(!selectedProcedure.withdrawalDate.isNullOrEmpty()){
-            retDates += "Fecha de revision: " + selectedProcedure.withdrawalDate
+            retDates += "- Fecha de revision: " + selectedProcedure.revisionDate + "\n"
         }
-        Log.d("date",selectedProcedure.revisionDate.toString())
+        if(!selectedProcedure.withdrawalDate.isNullOrEmpty()){
+            retDates += "\n- Fecha de retiro: " + selectedProcedure.withdrawalDate
+        }
+        Log.d("date",retDates)
         return retDates
     }
 

@@ -132,9 +132,9 @@ class SignupFragment : Fragment() {
         viewModel.getCurrentUser(registeredEmail) { isNewUser, userID ->
             setSharedPreferences(userID, currentUser.email)
             var action: NavDirections = if (isNewUser) {
-                LoginFragmentDirections.actionLoginFragmentToUserDataFormFragment()
+                SignupFragmentDirections.actionSignupFragmentToUserDataFormFragment()
             } else {
-                LoginFragmentDirections.actionLoginFragmentToHomeActivity()
+                SignupFragmentDirections.actionSignupFragmentToHomeActivity()
             }
 
             findNavController().navigate(action)

@@ -49,6 +49,7 @@ class ProcedureFormFragment : Fragment() {
     private lateinit var licenceTypeLayout: TextInputLayout
     private lateinit var dialog: Dialog
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,

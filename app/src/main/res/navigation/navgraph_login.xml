@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_signupFragment_to_userDataFormFragment"
             app:destination="@id/userDataFormFragment" />
+        <action
+            android:id="@+id/action_signupFragment_to_homeActivity"
+            app:destination="@id/homeActivity" />
     </fragment>
     <activity
         android:id="@+id/homeActivity"

@@ -31,6 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            app:errorEnabled="true"
             android:hint="Seleccione tipo de trámite">
 
             <AutoCompleteTextView
@@ -47,6 +48,7 @@
             android:layout_height="wrap_content"
             android:hint="Número de dni"
             android:layout_margin="10dp"
+            app:errorEnabled="true"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -61,6 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nombre"
+            app:errorEnabled="true"
             android:layout_margin="10dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -75,6 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Apellido"
+            app:errorEnabled="true"
             android:layout_margin="10dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -89,6 +93,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Domicilio"
+            app:errorEnabled="true"
             android:layout_margin="10dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -129,6 +134,7 @@
             android:textColor="@color/primaryText"
             android:textSize="15sp"
             app:strokeColor="#9E9E9E"
+            app:errorEnabled="true"
             app:strokeWidth="1dp" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -137,6 +143,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            app:errorEnabled="true"
             android:hint="Seleccione tipo de licencia">
 
             <AutoCompleteTextView

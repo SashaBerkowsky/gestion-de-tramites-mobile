@@ -63,18 +63,22 @@ class DaoProcedure (procedure: Procedure){
         return splitedBirthdate[2]+"-"+splitedBirthdate[1]+"-"+splitedBirthdate[0]
     }
 
-    private fun formatBirthdateForProcedure(birthdate: String):String{
-        val splitedBirthdate = birthdate.split("-")
+    private fun formatDateForProcedure(birthdate: String?):String{
+        val splitedBirthdate = birthdate?.split("-")
 
-        return splitedBirthdate[2]+"/"+splitedBirthdate[1]+"/"+splitedBirthdate[0]
+        return if(!birthdate.isNullOrEmpty()){
+            splitedBirthdate!![2]+"/"+splitedBirthdate[1]+"/"+splitedBirthdate[0]
+
+        } else{
+            ""
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun createProcedure(): Procedure{
-        val user = User(userName, userSurname, userDni, userAddress, formatBirthdateForProcedure(userBirthdate), idUser)
-
+        val user = User(userName, userSurname, userDni, userAddress, formatDateForProcedure(userBirthdate), idUser)
         return Procedure(idState-1, idProcedureType - 1,user,transformStrToDate(creationDate),transformStrToDate(lastModificationDate),subProcedureType,licenceCode,reasonRejection
-                         ,selfieUrl,selfieDniUrl,frontDniUrl,backDniUrl,debtFreeUrl,revisionDate,withdrawalDate,id)
+                         ,selfieUrl,selfieDniUrl,frontDniUrl,backDniUrl,debtFreeUrl,formatDateForProcedure(revisionDate),formatDateForProcedure(withdrawalDate),id)
     }
 
 

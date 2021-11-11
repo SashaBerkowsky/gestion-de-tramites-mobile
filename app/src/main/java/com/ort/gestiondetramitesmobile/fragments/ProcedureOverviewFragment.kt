@@ -18,7 +18,6 @@ import com.bumptech.glide.Glide
 import com.ort.gestiondetramitesmobile.R
 import com.ort.gestiondetramitesmobile.adapters.ImageListAdapter
 import com.ort.gestiondetramitesmobile.models.User
-import com.ort.gestiondetramitesmobile.models.TramiteLicenciaConducir
 import com.ort.gestiondetramitesmobile.viewmodels.ProcedureOverviewViewModel
 import kotlinx.coroutines.*
 
@@ -101,24 +100,6 @@ class ProcedureOverviewFragment : Fragment() {
     }
 
 
-    private fun obtenerTramite(): TramiteLicenciaConducir {
-
-        var user : User = User("Edgard",
-            "Capurisse","92876136",
-            "en la casa de Mimi :P","30/12/81",
-            909)
-
-        var TramiteLicenciaConducir : TramiteLicenciaConducir = TramiteLicenciaConducir(user, "VC-0012", "No", "")
-        TramiteLicenciaConducir.tipoLicencia = "Licencia XDF"
-        TramiteLicenciaConducir.foto1URL = "https://picsum.photos/id/1/200/300"
-        TramiteLicenciaConducir.foto2URL = "https://picsum.photos/id/1/200/300"
-        TramiteLicenciaConducir.foto3URL = "https://picsum.photos/id/1/200/300"
-        TramiteLicenciaConducir.foto4URL = "https://picsum.photos/id/1/200/300"
-        TramiteLicenciaConducir.foto5URL = "https://picsum.photos/id/1/200/300"
-        TramiteLicenciaConducir.foto6URL = "https://picsum.photos/id/1/200/300"
-
-        return TramiteLicenciaConducir
-    }
 
 
     private fun showErrorDialog(errorMsg: String){

@@ -112,7 +112,7 @@ class UserDataFormFragment : Fragment() {
                 email = savedEmail,
                 surname = edtSurname.text.toString(),
                 dni = edtDni.text.toString(),
-                birthdate = edtDatePicker.text.toString(),
+                inBirthdate = edtDatePicker.text.toString(),
                 address = edtAddress.text.toString(),
             )
             if(isFormValid(userToCreate.dni,userToCreate.name, userToCreate.surname, userToCreate.address, userToCreate.birthdate )){

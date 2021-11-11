@@ -1,5 +1,7 @@
 package com.ort.gestiondetramitesmobile.viewmodels
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.ort.gestiondetramitesmobile.adapters.ProcedureRepository
@@ -22,6 +24,7 @@ class ProcedureListCurrentViewModel : ViewModel() {
         val response = repository.getProceduresList(userId)
 
         response.enqueue(object : Callback<List<DaoProcedure>>{
+            @RequiresApi(Build.VERSION_CODES.O)
             override fun onResponse(call: Call<List<DaoProcedure>>, response: Response<List<DaoProcedure>>) {
                 response.body()?.forEach {
                     if (!it.isProcedureFinished()) {
@@ -42,6 +45,7 @@ class ProcedureListCurrentViewModel : ViewModel() {
         val response = repository.getProceduresList(userId)
 
         response.enqueue(object : Callback<List<DaoProcedure>>{
+            @RequiresApi(Build.VERSION_CODES.O)
             override fun onResponse(call: Call<List<DaoProcedure>>, response: Response<List<DaoProcedure>>) {
                 currentList.clear()
                 response.body()?.forEach {

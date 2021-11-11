@@ -1,18 +1,15 @@
 package com.ort.gestiondetramitesmobile.fragments
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.Window
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
+import android.view.inputmethod.InputMethodManager
+import android.widget.*
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -20,14 +17,19 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.ort.gestiondetramitesmobile.R
+import com.ort.gestiondetramitesmobile.activities.HomeActivity
+import com.ort.gestiondetramitesmobile.adapters.UserRepository
+import com.ort.gestiondetramitesmobile.api.RetrofitInstance
+import com.ort.gestiondetramitesmobile.models.Address
 import com.ort.gestiondetramitesmobile.viewmodels.ProfileViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
+
 class ProfileFragment : Fragment() {
 
     lateinit var v: View
-    lateinit var btnEditProfile: Button
+    lateinit var btnEditAddress: ImageView
     lateinit var btnChangePassword: Button
     lateinit var btnCloseSession: Button
     private lateinit var auth: FirebaseAuth
@@ -38,6 +40,7 @@ class ProfileFragment : Fragment() {
     private lateinit var profileDob : TextView
     private lateinit var profileEmail : TextView
     private lateinit var dialog : Dialog
+    private val repository = UserRepository(RetrofitInstance)
 
     companion object {
         fun newInstance() = ProfileFragment()
@@ -50,7 +53,7 @@ class ProfileFragment : Fragment() {
 
         v = inflater.inflate(R.layout.profile_fragment, container, false)
 
-        btnEditProfile = v.findViewById(R.id.btnEditProfile)
+        btnEditAddress = v.findViewById(R.id.editBtn)
         btnChangePassword = v.findViewById(R.id.btnChangePassword)
         btnCloseSession = v.findViewById(R.id.closeSession)
         profileName = v.findViewById(R.id.profile_name)
@@ -69,7 +72,7 @@ class ProfileFragment : Fragment() {
             var dob = formatBirthdate(viewModel.user.value?.birthdate)
             profileName.text = "Nombre: " + viewModel.user.value?.name + " " + viewModel.user.value?.surname
             profileDNI.text = "DNI: " + viewModel.user.value?.dni
-            profileAddress.text = "Dirección: " + viewModel.user.value?.address
+            profileAddress.text = viewModel.user.value?.address
             profileDob.text = "Fecha de nacimiento: " + dob
             profileEmail.text = "Email: " + userEmail
 
@@ -101,6 +104,7 @@ class ProfileFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onStart() {
         super.onStart()
 
@@ -117,9 +121,28 @@ class ProfileFragment : Fragment() {
             navToSingInActivity()
         }
 
-        btnEditProfile.setOnClickListener {
-            val action = ProfileFragmentDirections.actionProfileFragmentToEditProfileFragment()
-            findNavController().navigate(action)
+        btnEditAddress.setOnClickListener {
+            v.showKeyboard()
+            btnEditAddress.setImageResource(R.drawable.tick)
+
+            if (viewModel.user.value?.address != profileAddress.editableText.toString()) {
+                var userId = sharedPref.getInt("userID", 0)!!
+
+                var address = Address(
+                    address = profileAddress.editableText.toString()
+                )
+                viewModel.updateAddress(userId, address, requireContext())
+
+                val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(requireView().getWindowToken(), 0)
+                btnEditAddress.setImageResource(R.drawable.edit)
+            } else {
+                Toast.makeText(
+                    context,
+                    "Edite su dirección",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
 
         btnChangePassword.setOnClickListener {
@@ -141,4 +164,8 @@ class ProfileFragment : Fragment() {
         findNavController().navigate(action)
     }
 
+    private fun View.showKeyboard() {
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
+    }
 }

@@ -65,7 +65,7 @@ class ChangePasswordFragment : Fragment() {
             if(email.text.isNotEmpty()){
                 resetPassword()
             }else {
-                Toast.makeText(this.context,"debe ingresar el correo",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this.context,"Debe ingresar el correo",Toast.LENGTH_SHORT).show()
 
             }
         }
@@ -77,11 +77,11 @@ class ChangePasswordFragment : Fragment() {
         auth.sendPasswordResetEmail(email.text.toString()).addOnCompleteListener{
             dialog.dismiss()
             if (it.isSuccessful) {
-                Toast.makeText(this.context,"se ha enviado un correo para restablecer la contraceña",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this.context,"Se ha enviado un correo para restablecer la contraseña",Toast.LENGTH_SHORT).show()
             }else {
                 Toast.makeText(
                     this.context,
-                    "se ha producido un error al enviar correo",
+                    "Se ha producido un error al enviar correo",
                     Toast.LENGTH_SHORT
                 ).show()
             }

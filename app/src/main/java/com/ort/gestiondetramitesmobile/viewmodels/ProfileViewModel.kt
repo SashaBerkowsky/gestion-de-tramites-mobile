@@ -1,9 +1,13 @@
 package com.ort.gestiondetramitesmobile.viewmodels
 
+import android.content.Context
+import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.ort.gestiondetramitesmobile.adapters.UserRepository
 import com.ort.gestiondetramitesmobile.api.RetrofitInstance
+import com.ort.gestiondetramitesmobile.models.Address
 import com.ort.gestiondetramitesmobile.models.User
 import retrofit2.Call
 import retrofit2.Callback
@@ -29,5 +33,23 @@ class ProfileViewModel : ViewModel() {
             }
         })
         return user
+    }
+
+    fun updateAddress(userId : Int, address : Address, context : Context) {
+
+        repository.updateAddress(userId,address).enqueue(object : Callback<User> {
+                override fun onResponse(call: Call<User>, response: Response<User>) {
+                    Log.d("response",response.body()!!.address)
+                    Toast.makeText(
+                        context,
+                        "Se ha editado su dirección",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+
+                override fun onFailure(call: Call<User>, t: Throwable) {
+                    errorMessage.postValue(t.message)
+                }
+        })
     }
 }

@@ -34,9 +34,6 @@
             android:id="@+id/action_profileFragment_to_changePasswordFragment"
             app:destination="@id/changePasswordFragment" />
         <action
-            android:id="@+id/action_profileFragment_to_editProfileFragment"
-            app:destination="@id/editProfileFragment" />
-        <action
             android:id="@+id/action_profileFragment_to_loginActivity"
             app:destination="@id/loginActivity" />
     </fragment>
@@ -121,10 +118,6 @@
         android:name="com.ort.gestiondetramitesmobile.fragments.ChangePasswordFragment"
         android:label="change_password_fragment"
         tools:layout="@layout/change_password_fragment" />
-    <fragment
-        android:id="@+id/editProfileFragment"
-        android:name="com.ort.gestiondetramitesmobile.fragments.EditProfileFragment"
-        android:label="EditProfileFragment" />
     <activity
         android:id="@+id/loginActivity"
         android:name="com.ort.gestiondetramitesmobile.activities.LoginActivity"

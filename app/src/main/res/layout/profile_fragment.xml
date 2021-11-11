@@ -39,15 +39,6 @@
         android:textColor="@color/secondaryText" />
 
     <TextView
-        android:id="@+id/profile_address"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="@string/Profile_Address"
-        android:textColor="@color/secondaryText" />
-
-    <TextView
         android:id="@+id/profile_dob"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -65,39 +56,65 @@
         android:text="@string/Profile_Email"
         android:textColor="@color/secondaryText" />
 
-    <Button
-        android:id="@+id/btnEditProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="38dp"
-        android:layout_margin="10dp"
-        android:background="@color/secondaryTheme"
-        android:backgroundTint="@color/secondaryTheme"
-        android:text="@string/profile_button_Edit"
-        android:theme="@style/PrimaryButton" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btnChangePassword"
-        android:layout_width="wrap_content"
-        android:layout_height="38dp"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@color/infoTheme"
-        android:text="@string/Profile_change_Pass"
-        android:textColor="@color/primaryText"
-        android:theme="@style/SecondaryButton" />
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:text="@string/address"
+            android:textColor="@color/secondaryText" />
 
-    <Button
-        android:id="@+id/closeSession"
-        android:layout_width="wrap_content"
-        android:layout_height="38dp"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@color/errorTheme"
-        android:text="@string/Log_out"
-        android:textColor="@color/white"
-        android:theme="@style/ErrorButton" />
+        <EditText
+            android:id="@+id/profile_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:text="@string/Profile_Address"
+            android:textColor="@color/secondaryText"
+            android:textSize="14sp"/>
 
-  
+        <ImageView
+            android:id="@+id/editBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_gravity="end"
+            android:src="@drawable/edit" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="88dp"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnChangePassword"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/infoTheme"
+            android:text="@string/Profile_change_Pass"
+            android:textColor="@color/primaryText"
+            android:theme="@style/SecondaryButton" />
+
+        <Button
+            android:id="@+id/closeSession"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/errorTheme"
+            android:text="@string/Log_out"
+            android:textColor="@color/white"
+            android:theme="@style/ErrorButton" />
+    </LinearLayout>
 
 
 </LinearLayout>

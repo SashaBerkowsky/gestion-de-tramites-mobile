@@ -31,11 +31,12 @@
 
     <!--Strings para Profile fragment -->
     <string name="Profile_title">PERFIL</string>
-    <string name="Profile_Email">Email : ...</string>
-    <string name="Profile_DNI">DNI : ...</string>
-    <string name="Profile_Name">Nombre : ...</string>
-    <string name="Profile_Address">Dirección : </string>
-    <string name="Profile_dateOfBirth">Fecha de Nacimiento : ...</string>
+    <string name="Profile_Email">Email:</string>
+    <string name="Profile_DNI">DNI:</string>
+    <string name="Profile_Name">Nombre:</string>
+    <string name="address">Dirección: </string>
+    <string name="Profile_Address">Dirección</string>
+    <string name="Profile_dateOfBirth">Fecha de Nacimiento:</string>
     <string name="profile_button_Edit">EDITAR</string>
     <string name="Profile_change_Pass">CAMBIAR CONTRASEÑA</string>
     <string name="Log_out">Cerrar sesión</string>

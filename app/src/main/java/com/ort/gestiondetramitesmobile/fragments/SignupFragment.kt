@@ -1,7 +1,9 @@
 package com.ort.gestiondetramitesmobile.fragments
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.text.TextUtils
@@ -16,6 +18,8 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.progressindicator.LinearProgressIndicator
 import com.google.android.material.textfield.TextInputLayout
@@ -98,15 +102,9 @@ class SignupFragment : Fragment() {
                         progressBar.hide()
                         // If the registration is successfully done
                         if (task.isSuccessful) {
-
                             // Firebase registered user
                             val firebaseUser: FirebaseUser = task.result!!.user!!
-                            // Registered Email
-                            val registeredEmail = firebaseUser.email!!
-                            Log.i("registeredEmail", registeredEmail)
-                            val intent = Intent(activity, HomeActivity::class.java)
-                            startActivity(intent)
-
+                            updateUI(firebaseUser)
                         } else {
 
                             Toast.makeText(
@@ -118,6 +116,45 @@ class SignupFragment : Fragment() {
                         }
                     })
         }
+    }
+
+
+    private fun updateUI(currentUser: FirebaseUser?) {
+
+        if (currentUser == null) {
+            return
+        }
+
+        // Registered Email
+        val registeredEmail = currentUser.email!!
+        Log.d("registeredEmail", registeredEmail)
+
+        viewModel.getCurrentUser(registeredEmail) { isNewUser, userID ->
+            setSharedPreferences(userID, currentUser.email)
+            var action: NavDirections = if (isNewUser) {
+                LoginFragmentDirections.actionLoginFragmentToUserDataFormFragment()
+            } else {
+                LoginFragmentDirections.actionLoginFragmentToHomeActivity()
+            }
+
+            findNavController().navigate(action)
+        }
+
+    }
+
+    private fun setSharedPreferences(userID: Int?, email: String?) {
+
+        val USER_PREF = "userPreferences"
+        val sharedPref: SharedPreferences =
+            requireContext().getSharedPreferences(USER_PREF, Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        Log.d("EMAIL setSharedPreferences", email.toString())
+        editor.putString("userEmail", email)
+        if (userID !== null) {
+            editor.putInt("userID", userID)
+        }
+        editor.apply()
+
     }
 
     /**
@@ -153,27 +190,6 @@ class SignupFragment : Fragment() {
                 true
             }
         }
-    }
-
-
-    /**
-     * A function to be called the user is registered successfully and entry is made in the firestore database.
-     */
-    fun userRegisteredSuccess() {
-
-        Toast.makeText(
-            requireContext(),
-            "You have successfully registered.",
-            Toast.LENGTH_SHORT
-        ).show()
-
-
-        /**
-         * Here the new user registered is automatically signed-in so we just sign-out the user from firebase
-         * and send him to Intro Screen for Sign-In
-         */
-        val intent = Intent(activity, HomeActivity::class.java)
-        startActivity(intent)
     }
 
 }

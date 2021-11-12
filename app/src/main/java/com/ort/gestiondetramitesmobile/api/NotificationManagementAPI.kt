@@ -14,7 +14,7 @@ import retrofit2.http.*
 //suspend fun nombreDeLaFuncion(@Body variable:TipoDeVariable): Response<TipoDeResponse>
 interface NotificationManagementAPI {
     @GET("users/citizens/notifications")
-    fun getNotificationList(@Query("idUser") idUser : String): Call<List<Notification>>
+    fun getNotificationList(@Query("idUser") idUser : String, @Query("read") read : Boolean): Call<List<Notification>>
     @PUT("users/citizens/notifications")
     suspend fun putNotificationReaded(@Body notificationReaded : NotificationReaded): Response<Void>
 }

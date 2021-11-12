@@ -5,5 +5,6 @@ class Notification( var id: Int,
                     var notificationDate: String,
                     var title: String,
                     var message: String,
+                    var read: Boolean,
                     ) {
 }

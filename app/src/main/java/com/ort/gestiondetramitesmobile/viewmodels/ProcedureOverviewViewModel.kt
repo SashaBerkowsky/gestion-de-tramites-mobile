@@ -1,13 +1,25 @@
 package com.ort.gestiondetramitesmobile.viewmodels
 
 import android.icu.text.StringPrepParseException
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.ort.gestiondetramitesmobile.api.RetrofitInstance
 import com.ort.gestiondetramitesmobile.daos.DaoProcedure
 import com.ort.gestiondetramitesmobile.models.Procedure
 import kotlinx.coroutines.*
+import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.HttpException
+import retrofit2.Response
 import java.io.IOException
+import com.google.gson.Gson
+import org.json.JSONObject
+
+
+
+
+
+
 
 class ProcedureOverviewViewModel : ViewModel() {
     // TODO: Implement the ViewModel
@@ -54,15 +66,28 @@ class ProcedureOverviewViewModel : ViewModel() {
     }
 
     //TODO Error handling
-    fun sendProcedure():String{
+    fun sendProcedure(onResult:(response:Int)->Unit):String{
+        var retString = ""
         val parentJob = Job()
         val scope = CoroutineScope(Dispatchers.Default + parentJob)
         val procedureDao = DaoProcedure(procedure)
-        scope.launch{
-            val response = async{RetrofitInstance.apiProcedures.postProcedure(procedureDao)}
-        }
 
-        return ""
+        val call = RetrofitInstance.apiProcedures.postProcedure(procedureDao)
+        call.enqueue(object:Callback<DaoProcedure>{
+            override fun onResponse(call: Call<DaoProcedure>, response: Response<DaoProcedure>) {
+                retString = response.errorBody().toString()
+                onResult(response.code())
+
+            }
+
+            override fun onFailure(call: Call<DaoProcedure>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+
+        return retString
     }
 
 }

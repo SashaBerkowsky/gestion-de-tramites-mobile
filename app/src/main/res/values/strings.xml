@@ -48,4 +48,5 @@
 
     <!--Strings para Item Notification -->
     <string name="Notification">Notificado: </string>
+    <string name="notification_empty">¡No hay notificaciones!</string>
 </resources>

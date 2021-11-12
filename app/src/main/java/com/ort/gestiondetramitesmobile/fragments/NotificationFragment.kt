@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.core.content.ContentProviderCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -28,6 +29,7 @@ class NotificationFragment : Fragment() {
     private lateinit var v: View
     private lateinit var  recNotification : RecyclerView
     private  val adapter = NotificationAdapter()
+    private lateinit var notificationEmpty : TextView
 
     private val viewModel: NotificationViewModel by viewModels()
 
@@ -37,10 +39,18 @@ class NotificationFragment : Fragment() {
     ): View? {
         v =  inflater.inflate(R.layout.notification_fragment, container, false)
         recNotification = v.findViewById(R.id.rec_Notification_list)
+        notificationEmpty = v.findViewById(R.id.notification_empty)
 
         recNotification.adapter = adapter
 
         viewModel.notificationList.observe(viewLifecycleOwner, Observer {
+
+            if(it.isNotEmpty()) {
+                notificationEmpty.visibility = View.GONE
+            } else {
+                notificationEmpty.visibility = View.VISIBLE
+            }
+
             adapter.setNotificationListItems(it)
         })
 

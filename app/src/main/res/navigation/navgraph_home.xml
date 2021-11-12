@@ -103,6 +103,9 @@
         <argument
             android:name="procedure"
             app:argType="com.ort.gestiondetramitesmobile.models.Procedure" />
+        <action
+            android:id="@+id/action_procedureOverviewFragment2_to_procedureListFragment"
+            app:destination="@id/procedureListFragment" />
     </fragment>
     <fragment
         android:id="@+id/procedureSendedFragment2"

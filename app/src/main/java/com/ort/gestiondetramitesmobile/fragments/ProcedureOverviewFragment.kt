@@ -35,6 +35,7 @@ class ProcedureOverviewFragment : Fragment() {
     private lateinit var edtLicenceCode : AutoCompleteTextView
     private lateinit var btnSendProcedure : Button
     private lateinit var imagesRec: RecyclerView
+    private lateinit var dialog : Dialog
 
     companion object {
         fun newInstance() = ProcedureOverviewFragment()
@@ -61,6 +62,12 @@ class ProcedureOverviewFragment : Fragment() {
         btnSendProcedure = v.findViewById(R.id.btnSendProcedure)
         imagesRec = v.findViewById(R.id.recImages)
 
+        dialog = Dialog(requireContext())
+
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.loading_dialog)
+
         return v
     }
 
@@ -80,13 +87,17 @@ class ProcedureOverviewFragment : Fragment() {
         edtLicenceCode.setHint(viewModel.getLicenceCode())
 
         btnSendProcedure.setOnClickListener {
-            var procedureErrorMsg : String = "error"
-            procedureErrorMsg  = viewModel.sendProcedure()
-            if(procedureErrorMsg.isEmpty()){
-                val action = ProcedureOverviewFragmentDirections.actionProcedureOverviewFragment2ToProcedureSendedFragment2()
-                findNavController().navigate(action)
-            } else{
-                showErrorDialog(procedureErrorMsg)
+            dialog.show()
+
+            viewModel.sendProcedure(){
+                if(it != 400){
+                    val action = ProcedureOverviewFragmentDirections.actionProcedureOverviewFragment2ToProcedureSendedFragment2()
+                    findNavController().navigate(action)
+
+                } else{
+                    showErrorDialog("Tramite inválido")
+                }
+                dialog.dismiss()
             }
 
         }
@@ -108,6 +119,11 @@ class ProcedureOverviewFragment : Fragment() {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(true)
         dialog.setContentView(R.layout.state_dialog)
+
+        dialog.setOnDismissListener {
+            val action = ProcedureOverviewFragmentDirections.actionProcedureOverviewFragment2ToProcedureListFragment()
+            findNavController().navigate(action)
+        }
 
         var btnBack = dialog.findViewById<Button>(R.id.btnBack)
         var txtTitle = dialog.findViewById<TextView>(R.id.txtTitle)

@@ -107,6 +107,7 @@ class UserDataFormFragment : Fragment() {
         saveButton.setOnClickListener {
             Log.d("date",edtDatePicker.text.toString() )
             dialog.show()
+            if(isFormValid(edtDni.text.toString(),edtName.text.toString(), edtSurname.text.toString(), edtAddress.text.toString(), edtDatePicker.text.toString())){
             val userToCreate = UserToCreate(
                 name = edtName.text.toString(),
                 email = savedEmail,
@@ -115,7 +116,6 @@ class UserDataFormFragment : Fragment() {
                 inBirthdate = edtDatePicker.text.toString(),
                 address = edtAddress.text.toString(),
             )
-            if(isFormValid(userToCreate.dni,userToCreate.name, userToCreate.surname, userToCreate.address, userToCreate.birthdate )){
                 viewModel.setCreateUser(userToCreate) { isUserCreated, userID ->
                     dialog.dismiss()
                     if (isUserCreated) {
@@ -148,11 +148,11 @@ class UserDataFormFragment : Fragment() {
     private fun isFormValid(dni: String, name: String, surname: String, address: String, birthdate: String): Boolean {
         return when {
             dni.isEmpty() ->{
-                dniLayout.error = "Campo Requerido"
+                dniLayout.error = "Campo requerido"
                 false
             }
             dni.length != 8->{
-                dniLayout.error = "Dni invalido"
+                dniLayout.error = "DNI inválido"
                 false
             }
             name.isEmpty()->{

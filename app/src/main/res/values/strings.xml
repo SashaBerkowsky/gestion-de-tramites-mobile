@@ -30,16 +30,16 @@
     <string name="option">o</string>
 
     <!--Strings para Profile fragment -->
-    <string name="Profile_title">PERFIL</string>
-    <string name="Profile_Email">Email:</string>
-    <string name="Profile_DNI">DNI:</string>
-    <string name="Profile_Name">Nombre:</string>
+    <string name="profile_title">PERFIL</string>
+    <string name="profile_Email">Email:</string>
+    <string name="profile_DNI">DNI:</string>
+    <string name="profile_Name">Nombre:</string>
     <string name="address">Dirección: </string>
-    <string name="Profile_Address">Dirección</string>
-    <string name="Profile_dateOfBirth">Fecha de Nacimiento:</string>
+    <string name="profile_Address">Dirección</string>
+    <string name="profile_dob">Fecha de nacimiento:</string>
     <string name="profile_button_Edit">EDITAR</string>
-    <string name="Profile_change_Pass">CAMBIAR CONTRASEÑA</string>
-    <string name="Log_out">Cerrar sesión</string>
+    <string name="profile_change_Pass">CAMBIAR CONTRASEÑA</string>
+    <string name="log_out">Cerrar sesión</string>
 
     <!--Strings para Procedure Lists -->
     <string name="dateTitle">Entregado: </string>

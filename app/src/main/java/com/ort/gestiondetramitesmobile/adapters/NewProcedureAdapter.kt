@@ -35,6 +35,11 @@ class NewProcedureAdapter (private var procedureList: MutableList<ProcedureType>
         return procedureList.size
     }
 
+    fun setAdapterList(list : MutableList<ProcedureType>) {
+        procedureList = list
+        notifyDataSetChanged()
+    }
+
     class ProcedureHolder(v: View) : RecyclerView.ViewHolder(v){
 
         private var view: View

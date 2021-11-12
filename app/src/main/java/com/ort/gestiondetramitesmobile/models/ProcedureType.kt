@@ -9,9 +9,17 @@ sealed class ProcedureType(val title: String, val description : String, val valu
             "Foto del frente del DNI",
             "Foto del dorso del DNI",
         "Foto del certificado de Libre de Deudas Multas"))
+
+    class PROXIMAMENTE() : ProcedureType("PROXIMAMENTE",
+        "PROXIMAMENTE",
+        2, arrayOf("Foto de la persona a realizar el tramite",
+            "Foto de la persona con su DNI",
+            "Foto del frente del DNI",
+            "Foto del dorso del DNI",
+            "Foto del certificado de Libre de Deudas Multas"))
 }
 
 fun getProcedureTypes(): MutableList<ProcedureType> {
-    return mutableListOf( ProcedureType.LICENCIA_DE_CONDUCIR())
-}
+    return mutableListOf( ProcedureType.LICENCIA_DE_CONDUCIR(), ProcedureType.PROXIMAMENTE()
+    )}
 

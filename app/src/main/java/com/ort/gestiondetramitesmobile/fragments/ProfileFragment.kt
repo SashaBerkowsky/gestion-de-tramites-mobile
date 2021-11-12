@@ -13,13 +13,11 @@ import android.widget.*
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.ort.gestiondetramitesmobile.R
-import com.ort.gestiondetramitesmobile.activities.HomeActivity
-import com.ort.gestiondetramitesmobile.adapters.UserRepository
-import com.ort.gestiondetramitesmobile.api.RetrofitInstance
 import com.ort.gestiondetramitesmobile.models.Address
 import com.ort.gestiondetramitesmobile.viewmodels.ProfileViewModel
 import java.text.SimpleDateFormat
@@ -40,7 +38,6 @@ class ProfileFragment : Fragment() {
     private lateinit var profileDob : TextView
     private lateinit var profileEmail : TextView
     private lateinit var dialog : Dialog
-    private val repository = UserRepository(RetrofitInstance)
 
     companion object {
         fun newInstance() = ProfileFragment()
@@ -80,11 +77,8 @@ class ProfileFragment : Fragment() {
         })
 
         viewModel.errorMessage.observe(viewLifecycleOwner, Observer {
-            Toast.makeText(
-                this.context,
-                "Se ha producido un error al traer el usuario",
-                Toast.LENGTH_SHORT
-            ).show()
+            val snack = Snackbar.make(v,"Se ha producido un error al traer el usuario",Snackbar.LENGTH_SHORT)
+            snack.show()
         })
 
         viewModel.getUser(userId)
@@ -115,7 +109,6 @@ class ProfileFragment : Fragment() {
         var userID = sharedPref.getInt("userID", 0)!!
         Log.d("TAG",userID.toString())
 
-
         btnCloseSession.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             navToSingInActivity()
@@ -126,20 +119,26 @@ class ProfileFragment : Fragment() {
             btnEditAddress.setImageResource(R.drawable.tick)
 
             if (viewModel.user.value?.address != profileAddress.editableText.toString()) {
+                dialog.show()
                 var userId = sharedPref.getInt("userID", 0)!!
 
                 var address = Address(
                     address = profileAddress.editableText.toString()
                 )
-                viewModel.updateAddress(userId, address, requireContext())
+                viewModel.updateAddress(userId, address)
+
+                val snack = Snackbar.make(it,"Se ha editado su dirección",Snackbar.LENGTH_SHORT)
+                snack.show()
 
                 val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(requireView().getWindowToken(), 0)
+                dialog.dismiss()
                 btnEditAddress.setImageResource(R.drawable.edit)
             } else {
+                //Puse Toast para que se vea a través del teclado
                 Toast.makeText(
-                    context,
-                    "Edite su dirección",
+                    this.context,
+                    "Edite su dirección y apriete el botón para confirmar",
                     Toast.LENGTH_SHORT
                 ).show()
             }

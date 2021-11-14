@@ -13,6 +13,7 @@ import android.view.Window
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -61,31 +62,27 @@ class ChangePasswordFragment : Fragment() {
             dialog.setCancelable(false)
             dialog.setContentView(R.layout.loading_dialog)
 
-            dialog.show()
             if(email.text.isNotEmpty()){
                 resetPassword()
             }else {
                 Toast.makeText(this.context,"Debe ingresar el correo",Toast.LENGTH_SHORT).show()
-
             }
         }
     }
 
     private fun resetPassword(){
         if(validateForm(email.text.toString())){
+            dialog.show()
         auth.setLanguageCode("es")
         auth.sendPasswordResetEmail(email.text.toString()).addOnCompleteListener{
             dialog.dismiss()
             if (it.isSuccessful) {
-                Toast.makeText(this.context,"Se ha enviado un correo para restablecer la contraseña",Toast.LENGTH_SHORT).show()
-            }else {
-                Toast.makeText(
-                    this.context,
-                    "Se ha producido un error al enviar correo",
-                    Toast.LENGTH_SHORT
-                ).show()
+                val snack = Snackbar.make(v,"Se ha enviado un correo para restablecer la contraseña", Snackbar.LENGTH_SHORT)
+                snack.show()
+               }else {
+                val snack = Snackbar.make(v,"Se ha producido un error al enviar correo", Snackbar.LENGTH_SHORT)
+                snack.show()
             }
-
         }
      }
     }

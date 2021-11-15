@@ -10,8 +10,8 @@ sealed class ProcedureType(val title: String, val description : String, val valu
             "Foto del dorso del DNI",
         "Foto del certificado de Libre de Deudas Multas"))
 
-    class PROXIMAMENTE() : ProcedureType("PROXIMAMENTE",
-        "PROXIMAMENTE",
+    class PROXIMAMENTE() : ProcedureType("PRÓXIMAMENTE",
+        "No tenemos otro tipo de trámite",
         2, arrayOf("Foto de la persona a realizar el tramite",
             "Foto de la persona con su DNI",
             "Foto del frente del DNI",

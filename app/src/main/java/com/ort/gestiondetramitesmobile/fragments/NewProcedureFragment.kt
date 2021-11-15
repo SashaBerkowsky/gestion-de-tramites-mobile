@@ -1,7 +1,6 @@
 package com.ort.gestiondetramitesmobile.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -60,22 +59,16 @@ class NewProcedureFragment : Fragment() {
     }
 
     private fun onItemClick(position: Int) {
-
-        if (position == 0) {
         val action = NewProcedureFragmentDirections.actionNewProcedureFragment2ToProcedureFormFragment2(
             getProcedureTypes()[position].title, getProcedureTypes()[position].neededPictures)
             findNavController().navigate(action)
-        } else {
-            val snack = Snackbar.make(v,"Próximamente", Snackbar.LENGTH_SHORT)
-            snack.show()
-        }
     }
 
     override fun onStart() {
         super.onStart()
-
         val myAdapter = NewProcedureAdapter(getProcedureTypes(), requireContext()) {
-            onItemClick(it)}
+            onItemClick(it)
+        }
 
         recProcedure.setHasFixedSize(true)
         recProcedure.layoutManager = LinearLayoutManager(context)

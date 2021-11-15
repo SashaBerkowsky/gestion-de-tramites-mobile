@@ -27,9 +27,11 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:textColorHint="@color/hintTextColor"
-        app:boxStrokeWidth="1dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="@string/label_menu_new_p"
+        app:errorEnabled="true"
         app:layout_constraintBottom_toTopOf="@+id/recyclerProcedures"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,14 +40,11 @@
         <AutoCompleteTextView
             android:id="@+id/procedureType"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:backgroundTint="@color/black"
-            android:fontFamily="@font/roboto"
-            android:hint="@string/label_menu_new_p"
-            android:inputType="none"
-            android:textColor="@color/hintTextColor"
-            android:textColorHint="@color/hintTextColor" />
+            android:layout_height="wrap_content"
+            android:inputType="none" />
+
     </com.google.android.material.textfield.TextInputLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerProcedures"

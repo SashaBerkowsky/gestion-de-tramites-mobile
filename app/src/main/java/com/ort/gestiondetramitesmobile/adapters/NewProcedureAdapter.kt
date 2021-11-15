@@ -1,6 +1,7 @@
 package com.ort.gestiondetramitesmobile.adapters
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,12 +9,11 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.ort.gestiondetramitesmobile.R
-import com.ort.gestiondetramitesmobile.models.Procedure
 import com.ort.gestiondetramitesmobile.models.ProcedureType
 
-class NewProcedureAdapter (private var procedureList: MutableList<ProcedureType>,
-                           var context : Context,
-                           val onItemClick : (Int) -> Unit
+class NewProcedureAdapter(private var procedureList: MutableList<ProcedureType>,
+                          var context: Context,
+                          val onItemClick: (Int) -> Unit
     ) : RecyclerView.Adapter<NewProcedureAdapter.ProcedureHolder>(){
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -26,8 +26,17 @@ class NewProcedureAdapter (private var procedureList: MutableList<ProcedureType>
     override fun onBindViewHolder(holder: ProcedureHolder, position: Int) {
         holder.setName(procedureList[position].title)
         holder.setDescription(procedureList[position].description)
+        val title : TextView = holder.getCardView().findViewById(R.id.procedureName)
+        var cardView : CardView = holder.getCardView().findViewById(R.id.procedureCard)
+
+        if(title.text.toString() == "PRÓXIMAMENTE") {
+            cardView.setCardBackgroundColor(Color.parseColor("#F3F3F3"))
+        }
+
         holder.getCardView().setOnClickListener {
+            if (title.text.toString() == "LICENCIA DE CONDUCIR") {
             onItemClick(position)
+            }
         }
     }
 

@@ -119,7 +119,7 @@ class ProfileFragment : Fragment() {
             btnEditAddress.setImageResource(R.drawable.tick)
 
             if (viewModel.user.value?.address != profileAddress.editableText.toString()) {
-                dialog.show()
+
                 var userId = sharedPref.getInt("userID", 0)!!
 
                 var address = Address(
@@ -132,8 +132,9 @@ class ProfileFragment : Fragment() {
 
                 val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(requireView().getWindowToken(), 0)
-                dialog.dismiss()
+
                 btnEditAddress.setImageResource(R.drawable.edit)
+
             } else {
                 //Puse Toast para que se vea a través del teclado
                 Toast.makeText(

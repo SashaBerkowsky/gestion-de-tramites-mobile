@@ -18,5 +18,5 @@ interface ProcedureManagementAPI {
     fun getProcedure(@Query("idProcedure") idProcedure: Int): Call<DaoProcedure>
 
     @POST("procedures")
-    suspend fun postProcedure(@Body procedure: DaoProcedure): Response<ResponseBody>
+    fun postProcedure(@Body procedure: DaoProcedure): Call<DaoProcedure>
 }

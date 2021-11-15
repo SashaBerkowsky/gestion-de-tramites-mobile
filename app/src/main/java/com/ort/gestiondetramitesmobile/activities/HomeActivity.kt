@@ -58,7 +58,7 @@ class HomeActivity : AppCompatActivity() {
 
         val sharedPref: SharedPreferences = getSharedPreferences("userPreferences", MODE_PRIVATE)
         val userId = sharedPref.getInt("userID", 0)
-        val response = repository.getNotificationList(userId.toString())
+        val response = repository.getNotificationList(userId.toString(), true)
 
         response.enqueue(object : Callback<List<Notification>> {
             override fun onResponse(call: Call<List<Notification>>, response: Response<List<Notification>>) {

@@ -8,14 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.ort.gestiondetramitesmobile.R
 import com.ort.gestiondetramitesmobile.viewmodels.ProcedureFormViewModel
-
 import android.content.Context
 import android.content.SharedPreferences
-import android.text.TextUtils
-import android.util.Patterns
 import android.view.Window
 import android.widget.*
-import androidx.core.view.isEmpty
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -45,7 +41,7 @@ class ProcedureFormFragment : Fragment() {
     private lateinit var nameLayout: TextInputLayout
     private lateinit var surnameLayout: TextInputLayout
     private lateinit var addressLayout: TextInputLayout
-    private lateinit var birhtdateLayout: TextInputLayout
+    private lateinit var birthdateLayout: TextInputLayout
     private lateinit var licenceTypeLayout: TextInputLayout
     private lateinit var dialog: Dialog
 
@@ -77,12 +73,14 @@ class ProcedureFormFragment : Fragment() {
 
         dialog = Dialog(requireContext())
 
+        // Saco el título de dialog
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        // No se puede cancelar el dialog por input del usuario
         dialog.setCancelable(false)
+        // Bind del dialog con el loading_dialog.xml
         dialog.setContentView(R.layout.loading_dialog)
 
         dialog.show()
-
 
         return v
     }
@@ -101,19 +99,22 @@ class ProcedureFormFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        // Date picker
+        // Builder para el DatePicker
         val builder = MaterialDatePicker.Builder.datePicker()
+        // Genero el DatePicker con el builder
         val picker = builder.build()
         var textInputBirthday = v.findViewById<MaterialButton>(R.id.ti_birthday)
+
+        // Formateo la fecha cuando hago elijo fecha en el DatePicker
         picker.addOnPositiveButtonClickListener {
-            // Do something...
             val outputDateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).apply {
                 timeZone = TimeZone.getTimeZone("UTC")
             }
-
             val text = outputDateFormat.format(it)
             textInputBirthday.text = text
         }
+
+        // Muestro el DatePicker cuando le doy click al campo de birthday
         textInputBirthday.setOnClickListener {
             picker.show(myContext.supportFragmentManager, picker.toString())
 
@@ -132,21 +133,26 @@ class ProcedureFormFragment : Fragment() {
         autoCompleteTextView2.setAdapter(adapter2)
 
         btnContinue.setOnClickListener {
-            if(isFormValid(autoCompleteTextView.text.toString(), edtDni.text.toString(), edtName.text.toString(), edtSurname.text.toString(), edtAddress.text.toString(), textInputBirthday.text.toString(),  autoCompleteTextView2.text.toString())){
+            if(isFormValid(autoCompleteTextView.text.toString(), edtDni.text.toString(), edtName.text.toString(), edtSurname.text.toString(),
+                    edtAddress.text.toString(), textInputBirthday.text.toString(),  autoCompleteTextView2.text.toString())){
+
+                // Traigo el array de fotos a pedir en el Stepper
                 val neededPictures = ProcedureFormFragmentArgs.fromBundle(requireArguments()).neededPictures
 
+                // Instancio el usuario que figura en el formulario del trámite
                 viewModel.setProcedureUser(edtName.text.toString(),edtSurname.text.toString(), edtDni.text.toString(),
                     edtAddress.text.toString(),textInputBirthday.text.toString())
-                viewModel.createProcedure(autoCompleteTextView.text.toString(), autoCompleteTextView2.text.toString())
 
+                // Creo el trámite:
+                viewModel.createProcedure(autoCompleteTextView.text.toString(), autoCompleteTextView2.text.toString())
 
                 val action = ProcedureFormFragmentDirections.actionProcedureFormFragment2ToPictureStepperFragment(0,neededPictures,viewModel.getProcedure())
                 findNavController().navigate(action)
 
             }
 
-
         }
+        // Cargo los datos del usuario en el formulario
         viewModel.currentUser.observe(viewLifecycleOwner,{
             var dob = formatBirthdate(viewModel.getBirthdate())
             txtProcedureName.text = ProcedureFormFragmentArgs.fromBundle(requireArguments()).procedureTitle
@@ -155,6 +161,8 @@ class ProcedureFormFragment : Fragment() {
             edtSurname.setText(viewModel.getSurname())
             edtAddress.setText( viewModel.getAddress())
             textInputBirthday.setText(dob)
+
+            // Cierro el dialog una vez que carga los datos
             dialog.dismiss()
         })
     }
@@ -173,11 +181,12 @@ class ProcedureFormFragment : Fragment() {
                 false
             }
             dni.isEmpty() ->{
-                dniLayout.error = "Campo Requerido"
+                dniLayout.error = "Campo requerido"
                 false
             }
+            // Valido que el DNI tenga 8 dígitos
             dni.length != 8->{
-                dniLayout.error = "Dni invalido"
+                dniLayout.error = "DNI inválido"
                 false
             }
             name.isEmpty()->{
@@ -193,11 +202,11 @@ class ProcedureFormFragment : Fragment() {
                 false
             }
             birthdate.isEmpty()->{
-                birhtdateLayout.error = ""
+                birthdateLayout.error = "Campo requerido"
                 false
             }
             licenceCode.isEmpty()->{
-                licenceTypeLayout.error = ""
+                licenceTypeLayout.error = "Campo requerido"
                 false
             }
             else -> {

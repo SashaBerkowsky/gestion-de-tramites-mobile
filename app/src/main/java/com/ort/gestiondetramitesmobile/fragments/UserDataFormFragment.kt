@@ -84,7 +84,6 @@ class UserDataFormFragment : Fragment() {
         val picker = builder.build()
 
         picker.addOnPositiveButtonClickListener {
-            // Do something...
             val outputDateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).apply {
                 timeZone = TimeZone.getTimeZone("UTC")
             }

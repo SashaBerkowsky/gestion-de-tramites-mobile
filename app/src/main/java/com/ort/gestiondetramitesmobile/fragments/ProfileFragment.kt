@@ -5,7 +5,6 @@ import android.app.Dialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.view.inputmethod.InputMethodManager
@@ -63,8 +62,7 @@ class ProfileFragment : Fragment() {
         var userId = sharedPref.getInt("userID", 0)!!
         var userEmail = sharedPref.getString("userEmail", "")!!
 
-
-
+        // Traigo los datos del user desde el ViewModel
         viewModel.user.observe(viewLifecycleOwner, Observer {
             var dob = formatBirthdate(viewModel.user.value?.birthdate)
             profileName.text = "Nombre: " + viewModel.user.value?.name + " " + viewModel.user.value?.surname
@@ -73,6 +71,7 @@ class ProfileFragment : Fragment() {
             profileDob.text = "Fecha de nacimiento: " + dob
             profileEmail.text = "Email: " + userEmail
 
+            //Cierro el dialog cuando termina de cargar
             dialog.dismiss()
         })
 
@@ -105,17 +104,15 @@ class ProfileFragment : Fragment() {
         val sharedPref: SharedPreferences =
             requireContext().getSharedPreferences("userPreferences", Context.MODE_PRIVATE)
 
-        // GET userID from shared preferences, this was set in LoginFragment
-        var userID = sharedPref.getInt("userID", 0)!!
-        Log.d("TAG",userID.toString())
-
         btnCloseSession.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             navToSingInActivity()
         }
 
         btnEditAddress.setOnClickListener {
+            // Cuando toco en la imagen, abro el teclado con esta función
             v.showKeyboard()
+            // Cambio la imagen
             btnEditAddress.setImageResource(R.drawable.tick)
 
             if (viewModel.user.value?.address != profileAddress.editableText.toString()) {
@@ -130,9 +127,11 @@ class ProfileFragment : Fragment() {
                 val snack = Snackbar.make(it,"Se ha editado su dirección",Snackbar.LENGTH_SHORT)
                 snack.show()
 
+                // Cierro el teclado
                 val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(requireView().getWindowToken(), 0)
 
+                // Vuelvo a la imagen original
                 btnEditAddress.setImageResource(R.drawable.edit)
 
             } else {

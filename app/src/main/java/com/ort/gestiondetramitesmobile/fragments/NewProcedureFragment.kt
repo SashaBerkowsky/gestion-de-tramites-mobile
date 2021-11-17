@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
 import com.ort.gestiondetramitesmobile.R
 import com.ort.gestiondetramitesmobile.adapters.NewProcedureAdapter
 import com.ort.gestiondetramitesmobile.models.ProcedureType
@@ -45,7 +44,7 @@ class NewProcedureFragment : Fragment() {
         getProcedureTypes().forEach() {
             prodecureTypesList.add(it.title)
         }
-        procedureSelector = v.findViewById<AutoCompleteTextView>(R.id.procedureType)
+        procedureSelector = v.findViewById(R.id.procedureType)
         val adapter = ArrayAdapter(requireContext(), R.layout.list_item, prodecureTypesList)
         procedureSelector.setAdapter(adapter)
 
@@ -66,14 +65,17 @@ class NewProcedureFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+
         val myAdapter = NewProcedureAdapter(getProcedureTypes(), requireContext()) {
             onItemClick(it)
         }
-
+        // Instancio el Recycler View
         recProcedure.setHasFixedSize(true)
         recProcedure.layoutManager = LinearLayoutManager(context)
         recProcedure.adapter = myAdapter
+        // Guardo la selección y lo mando al adapter
         procedureSelector.addTextChangedListener {
+            // Busco el type con el título seleccionado
             var list = searchType(it.toString())
             myAdapter.setAdapterList(list)
         }

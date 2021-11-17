@@ -51,10 +51,7 @@ class NewProcedureAdapter(private var procedureList: MutableList<ProcedureType>,
 
     class ProcedureHolder(v: View) : RecyclerView.ViewHolder(v){
 
-        private var view: View
-        init {
-            this.view = v
-        }
+        private var view: View = v
 
         fun setName(name : String){
             val txt: TextView = view.findViewById(R.id.procedureName)

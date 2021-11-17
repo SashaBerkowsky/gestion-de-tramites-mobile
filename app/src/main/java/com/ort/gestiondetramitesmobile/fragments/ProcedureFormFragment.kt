@@ -72,7 +72,6 @@ class ProcedureFormFragment : Fragment() {
         licenceTypeLayout = v.findViewById(R.id.ti_licence_type)
 
         dialog = Dialog(requireContext())
-
         // Saco el título de dialog
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         // No se puede cancelar el dialog por input del usuario
@@ -105,7 +104,7 @@ class ProcedureFormFragment : Fragment() {
         val picker = builder.build()
         var textInputBirthday = v.findViewById<MaterialButton>(R.id.ti_birthday)
 
-        // Formateo la fecha cuando hago elijo fecha en el DatePicker
+        // Formateo la fecha cuando la elijo en el DatePicker
         picker.addOnPositiveButtonClickListener {
             val outputDateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).apply {
                 timeZone = TimeZone.getTimeZone("UTC")
@@ -143,23 +142,23 @@ class ProcedureFormFragment : Fragment() {
                 viewModel.setProcedureUser(edtName.text.toString(),edtSurname.text.toString(), edtDni.text.toString(),
                     edtAddress.text.toString(),textInputBirthday.text.toString())
 
-                // Creo el trámite:
+                // Creo el trámite y se lo paso al Stepper
                 viewModel.createProcedure(autoCompleteTextView.text.toString(), autoCompleteTextView2.text.toString())
 
                 val action = ProcedureFormFragmentDirections.actionProcedureFormFragment2ToPictureStepperFragment(0,neededPictures,viewModel.getProcedure())
                 findNavController().navigate(action)
-
             }
-
         }
+
         // Cargo los datos del usuario en el formulario
         viewModel.currentUser.observe(viewLifecycleOwner,{
             var dob = formatBirthdate(viewModel.getBirthdate())
+            // Obtuve el título del trámite como parámetro de la action
             txtProcedureName.text = ProcedureFormFragmentArgs.fromBundle(requireArguments()).procedureTitle
             edtDni.setText(viewModel.getDni())
             edtName.setText(viewModel.getName())
             edtSurname.setText(viewModel.getSurname())
-            edtAddress.setText( viewModel.getAddress())
+            edtAddress.setText(viewModel.getAddress())
             textInputBirthday.setText(dob)
 
             // Cierro el dialog una vez que carga los datos

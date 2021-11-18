@@ -98,7 +98,7 @@ class ProcedureFormFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        // Builder para el DatePicker
+                // Builder para el DatePicker
         val builder = MaterialDatePicker.Builder.datePicker()
         // Genero el DatePicker con el builder
         val picker = builder.build()
@@ -116,16 +116,30 @@ class ProcedureFormFragment : Fragment() {
         // Muestro el DatePicker cuando le doy click al campo de birthday
         textInputBirthday.setOnClickListener {
             picker.show(myContext.supportFragmentManager, picker.toString())
-
         }
 
-        // First select
+        // Cargo los datos del usuario en el formulario
+        viewModel.currentUser.observe(viewLifecycleOwner,{
+            var dob = formatBirthdate(viewModel.getBirthdate())
+            // Obtuve el título del trámite como parámetro de la action
+            txtProcedureName.text = ProcedureFormFragmentArgs.fromBundle(requireArguments()).procedureTitle
+            edtDni.setText(viewModel.getDni())
+            edtName.setText(viewModel.getName())
+            edtSurname.setText(viewModel.getSurname())
+            edtAddress.setText(viewModel.getAddress())
+            textInputBirthday.setText(dob)
+
+            // Cierro el dialog una vez que carga los datos
+            dialog.dismiss()
+        })
+
+        // Primer select del tipo de trámite
         val items = viewModel.licenceTypesTitles //listOf("Primera licencia", "Renovación")
         val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
         var autoCompleteTextView = v.findViewById<AutoCompleteTextView>(R.id.ac_procedure)
         autoCompleteTextView.setAdapter(adapter)
 
-        // Second select
+        // Segundo select del tipo de licencia
         val items2 = viewModel.licenceCodes //listOf("A1", "B1", "C1")
         val adapter2 = ArrayAdapter(requireContext(), R.layout.list_item, items2)
         var autoCompleteTextView2 = v.findViewById<AutoCompleteTextView>(R.id.ac_licence_type)
@@ -149,21 +163,6 @@ class ProcedureFormFragment : Fragment() {
                 findNavController().navigate(action)
             }
         }
-
-        // Cargo los datos del usuario en el formulario
-        viewModel.currentUser.observe(viewLifecycleOwner,{
-            var dob = formatBirthdate(viewModel.getBirthdate())
-            // Obtuve el título del trámite como parámetro de la action
-            txtProcedureName.text = ProcedureFormFragmentArgs.fromBundle(requireArguments()).procedureTitle
-            edtDni.setText(viewModel.getDni())
-            edtName.setText(viewModel.getName())
-            edtSurname.setText(viewModel.getSurname())
-            edtAddress.setText(viewModel.getAddress())
-            textInputBirthday.setText(dob)
-
-            // Cierro el dialog una vez que carga los datos
-            dialog.dismiss()
-        })
     }
 
     private fun formatBirthdate(birthdate : String?) : String {

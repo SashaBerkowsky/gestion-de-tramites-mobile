@@ -11,7 +11,7 @@ import retrofit2.Response
 import java.util.*
 
 class ProcedureFormViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+
     var currentUser = MutableLiveData<User>()
     val errorMessage = MutableLiveData<String>()
     private val repository = UserRepository(RetrofitInstance)

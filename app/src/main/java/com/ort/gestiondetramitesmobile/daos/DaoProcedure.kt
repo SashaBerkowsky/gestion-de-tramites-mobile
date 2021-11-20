@@ -90,7 +90,7 @@ class DaoProcedure (procedure: Procedure){
     fun createProcedure(): Procedure{
         val user = User(userName, userSurname, userDni, userAddress, formatDateForProcedure(userBirthdate), idUser)
         return Procedure(idState-1, idProcedureType - 1,user,transformStrToDate(creationDate),transformStrToDate(lastModificationDate),subProcedureType,licenceCode,reasonRejection
-                         ,selfieUrl,selfieDniUrl,frontDniUrl,backDniUrl,debtFreeUrl,formatAppointmentForProcedure(revisionDate),withdrawalDate,id)
+                         ,selfieUrl,selfieDniUrl,frontDniUrl,backDniUrl,debtFreeUrl,formatAppointmentForProcedure(revisionDate),formatAppointmentForProcedure(withdrawalDate),id)
     }
 
 

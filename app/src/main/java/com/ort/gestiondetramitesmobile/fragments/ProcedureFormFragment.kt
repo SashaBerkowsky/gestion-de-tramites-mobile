@@ -29,7 +29,7 @@ class ProcedureFormFragment : Fragment() {
     }
     lateinit var v: View
     private val viewModel: ProcedureFormViewModel by viewModels()
-    lateinit var  myContext: FragmentActivity
+    lateinit var myContext: FragmentActivity
     lateinit var edtDni: EditText
     lateinit var edtName: EditText
     lateinit var edtSurname: EditText
@@ -86,8 +86,6 @@ class ProcedureFormFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        // TODO: Use the ViewModel
-
     }
 
     override fun onAttach(context: Context) {
@@ -100,10 +98,12 @@ class ProcedureFormFragment : Fragment() {
 
         // Builder para el DatePicker
         val builder = MaterialDatePicker.Builder.datePicker()
-        // Genero el DatePicker con el builder
         val picker = builder.build()
         var textInputBirthday = v.findViewById<MaterialButton>(R.id.ti_birthday)
-
+        // Muestro el DatePicker cuando le doy click al campo de birthday
+        textInputBirthday.setOnClickListener {
+            picker.show(myContext.supportFragmentManager, picker.toString())
+        }
         // Formateo la fecha cuando la elijo en el DatePicker
         picker.addOnPositiveButtonClickListener {
             val outputDateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).apply {
@@ -113,19 +113,29 @@ class ProcedureFormFragment : Fragment() {
             textInputBirthday.text = text
         }
 
-        // Muestro el DatePicker cuando le doy click al campo de birthday
-        textInputBirthday.setOnClickListener {
-            picker.show(myContext.supportFragmentManager, picker.toString())
+        // Cargo los datos del usuario en el formulario
+        viewModel.currentUser.observe(viewLifecycleOwner,{
+            // Formateo la fecha
+            var dob = formatBirthdate(viewModel.getBirthdate())
+            // Obtuve el título del trámite como parámetro de la action
+            txtProcedureName.text = ProcedureFormFragmentArgs.fromBundle(requireArguments()).procedureTitle
+            edtDni.setText(viewModel.getDni())
+            edtName.setText(viewModel.getName())
+            edtSurname.setText(viewModel.getSurname())
+            edtAddress.setText(viewModel.getAddress())
+            textInputBirthday.setText(dob)
 
-        }
+            // Cierro el dialog una vez que carga los datos
+            dialog.dismiss()
+        })
 
-        // First select
+        // Primer desplegable del tipo de trámite
         val items = viewModel.licenceTypesTitles //listOf("Primera licencia", "Renovación")
         val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
         var autoCompleteTextView = v.findViewById<AutoCompleteTextView>(R.id.ac_procedure)
         autoCompleteTextView.setAdapter(adapter)
 
-        // Second select
+        // Segundo desplegable del tipo de licencia
         val items2 = viewModel.licenceCodes //listOf("A1", "B1", "C1")
         val adapter2 = ArrayAdapter(requireContext(), R.layout.list_item, items2)
         var autoCompleteTextView2 = v.findViewById<AutoCompleteTextView>(R.id.ac_licence_type)
@@ -149,21 +159,6 @@ class ProcedureFormFragment : Fragment() {
                 findNavController().navigate(action)
             }
         }
-
-        // Cargo los datos del usuario en el formulario
-        viewModel.currentUser.observe(viewLifecycleOwner,{
-            var dob = formatBirthdate(viewModel.getBirthdate())
-            // Obtuve el título del trámite como parámetro de la action
-            txtProcedureName.text = ProcedureFormFragmentArgs.fromBundle(requireArguments()).procedureTitle
-            edtDni.setText(viewModel.getDni())
-            edtName.setText(viewModel.getName())
-            edtSurname.setText(viewModel.getSurname())
-            edtAddress.setText(viewModel.getAddress())
-            textInputBirthday.setText(dob)
-
-            // Cierro el dialog una vez que carga los datos
-            dialog.dismiss()
-        })
     }
 
     private fun formatBirthdate(birthdate : String?) : String {

@@ -39,13 +39,14 @@ class NewProcedureFragment : Fragment() {
         v = inflater.inflate(R.layout.new_procedure_fragment, container, false)
         recProcedure = v.findViewById(R.id.recyclerProcedures)
 
-        var prodecureTypesList = mutableListOf<String>()
+        var procedureTypesList = mutableListOf<String>()
 
         getProcedureTypes().forEach() {
-            prodecureTypesList.add(it.title)
+            procedureTypesList.add(it.title)
         }
+        // Desplegable con los tipos de trámites
         procedureSelector = v.findViewById(R.id.procedureType)
-        val adapter = ArrayAdapter(requireContext(), R.layout.list_item, prodecureTypesList)
+        val adapter = ArrayAdapter(requireContext(), R.layout.list_item, procedureTypesList)
         procedureSelector.setAdapter(adapter)
 
         return v
@@ -73,9 +74,9 @@ class NewProcedureFragment : Fragment() {
         recProcedure.setHasFixedSize(true)
         recProcedure.layoutManager = LinearLayoutManager(context)
         recProcedure.adapter = myAdapter
-        // Guardo la selección y lo mando al adapter
+        // Cuando el texto del desplegable cambia
         procedureSelector.addTextChangedListener {
-            // Busco el type con el título seleccionado
+            // Busco el type con el título seleccionado y lo mando al adapter
             var list = searchType(it.toString())
             myAdapter.setAdapterList(list)
         }

@@ -106,7 +106,7 @@ class ProfileFragment : Fragment() {
 
         btnCloseSession.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
-            navToSingInActivity()
+            navToSignInActivity()
         }
 
         btnEditAddress.setOnClickListener {
@@ -158,7 +158,7 @@ class ProfileFragment : Fragment() {
         dialog.show()
     }
 
-    private fun navToSingInActivity() {
+    private fun navToSignInActivity() {
         val action = ProfileFragmentDirections.actionProfileFragmentToLoginActivity()
         findNavController().navigate(action)
     }

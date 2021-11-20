@@ -74,11 +74,23 @@ class DaoProcedure (procedure: Procedure){
         }
     }
 
+    private fun formatAppointmentForProcedure(appointment: String?): String{
+        val splitedAppointment = appointment?.split("-")
+        val dayHour = splitedAppointment?.get(2)?.split(" ")
+
+        return if(!appointment.isNullOrEmpty()){
+            dayHour!![0]+"/"+splitedAppointment[1]+"/"+splitedAppointment[0] + " " + dayHour[1]
+
+        } else{
+            ""
+        }
+    }
+
     @RequiresApi(Build.VERSION_CODES.O)
     fun createProcedure(): Procedure{
         val user = User(userName, userSurname, userDni, userAddress, formatDateForProcedure(userBirthdate), idUser)
         return Procedure(idState-1, idProcedureType - 1,user,transformStrToDate(creationDate),transformStrToDate(lastModificationDate),subProcedureType,licenceCode,reasonRejection
-                         ,selfieUrl,selfieDniUrl,frontDniUrl,backDniUrl,debtFreeUrl,formatDateForProcedure(revisionDate),formatDateForProcedure(withdrawalDate),id)
+                         ,selfieUrl,selfieDniUrl,frontDniUrl,backDniUrl,debtFreeUrl,formatAppointmentForProcedure(revisionDate),withdrawalDate,id)
     }
 
 

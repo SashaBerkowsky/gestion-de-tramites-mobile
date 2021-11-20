@@ -172,33 +172,16 @@ class PictureStepperFragment : Fragment() {
         return File.createTempFile(fileName, ".jpg", storageDir)
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray,
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if(requestCode == CAMERA_PERMISSION_CODE){
-            if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED ){
-                val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                startActivityForResult(intent, CAMERA_REQUEST_CODE)
-            } else{
-                //mostrar toast de permiso de camara
-            }
-        }
-    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(resultCode == Activity.RESULT_OK){
-            if(requestCode == CAMERA_REQUEST_CODE){
-            //    val imgThumbnail: Bitmap = data!!.extras!!.get("data") as Bitmap
-                val takenImage = BitmapFactory.decodeFile(photoFile.absolutePath)
-                Log.d("width", takenImage.width.toString())
-                Log.d("height", takenImage.height.toString())
-                imgPictureTaken.setImageBitmap(takenImage)
-                imgPictureTaken.visibility = View.VISIBLE
-            }
+        if(resultCode == Activity.RESULT_OK && requestCode == CAMERA_REQUEST_CODE){
+            //val imgThumbnail: Bitmap = data!!.extras!!.get("data") as Bitmap
+            val takenImage = BitmapFactory.decodeFile(photoFile.absolutePath)
+            Log.d("width", takenImage.width.toString())
+            Log.d("height", takenImage.height.toString())
+            imgPictureTaken.setImageBitmap(takenImage)
+            imgPictureTaken.visibility = View.VISIBLE
         }
     }
 
